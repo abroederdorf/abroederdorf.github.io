@@ -1,0 +1,40 @@
+th {
+	border: solid 1px;4
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: lightblue;
+}
+
+td {
+	border: solid 1px;
+	padding-left: 5px;
+	padding-right: 5px;
+	text-align: center;
+}
+
+table {
+	border-spacing: 0px;
+	border: solid 1px;
+	margin-top:20px;
+}
+
+button{
+	text-align: center;
+	margin: 10px;
+}
+
+#pageDiv{
+	max-width: 1000px;
+	margin: auto;
+}
+
+.accordion {
+	border-radius: 5px;
+	border: solid 1px gray;
+	margin-left: 25px;
+	padding: 10px;
+}
+
+.toggle{
+	border-radius: 5px;
+}
