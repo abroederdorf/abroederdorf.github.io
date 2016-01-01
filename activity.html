@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Trip Reports by Activity</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<div id="pageDiv">
+			<span id="pagetitle">Alpine Alicia</span>
+			<br>
+			<span id="pageSubtitle">Trip reports from my hikes, climbs, and other adventures.</span>
+			<div id="pageBar">
+				<span id="homeLink"><a href="http://alpinealicia.com">Home</a></span><span id="tripLink">| trip reports by: </span><span><a href="location.html">Location</a> | <a href="activity.html">Activity</a> | <a href="date.html">Date</a></span>
+			</div>
+			<p>Trip reports are organized by the activities listed below.</p>
+			<p><u>Activity Categories</u>: 
+			<ul>
+				<li>Hike: Does not matter the destination as long as no technical skills were required</li>
+				<li>Climb: Technical skills required to reach the summit (i.e. use of ice axe or rope). Some snow climbs would be considered hikes during the summer</li>
+				<li>Crag: Within climbing I have separated cragging, those areas where I solely rock climbed</li>
+				<li>Backcountry Ski: Heading up something on my skis</li>
+			</ul>
+			</p>
+			<div class="accordion">
+				<span><button onclick="toggle('containerActHike')" class="toggle">+</button><strong>Hikes</strong></span>
+				<div id="containerActHike">
+					<table class="reportTable">
+						<tr>
+							<th>Mountain/Trail</th>
+							<th>Location</th>
+							<th>Dates</th>
+						</tr>
+						<tbody id="bdyTatoosh">
+							<tr>
+								<td>Denman Peak</td>
+								<td>Tatoosh</td>
+								<td><a href="http://alpinealicia.com/2015/20150816_Tatoosh_DenmanPlummerPinnacle">8.16.15</a></td>
+							</tr>
+							<tr>
+								<td>Pinnacle Peak</td>
+								<td>Tatoosh</td>
+								<td><a href="http://alpinealicia.com/2015/20150816_Tatoosh_DenmanPlummerPinnacle">8.16.15</a></td>
+							</tr>
+							<tr>
+								<td>Plummer Peak</td>
+								<td>Tatoosh</td>
+								<td><a href="http://alpinealicia.com/2015/20150816_Tatoosh_DenmanPlummerPinnacle">8.16.15</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>	
+			<div class="accordion">
+				<span><button onclick="toggle('containerActClimb')" class="toggle">+</button><strong>Climbs</strong></span>
+				<div id="containerActClimb">
+					<p>No trip reports added for this activity yet</p>
+				</div>
+			</div>
+			<div class="accordion">
+				<span><button onclick="toggle('containerActCrag')" class="toggle">+</button><strong>Cragging</strong></span>
+				<div id="containerActCrag">
+					<p>No trip reports added for this activity yet</p>
+				</div>
+			</div>
+			<div class="accordion">
+				<span><button onclick="toggle('containerActSki')" class="toggle">+</button><strong>Backcountry Skiing</strong></span>
+				<div id="containerActSki">
+					<p>No trip reports added for this activity yet</p>
+				</div>
+			</div>
+			
+		</div>
+		
+		<script src='jsAlpineAlicia.js'></script>
+		<script src='jsActivity.js'></script>
+	</body>
+</html>

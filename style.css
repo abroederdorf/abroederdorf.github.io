@@ -93,6 +93,28 @@ button{
 	margin-left: 45px;
 }
 
+.actHike{
+	background-color: #FFE87C;
+}
+
+.actClimb{
+	background-color: #6CBB3C;
+}
+
+.actCrag{
+	background-color: #FF8040;
+}
+
+.actSki{
+	background-color: white;
+}
+
+.monthRow{
+	text-align: left;
+	font-weight: bold;
+	font-variant: small-caps;
+}
+
 #pageDiv{
 	max-width: 1000px;
 	margin: auto;
