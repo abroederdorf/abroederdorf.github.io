@@ -41,7 +41,7 @@ th {
 	border: solid 1px;
 	padding-left: 5px;
 	padding-right: 5px;
-	background-color: lightblue;
+	background-color: #BCC6CC;
 }
 
 td {
@@ -67,6 +67,7 @@ button{
 	border: solid 1px gray;
 	margin-left: 25px;
 	padding: 10px;
+	width: 90%;
 }
 
 .toggle{
@@ -82,6 +83,14 @@ button{
 	font-weight: lighter;
 	line-height: 100%;
 	font-size: 80%;
+}
+
+.statsTitle{
+	margin-left: 20px;
+}
+
+.reportTable{
+	margin-left: 45px;
 }
 
 #pageDiv{
