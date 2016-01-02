@@ -115,6 +115,14 @@ button{
 	font-variant: small-caps;
 }
 
+.tab1{
+	margin-left: 35px;
+}
+
+.tab2{
+	margin-left: 50px;
+}
+
 #pageDiv{
 	max-width: 1000px;
 	margin: auto;
