@@ -135,6 +135,10 @@ button{
 	clear: left;
 }
 
+.noData{
+	background-color: #A9A9A9;
+}
+
 #pageDiv{
 	max-width: 1000px;
 	margin: auto;
