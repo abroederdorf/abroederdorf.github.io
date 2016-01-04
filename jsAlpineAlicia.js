@@ -24,4 +24,4 @@ function toggle(id){
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-71952475-1', 'auto');
-  ga('send', 'pageview');
+  ga('send', 'pageview', location.pathname);
