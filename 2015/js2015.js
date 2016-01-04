@@ -19,6 +19,10 @@ google.setOnLoadCallback(drawOutdoorType);
 google.setOnLoadCallback(drawRunningMileage);
 google.setOnLoadCallback(drawRunningElevation);
 google.setOnLoadCallback(drawOverallDays);
+google.setOnLoadCallback(drawOutdoorDiffTotal);
+google.setOnLoadCallback(drawOutdoorDiffCurrent);
+google.setOnLoadCallback(drawOutdoorLocTotal);
+google.setOnLoadCallback(drawOutdoorLocCurrent);
 
 //Stacked column chart to depict ski days, sum of resort and backcountry days
 function drawSkiDays() {
@@ -39,6 +43,12 @@ function drawSkiDays() {
 
       var options = {
         title: 'Total Number of Ski Days',
+		titleTextStyle: {
+			color: '#000000',
+			fontSize: 16,
+			fontName: 'Arial',
+			bold: true
+		},
         isStacked: true,
 		legend: { position: 'bottom', maxLines: 1 },
 		height: 300,
@@ -73,20 +83,30 @@ function drawGymDifficulty() {
 
 	data.addRows([
 	['Jan', 6.746, 6.815, 6.99],    ['Feb', 7.104, 8.658, 6.98],   ['Mar', 4.571, 7.089, 6.71],  ['Apr', 5.750, 7.483, 6.15],   ['May', 0, 0, 7.333],  ['Jun', 3.750, 0, 5.6964],
-	['Jul', 3.1, 0, 5.65],    ['Aug', 4.644, 5.571, 5.45],   ['Sep', 5.64, 6.378, 0],  ['Oct', 6.673, 5.793, 5.222],   ['Nov', 7.1, 6.964, 0],  ['Dec', 5.194, 6.612, 5.937],
+	['Jul', 3.1, 0, 5.65],    ['Aug', 4.644, 5.571, 5.45],   ['Sep', 5.64, 6.378, 0],  ['Oct', 6.673, 5.793, 5.222],   ['Nov', 7.1, 6.964, 0],  ['Dec', 5.194, 6.612, 5.937]
 	]);
 
 	var options = {
 		title: 'Average Difficulty',
-		width: 700,
+		titleTextStyle: {
+			color: '#000000',
+			fontSize: 16,
+			fontName: 'Arial',
+			bold: true
+		},
 		height: 300,
-		legend: { position: 'bottom', maxLines: 3 },
+		legend: { 
+			position: 'bottom', 
+			maxLines: 3 
+		},
 		hAxis: {
 		  title: 'Month'
 		},
 		vAxis: {
 		  title: 'Average Difficulty',
-		  gridlines: { count: 6 }
+		  gridlines: { 
+			count: 6 
+		  }
 		},
 		chartArea: {left:50, width: 600},
 		colors: ['#0000FF', '#800000', '#008000']
@@ -106,14 +126,21 @@ function drawGymPitches() {
 
 	data.addRows([
 	['Jan', 64, 51, 49],    ['Feb', 46, 74, 41],   ['Mar', 7, 37, 46],  ['Apr', 17, 28, 19],   ['May', 0, 0, 9],  ['Jun', 21, 0, 48],
-	['Jul', 10, 0, 10],    ['Aug', 16, 11, 10],   ['Sep', 25, 46, 0],  ['Oct', 27, 58, 9],   ['Nov', 10, 58, 0],  ['Dec', 16, 76, 8],
+	['Jul', 10, 0, 10],    ['Aug', 16, 11, 10],   ['Sep', 25, 46, 0],  ['Oct', 27, 58, 9],   ['Nov', 10, 58, 0],   ['Dec', 16, 76, 8]
 	]);
 
 	var options = {
 		title: 'Number of Pitches',
-		width: 700,
+		titleTextStyle: {
+			color: '#000000',
+			fontSize: 16,
+			fontName: 'Arial',
+			bold: true
+		},
 		height: 300,
-		legend: { position: 'bottom', maxLines: 3 },
+		legend: { 
+			position: 'bottom', maxLines: 3 
+		},
 		hAxis: {
 		  title: 'Month'
 		},
@@ -147,8 +174,13 @@ function drawOutdoorDifficulty() {
 
 	var options = {
 		title: 'Difficulty of Pitches',
-		width: 700,
-		height: 300,
+		titleTextStyle: {
+			color: '#000000',
+			fontSize: 16,
+			fontName: 'Arial',
+			bold: true
+		},
+		height: 360,
 		legend: { position: 'bottom', maxLines: 3 },
 		hAxis: {
 		  title: 'Rating'
@@ -185,7 +217,12 @@ function drawOutdoorLocation() {
 
 	var options = {
 		title: 'Location of Climbs',
-		width: 700,
+		titleTextStyle: {
+			color: '#000000',
+			fontSize: 16,
+			fontName: 'Arial',
+			bold: true
+		},
 		height: 300,
 		legend: { position: 'bottom', maxLines: 3 },
 		hAxis: {
@@ -200,42 +237,6 @@ function drawOutdoorLocation() {
 	};
 
 	var chart = new google.visualization.LineChart(document.getElementById('outdoorLocations'));
-	chart.draw(data, options);
-}
-
-//Line chart to depict type of routes per year of outdoor climbing
-function drawOutdoorType2() {
-	var data = new google.visualization.DataTable();
-	data.addColumn('string', 'Type');
-	data.addColumn('number', '2010');
-	data.addColumn('number', '2011');
-	data.addColumn('number', '2012');
-	data.addColumn('number', '2013');
-	data.addColumn('number', '2014');
-	data.addColumn('number', '2015');
-
-	data.addRows([
-	['Top Rope', 16, 25, 51, 17, 49, 14],    ['Trad Follow', 0, 4, 7, 0, 16, 0],   ['Sport', 2, 22, 12, 4, 11, 8],  ['Trad Lead', 0, 17, 17, 7, 24, 5],   
-	['Trad Lead Swap', 0, 3, 8, 6, 10, 1]
-	]);
-
-	var options = {
-		title: 'Type of Climbs',
-		width: 700,
-		height: 300,
-		legend: { position: 'bottom', maxLines: 3 },
-		hAxis: {
-		  title: 'Type'
-		},
-		vAxis: {
-		  title: 'Number of Routes',
-		  gridlines: { count: 6 }
-		},
-		chartArea: {left:50, width: 600},
-		colors: [ '#B93B8F', '#8467D7','#FFA500', '#0000FF', '#800000', '#008000']
-	};
-
-	var chart = new google.visualization.LineChart(document.getElementById('outdoorType'));
 	chart.draw(data, options);
 }
 
@@ -260,6 +261,12 @@ function drawOutdoorType() {
 
       var options = {
         title: 'Type of Climbs',
+		titleTextStyle: {
+			color: '#000000',
+			fontSize: 16,
+			fontName: 'Arial',
+			bold: true
+		},
         isStacked: true,
 		legend: { position: 'bottom', maxLines: 3 },
 		height: 300,
@@ -284,7 +291,6 @@ function drawOutdoorType() {
       chart.draw(data, options);
 }
 
-
 //Line chart to depict mileage per month for running
 function drawRunningMileage() {
 	var data = new google.visualization.DataTable();
@@ -301,7 +307,12 @@ function drawRunningMileage() {
 
 	var options = {
 		title: 'Mileage by Month',
-		width: 700,
+		titleTextStyle: {
+			color: '#000000',
+			fontSize: 16,
+			fontName: 'Arial',
+			bold: true
+		},
 		height: 300,
 		legend: { position: 'bottom', maxLines: 3 },
 		hAxis: {
@@ -335,7 +346,12 @@ function drawRunningElevation() {
 
 	var options = {
 		title: 'Elevation by Month',
-		width: 700,
+		titleTextStyle: {
+			color: '#000000',
+			fontSize: 16,
+			fontName: 'Arial',
+			bold: true
+		},
 		height: 300,
 		legend: { position: 'bottom', maxLines: 3 },
 		hAxis: {
@@ -345,7 +361,7 @@ function drawRunningElevation() {
 		  title: 'Total Elevation [feet]',
 		  gridlines: { count: 6 }
 		},
-		chartArea: {left:50, width: 600},
+		chartArea: {left:100, width: 600},
 		colors: ['#FFA500', '#0000FF', '#800000', '#008000']
 	};
 
@@ -355,23 +371,175 @@ function drawRunningElevation() {
 
 //Pie chart to depict number of days spent per activity for overall stats
 function drawOverallDays() {
-        var data = google.visualization.arrayToDataTable([
-          ['Activity', 'Number of Days'],
-          ['Hiking',     17],
-          ['Running',     0],
-          ['Outside Rock Climbing',  7],
-          ['Gym Climbing', 26],
-          ['Skiing',    12]
-        ]);
+	var data = google.visualization.arrayToDataTable([
+	  ['Activity', 'Number of Days'],
+	  ['Hiking',     17],
+	  ['Running',     0],
+	  ['Outside Rock Climbing',  7],
+	  ['Gym Climbing', 26],
+	  ['Skiing',    12]
+	]);
 
-        var options = {
-          title: 'How I Spent My Active Days',
-          pieHole: 0.3,
-		  width: 500,
-		  height: 300,
-        };
+	var options = {
+	  title: 'How I Spent My Active Days',
+	  titleTextStyle: {
+		color: '#000000',
+		fontSize: 16,
+		fontName: 'Arial',
+		bold: true
+	},
+	  pieHole: 0.3,
+	  width: 500,
+	  height: 300,
+	  backgroundColor: '#CFECEC'
+	};
 
-        var chart = new google.visualization.PieChart(document.getElementById('overallDays'));
-        chart.draw(data, options);
-      }
+	var chart = new google.visualization.PieChart(document.getElementById('overallDays'));
+	chart.draw(data, options);
+}
 
+//Pie chart to depict difficulty of outdoor climbs for all years
+function drawOutdoorDiffTotal() {
+	var data = google.visualization.arrayToDataTable([
+	  ['Rating', 'Number of Pitches'],
+	  ['5-', 30],
+	  ['5.4', 33],
+	  ['5.5', 40],
+	  ['5.6', 107],
+	  ['5.7', 98],
+	  ['5.8', 67],
+	  ['5.9', 38],
+	  ['5.10a', 23],
+	  ['5.10b', 12],
+	  ['5.10c', 4],
+	  ['5.10d', 1],
+	  ['5.11a', 1]
+	]);
+
+	var options = {
+	  title: 'Difficulty of All Outdoor Climbing Pitches',
+	  titleTextStyle: {
+		color: '#000000',
+		fontSize: 14,
+		fontName: 'Arial',
+		bold: true
+	},
+	  pieHole: 0.3,
+	  width: 375,
+	  height: 200,
+	  backgroundColor: '#CFECEC'
+	};
+
+	var chart = new google.visualization.PieChart(document.getElementById('outdoorDiffPieTotal'));
+	chart.draw(data, options);
+}
+
+//Pie chart to depict difficulty of outdoor climbs for current year
+function drawOutdoorDiffCurrent() {
+	var data = google.visualization.arrayToDataTable([
+	  ['Rating', 'Number of Pitches'],
+	  ['5-', 3],
+	  ['5.4', 2],
+	  ['5.5', 2],
+	  ['5.6', 16],
+	  ['5.7', 3],
+	  ['5.8', 3],
+	  ['5.9', 4],
+	  ['5.10a', 1],
+	  ['5.10b', 0],
+	  ['5.10c', 0],
+	  ['5.10d', 0],
+	  ['5.11a', 0]
+	]);
+
+	var options = {
+	  title: 'Difficulty of Outdoor Climbing Pitches in 2015',
+	  titleTextStyle: {
+		color: '#000000',
+		fontSize: 14,
+		fontName: 'Arial',
+		bold: true
+	},
+	  pieHole: 0.3,
+	  width: 375,
+	  height: 200,
+	  backgroundColor: '#CFECEC'
+	};
+
+	var chart = new google.visualization.PieChart(document.getElementById('outdoorDiffPieCurrent'));
+	chart.draw(data, options);
+}
+
+//Pie chart to depict location of outdoor climbs for all years
+function drawOutdoorLocTotal() {
+	var data = google.visualization.arrayToDataTable([
+	  ['Rating', 'Number of Routes'],
+	  ['Exit 38', 16],
+	  ['Index', 5],
+	  ['Leavenworth', 107],
+	  ['Mazama', 13],
+	  ['Tieton', 13],
+	  ['Vantage', 54],
+	  ['North Cascades', 7],
+	  ['Central Cascades', 4],
+	  ['South Cascades', 4],
+	  ['Mt Erie', 5],
+	  ['Smith', 16],
+	  ['Squamish', 68],
+	  ['Out of State', 44]
+	]);
+
+	var options = {
+	  title: 'Location of All Outdoor Climbing Routes',
+	  titleTextStyle: {
+		color: '#000000',
+		fontSize: 14,
+		fontName: 'Arial',
+		bold: true
+	},
+	  pieHole: 0.3,
+	  width: 375,
+	  height: 200,
+	  backgroundColor: '#CFECEC'
+	};
+
+	var chart = new google.visualization.PieChart(document.getElementById('outdoorLocPieTotal'));
+	chart.draw(data, options);
+}
+
+//Pie chart to depict location of outdoor climbs for current year
+function drawOutdoorLocCurrent() {
+	var data = google.visualization.arrayToDataTable([
+	  ['Rating', 'Number of Routes'],
+	  ['Exit 38', 0],
+	  ['Index', 0],
+	  ['Leavenworth', 14],
+	  ['Mazama', 0],
+	  ['Tieton', 0],
+	  ['Vantage', 0],
+	  ['North Cascades', 1],
+	  ['Central Cascades', 1],
+	  ['South Cascades', 0],
+	  ['Mt Erie', 0],
+	  ['Smith', 0],
+	  ['Squamish', 0],
+	  ['Out of State', 12]
+	]);
+
+	var options = {
+	  title: 'Location of Outdoor Climbing Routes in 2015',
+	  titleTextStyle: {
+		color: '#000000',
+		fontSize: 14,
+		fontName: 'Arial',
+		bold: true
+	},
+	  pieHole: 0.3,
+	  width: 375,
+	  height: 200,
+	  backgroundColor: '#CFECEC'
+	};
+
+	var chart = new google.visualization.PieChart(document.getElementById('outdoorLocPieCurrent'));
+	chart.draw(data, options);
+}
