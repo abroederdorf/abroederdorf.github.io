@@ -95,7 +95,7 @@ function drawGymDifficulty() {
 			bold: true
 		},
 		height: 300,
-		width: 650,
+		width: 700,
 		legend: { 
 			position: 'bottom', 
 			maxLines: 3 
@@ -139,7 +139,7 @@ function drawGymPitches() {
 			bold: true
 		},
 		height: 300,
-		width: 650,
+		width: 700,
 		legend: { 
 			position: 'bottom', maxLines: 3 
 		},
@@ -183,7 +183,7 @@ function drawOutdoorDifficulty() {
 			bold: true
 		},
 		height: 360,
-		width: 650,
+		width: 700,
 		legend: { position: 'bottom', maxLines: 3 },
 		hAxis: {
 		  title: 'Rating'
@@ -227,7 +227,7 @@ function drawOutdoorLocation() {
 			bold: true
 		},
 		height: 300,
-		width: 650,
+		width: 700,
 		legend: { position: 'bottom', maxLines: 3 },
 		hAxis: {
 		  title: 'Location'
@@ -274,7 +274,7 @@ function drawOutdoorType() {
         isStacked: true,
 		legend: { position: 'bottom', maxLines: 3 },
 		height: 300,
-		width: 650,
+		width: 700,
         hAxis: {
           title: 'Years',
 		  viewWindow: {
@@ -318,7 +318,7 @@ function drawRunningMileage() {
 			bold: true
 		},
 		height: 300,
-		width: 650,
+		width: 700,
 		legend: { position: 'bottom', maxLines: 3 },
 		hAxis: {
 		  title: 'Month'
@@ -395,7 +395,7 @@ function drawOverallDays() {
 		bold: true
 	},
 	  pieHole: 0.3,
-	  width: 500,
+	  width: 700,
 	  height: 300,
 	  backgroundColor: '#CFECEC'
 	};
