@@ -139,6 +139,7 @@ function drawGymPitches() {
 			bold: true
 		},
 		height: 300,
+		width: 650,
 		legend: { 
 			position: 'bottom', maxLines: 3 
 		},
@@ -182,6 +183,7 @@ function drawOutdoorDifficulty() {
 			bold: true
 		},
 		height: 360,
+		width: 650,
 		legend: { position: 'bottom', maxLines: 3 },
 		hAxis: {
 		  title: 'Rating'
@@ -225,6 +227,7 @@ function drawOutdoorLocation() {
 			bold: true
 		},
 		height: 300,
+		width: 650,
 		legend: { position: 'bottom', maxLines: 3 },
 		hAxis: {
 		  title: 'Location'
@@ -271,7 +274,7 @@ function drawOutdoorType() {
         isStacked: true,
 		legend: { position: 'bottom', maxLines: 3 },
 		height: 300,
-		width: 700,
+		width: 650,
         hAxis: {
           title: 'Years',
 		  viewWindow: {
@@ -315,6 +318,7 @@ function drawRunningMileage() {
 			bold: true
 		},
 		height: 300,
+		width: 650,
 		legend: { position: 'bottom', maxLines: 3 },
 		hAxis: {
 		  title: 'Month'
@@ -354,6 +358,7 @@ function drawRunningElevation() {
 			bold: true
 		},
 		height: 300,
+		width: 700,
 		legend: { position: 'bottom', maxLines: 3 },
 		hAxis: {
 		  title: 'Month'
