@@ -139,7 +139,7 @@ button{
 }
 
 .noData{
-	background-color: #800000;
+	background-color: #E18B6B;
 }
 
 .pieCharts{
@@ -147,6 +147,10 @@ button{
 	margin: 10px;
 	padding: 10px;
 	width: 425px;
+}
+
+.chartCentered{
+	margin: auto;
 }
 
 #pageDiv{

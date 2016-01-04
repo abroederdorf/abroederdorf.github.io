@@ -95,6 +95,7 @@ function drawGymDifficulty() {
 			bold: true
 		},
 		height: 300,
+		width: 650,
 		legend: { 
 			position: 'bottom', 
 			maxLines: 3 
