@@ -23,6 +23,7 @@ google.setOnLoadCallback(drawOutdoorDiffTotal);
 google.setOnLoadCallback(drawOutdoorDiffCurrent);
 google.setOnLoadCallback(drawOutdoorLocTotal);
 google.setOnLoadCallback(drawOutdoorLocCurrent);
+google.setOnLoadCallback(drawStepsMonthly);
 
 //Stacked column chart to depict ski days, sum of resort and backcountry days
 function drawSkiDays() {
@@ -547,5 +548,43 @@ function drawOutdoorLocCurrent() {
 	};
 
 	var chart = new google.visualization.PieChart(document.getElementById('outdoorLocPieCurrent'));
+	chart.draw(data, options);
+}
+
+//Line chart to depict steps per month 
+function drawStepsMonthly() {
+	var data = new google.visualization.DataTable();
+	data.addColumn('string', 'Month');
+	data.addColumn('number', '2014');
+	data.addColumn('number', '2015');
+
+	data.addRows([
+	['Jan', 0, 198300],    ['Feb', 0, 215989],   ['Mar', 0, 257487],  ['Apr', 0, 199932],   ['May', 0, 212319],  ['Jun', 0, 346706],
+	['Jul', 0, 300509],    ['Aug', 303340, 243670],   ['Sep', 288083, 286882],  ['Oct', 245026, 164057],   ['Nov', 255106, 110484],  ['Dec', 212604, 158217],
+	]);
+
+	var options = {
+		title: 'Steps by Month',
+		titleTextStyle: {
+			color: '#000000',
+			fontSize: 16,
+			fontName: 'Arial',
+			bold: true
+		},
+		height: 300,
+		width: 700,
+		legend: { position: 'bottom', maxLines: 3 },
+		hAxis: {
+		  title: 'Month'
+		},
+		vAxis: {
+		  title: 'Total Steps',
+		  gridlines: { count: 6 }
+		},
+		chartArea: {left:50, width: 600},
+		colors: ['#800000', '#008000']
+	};
+
+	var chart = new google.visualization.LineChart(document.getElementById('monthlySteps'));
 	chart.draw(data, options);
 }
