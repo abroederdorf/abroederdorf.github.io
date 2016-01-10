@@ -7,3 +7,4 @@
 
 //Initialize Date Page
 document.getElementById("containerDate2015").style.display = "none";
+document.getElementById("containerDate2014").style.display = "none";
