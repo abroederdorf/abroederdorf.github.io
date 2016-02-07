@@ -157,11 +157,32 @@ button{
 	margin-left: 150px;
 }
 
+.statusLine{
+	margin-left: 50px;
+}
+
+.statusYear{
+	float: left;
+	margin-left: 20px;
+}
+
+.statusBar{
+	float: left;
+	width: 100px;
+	border: solid black 1px;
+	background-color: #F5B7B1;
+	margin-left: 10px;
+}
+
+.statusComplete{
+	margin-left: 30px;
+}
+
 #pageDiv{
 	max-width: 1000px;
 	margin: auto;
 	background-color: #CFECEC;
-	padding: 10px;
+	padding: 20px;
 	border-radius: 20px;
 }
 
@@ -197,4 +218,46 @@ button{
 #tripLink{
 	font-variant: small-caps;
 	font-weight: bold;
+}
+
+#status2015{
+	width: 100%;
+	height: 25px;
+	background-color: #58D68D;
+}
+
+#status2014{
+	width: 100%;
+	height: 25px;
+	background-color: #58D68D;
+}
+
+#status2013{
+	width: 0%;
+	height: 25px;
+	background-color: #58D68D;
+}
+
+#status2012{
+	width: 0%;
+	height: 25px;
+	background-color: #58D68D;
+}
+
+#status2011{
+	width: 0%;
+	height: 25px;
+	background-color: #58D68D;
+}
+
+#status2010{
+	width: 0%;
+	height: 25px;
+	background-color: #58D68D;
+}
+
+#status2009{
+	width: 0%;
+	height: 25px;
+	background-color: #58D68D;
 }
