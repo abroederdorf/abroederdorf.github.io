@@ -25,3 +25,4 @@ function toggle(id){
 
   ga('create', 'UA-71952475-1', 'auto');
   ga('send', 'pageview', location.pathname);
+ 
