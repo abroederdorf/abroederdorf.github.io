@@ -12,6 +12,7 @@
 * Output: None, divisions shown
 ***************/
 function showAllBoxes(){
+	document.getElementById("containerDate2016").style.display = "block";
 	document.getElementById("containerDate2015").style.display = "block";
 	document.getElementById("containerDate2014").style.display = "block";
 	document.getElementById("containerDate2013").style.display = "block";
@@ -24,6 +25,7 @@ function showAllBoxes(){
 * Output: None, divisions hidden
 ***************/
 function hideAllBoxes(){
+	document.getElementById("containerDate2016").style.display = "none";
 	document.getElementById("containerDate2015").style.display = "none";
 	document.getElementById("containerDate2014").style.display = "none";
 	document.getElementById("containerDate2013").style.display = "none";
