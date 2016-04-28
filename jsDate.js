@@ -17,6 +17,7 @@ function showAllBoxes(){
 	document.getElementById("containerDate2014").style.display = "block";
 	document.getElementById("containerDate2013").style.display = "block";
 	document.getElementById("containerDate2012").style.display = "block";
+	document.getElementById("containerDate2011").style.display = "block";
 }
 
 /***************
@@ -31,6 +32,7 @@ function hideAllBoxes(){
 	document.getElementById("containerDate2014").style.display = "none";
 	document.getElementById("containerDate2013").style.display = "none";
 	document.getElementById("containerDate2012").style.display = "none";
+	document.getElementById("containerDate2011").style.display = "none";
 }
 
 //Initialize Date Page
