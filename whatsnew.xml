@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
 <title>What's New on Alpine Alicia</title>
-<link>"whatsnew.xml"</link>
+<link>"http://alpinealicia/whatsnew.xml"</link>
 <description>Track updates made to Alpine Alicia</description>
-<atom:link href="whatsnew.xml" rel="self" type="application/rss+xml" />
+<atom:link href="http://alpinealicia/whatsnew.xml" rel="self" type="application/rss+xml" />
 
 <item>
 <title>72% of 2011 Trip Reports</title>
