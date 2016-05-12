@@ -89,6 +89,14 @@ button{
 	padding: 1px;
 }
 
+.RSSLink{
+	border: outset 5px gray;
+	padding: 10px;
+	background-color: #FFFFFF;
+	line-height: 75%;
+	font-size: 85%;
+}
+
 .caption{
 	font-weight: lighter;
 	line-height: 100%;
@@ -251,7 +259,7 @@ button{
 }
 
 #status2011{
-	width: 28%;
+	width: 72%;
 	height: 25px;
 	background-color: #58D68D;
 }
@@ -266,4 +274,9 @@ button{
 	width: 0%;
 	height: 25px;
 	background-color: #58D68D;
+}
+
+#RSSDiv{
+	margin: 30px;
+	clear: left;
 }
