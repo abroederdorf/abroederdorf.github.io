@@ -15,8 +15,7 @@ firebase.initializeApp(config);
 
 
 //Trip Report Result Object Constructor
-function trObj(id, name, pageLink, imageLink, searchTerms, month, day, year, subregion, region, type, distance, elevation){
-	this.id = id;	//assigned auto-incrementing id
+function trObj(name, pageLink, imageLink, searchTerms, month, day, year, subregion, region, type, distance, elevation){
 	this.name = name;
 	this.pageLink = pageLink;
 	this.imageLink = imageLink;
@@ -254,32 +253,51 @@ function displayData(resultObjArray)
 //Input: HTML form input fields
 //Output: Results div shown and rows added with results, or results message
 //that nothing was found. Nothing returned from function
-/*function search()
+function search()
 {
 	var results = [];
-	var animalRecords = [];
+	var allRecords = [];
 	
 	//Get query parameters
-	var type = document.getElementById('searchType').value;
-	var color = document.getElementById('searchColor').value;
+	var name, type, month, day, year, distance, elevation, region, subregion, imageLink, pageLink, searchTerms, TR;
+	var Qname, Qtype, Qmonth, Qday, Qyear, Qdistance, Qelevation, Qregion, Qsubregion;
+	//var type = document.getElementById('searchType').value;
+	
 	
 	//Get data
-	myData.once("value", function(snapshot){
+	//firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+	firebase.database().ref().once("value").then(function(snapshot){
 		var data = snapshot.val()
 			//Test: console output to show data returned and number of records
-			/*console.log(data);
-			console.log("Number of records: " + snapshot.numChildren());*/
+			//console.log(data);
+			//console.log("Number of records: " + snapshot.numChildren());
+			
+			//var parsedData = Object.keys(snapshot.val());
+			//console.log(parsedData);		
 		
-/*		snapshot.forEach(function(obj){
-			//Add animal records to array
-			var keys = obj.key();
-			var anim = obj.val();
-			var newAnimal = new animal(keys, anim.id, anim.type, anim.color);
-			animalRecords.push(newAnimal);
-		});	
+		snapshot.forEach(function(obj){
+			var resultObj = obj.val();
+				//console.log(resultObj);
+			name = obj.val().name;
+			type = obj.val().type;
+			month = obj.val().month;
+			day = obj.val().day;
+			year = obj.val().year;
+			pageLink = obj.val().pageLink;
+			imageLink = obj.val().imageLink;
+			region = obj.val().region;
+			subregion = obj.val().subregion;
+			searchTerms = obj.val().searchTerms;
+			distance = obj.val().distance;
+			elevation = obj.val().elevation;
+			
+			TR = new trObj(name, pageLink, imageLink, searchTerms, month, day, year, subregion, region, type, distance, elevation);
+			allRecords.push(TR);
+		
+	});	
 		
 		//Search array for query parameters
-		for (var i = 0; i < animalRecords.length; i++)
+		/*for (var i = 0; i < animalRecords.length; i++)
 		{
 			//console.log("Key: " + animalRecords[i].key + ", ID: " + animalRecords[i].id + ", Type: " + animalRecords[i].type + ", Color: " + animalRecords[i].id);
 			
@@ -316,19 +334,18 @@ function displayData(resultObjArray)
 			console.log(results);*/
 		
 		//Print results
-/*		if (results.length <= 0)
+		if (allRecords.length <= 0)
 		{
-			document.getElementById("availAnimDiv").style.display = "block";
-			document.getElementById("resultsMessage").textContent = "No results, try another search.";
-			document.getElementById("resultsTable").style.display = "none";
+			document.getElementById("searchResultsMessage").textContent = "No results, try another search.";
 		}
 		else
 		{
-			document.getElementById("resultsMessage").textContent = "Look at all of these cute animals waiting to join your family";
-			displayData(results);
+			document.getElementById("searchResultsMessage").textContent = allRecords.length + " Trip Reports Returned";
+				//console.log(allRecords);
+			displayData(allRecords);  //need to change to results once filters are added
 		}
 	});
-}	*/
+}	
 	
 //submitForm()
 //Submits form by first calling validation, then getting data, searching data, and
@@ -344,15 +361,15 @@ function submitForm()
 		
 		//Search data
 		var objArray = [];
-		var obj1 = new trObj(1, 'Hidden Lake Lookout', 'http://alpinealicia.com/2015/20150621_HiddenLake.html', 'https://c3.staticflickr.com/8/7716/26709395234_1ebfda278d_q.jpg', ['hidden lake lookout', 'hidden', 'lookout'], 6, 21, 15, 'Cascade River Road', 'North Cascades', 'Hike', 8.19, 3717);
-		var obj2 = new trObj(2, 'South Early Winters Spire - South Arete', 'http://alpinealicia.com/2014/20140914_SEWS_SouthArete.html', '', ['south early winters spire', 'sews', 'south arete', 'early', 'south early winter spires'], 9, 14, 14, 'Highway 20', 'North Cascades', 'Climb', 6.54, 2333);
-		var obj3 = new trObj(3, 'Green Mountain Lookout', 'http://alpinealicia.com/2015/20150426_GreenMountainLookout.html', 'https://c7.staticflickr.com/8/7569/26709397014_09f29f8063_q.jpg', ['green mountain lookout', 'green', 'lookout'], 4, 26, 15, 'North Cascades', 'North Cascades', 'Climb', 7.72, 3445);
+		var obj1 = new trObj('Hidden Lake Lookout', 'http://alpinealicia.com/2015/20150621_HiddenLake.html', 'https://c3.staticflickr.com/8/7716/26709395234_1ebfda278d_q.jpg', ['hidden lake lookout', 'hidden', 'lookout'], 6, 21, 15, 'Cascade River Road', 'North Cascades', 'Hike', 8.19, 3717);
+		var obj2 = new trObj('South Early Winters Spire - South Arete', 'http://alpinealicia.com/2014/20140914_SEWS_SouthArete.html', '', ['south early winters spire', 'sews', 'south arete', 'early', 'south early winter spires'], 9, 14, 14, 'Highway 20', 'North Cascades', 'Climb', 6.54, 2333);
+		var obj3 = new trObj('Green Mountain Lookout', 'http://alpinealicia.com/2015/20150426_GreenMountainLookout.html', 'https://c7.staticflickr.com/8/7569/26709397014_09f29f8063_q.jpg', ['green mountain lookout', 'green', 'lookout'], 4, 26, 15, 'North Cascades', 'North Cascades', 'Climb', 7.72, 3445);
 		objArray.push(obj1);
 		objArray.push(obj2);
 		objArray.push(obj3);
 		
 		//Display data
-		displayData(objArray);
+		search();
 	}
 	else
 		console.log("Validation errors, check form");

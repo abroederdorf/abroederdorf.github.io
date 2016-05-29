@@ -360,3 +360,11 @@ button{
 	width: 90%;
 	margin-left: 5%;
 }
+
+#searchResultsMessage{
+	font-family: sans-serif;
+	margin-left: 35px;
+	margin-bottom: 15px;
+	font-style: italic;
+	line-height: 100%;
+}
