@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Alpine Alicia</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>    
+	</head>
+	<body>
+		<div id="pageDiv">
+			<span id="pageTitle">Alpine Alicia</span>
+			<br>
+			<span id="pageSubtitle">Trip reports from my hikes, climbs, and other adventures.</span>
+			<div id="navBar"></div>
+			<script src='jsNavBar.js'></script>
+			
+			<!--Search Form-->
+			<br>
+			<div id="searchForm">
+				<fieldset>
+					<legend><span><h3>Search</h3></span></legend>
+					
+					<!--Name & Route-->
+					<p>
+						<strong>Name:</strong> <input type="text" id="searchName"><span class="tab2"></span>
+					</p>
+					
+					<!--Date-->
+					<p><strong>Date</strong> |    From: 
+						<select id="searchMonthFrom" name="searchMonthFrom">
+							<option value="0"> </option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
+						<select id="searchDayFrom" name="searchDayFrom">
+							<option value="0"> </option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+							<option value="31">31</option>
+						</select>
+						<select id="searchYearFrom" name="searchYearFrom">
+							<option value="0"> </option>
+							<option value="2009">2009</option>
+							<option value="2010">2010</option>
+							<option value="2011">2011</option>
+							<option value="2012">2012</option>
+							<option value="2013">2013</option>
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+						</select>
+						<span class="tab1"></span>To:
+						<select id="searchMonthTo" name="searchMonthTo">
+							<option value="0"> </option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
+						<select id="searchDayTo" name="searchDayTo">
+							<option value="0"> </option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+							<option value="31">31</option>
+						</select>
+						<select id="searchYearTo" name="searchYearTo">
+							<option value="0"> </option>
+							<option value="2009">2009</option>
+							<option value="2010">2010</option>
+							<option value="2011">2011</option>
+							<option value="2012">2012</option>
+							<option value="2013">2013</option>
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+						</select>
+						<label><input type="checkbox" id="searchCurrentDate" name="searchCurrentDate">Current Date</label><span class="statsTitle"></span>
+						<div id="dateErrorUnfilled" class="errorMessage">***Error: Please specify all fields of the date - day, month, and year</div>
+						<div id="dateErrorDay" class="errorMessage">***Error: The day is not valid for the specified month and year.</div>
+						<div id="dateErrorLessThan" class="errorMessage">***Error: The from date should occur before the to date.</div>
+					</p>
+					
+					<!--Activity-->
+					<p><strong>Activity Type:</strong>
+						<label><input type="checkbox" id="searchHike" name="searchHike">Hike</label><span class="statsTitle"></span>
+						<label><input type="checkbox" id="searchClimb" name="searchClimb">Climb</label><span class="statsTitle"></span>
+						<label><input type="checkbox" id="searchCrag" name="searchCrag">Crag</label><span class="statsTitle"></span>
+						<label><input type="checkbox" id="searchBCSki" name="searchBCSki">BC Ski</label><span class="statsTitle"></span>
+					</p>
+					
+					<!--Locations-->
+					<p><strong>Location:</strong> 
+					<div>
+						<div class="locationBox">
+							<label><button id="searchNCLoc" class="dropButton">v </button> North Cascades</label>
+							<div id="divNCLoc">
+								<br><label class="allSub"><input type="checkbox" id="searchNCallSub" name="searchNCallSub">(All Sub Regions)</label>
+								<br><label><input type="checkbox" id="search542Sub" name="search542Sub">Highway 542</label>
+								<br><label><input type="checkbox" id="search20Sub" name="search20Sub">Highway 20</label>
+								<br><label><input type="checkbox" id="searchCasRiverSub" name="searchCasRiverSub">Cascade River Road</label>
+								<br><label><input type="checkbox" id="searchNCSub" name="searchNCSub">North Cascades</label>
+							</div>
+						</div>	
+						
+						<div class="locationBox">
+							<label><button id="searchI90Loc" class="dropButton">v</button> I-90</label>
+							<div id="divI90Loc">
+								<br><label class="allSub"><input type="checkbox" id="searchI90allSub" name="searchI90allSub">(All Sub Regions)</label>
+								<br><label><input type="checkbox" id="searchIssaSub" name="searchIssaSub">Issaquah</label>
+								<br><label><input type="checkbox" id="searchNBendSub" name="searchNBendSub">North Bend</label>
+								<br><label><input type="checkbox" id="searchSnoqSub" name="searchSnoqSub">Snoqualmie Pass</label>
+								<br><label><input type="checkbox" id="searchI90Sub" name="searchI90Sub">I-90</label>
+							</div>
+						</div>
+						<div class="locationBox">
+							<label><button id="searchSCLoc" class="dropButton">v</button> South Cascades</label>
+							<div id="divSCLoc">
+								<br><label class="allSub"><input type="checkbox" id="searchSCallSub" name="searchSCallSub">(All Sub Regions)</label>
+								<br><label><input type="checkbox" id="searchMtRainSub" name="searchMtRainSub">Mount Rainier</label>
+								<br><label><input type="checkbox" id="searchTatooshSub" name="searchTatooshSub">Tatoosh Range</label>
+								<br><label><input type="checkbox" id="searchSCSub" name="searchSCSub">South Cascades</label>
+							</div>
+						</div>
+						<div class="endFloat"></div>
+						<div class="locationBox">
+							<label><button id="searchCCLoc" class="dropButton">v</button> Central Cascades</label>
+							<div id="divCCLoc">
+								<br><label class="allSub"><input type="checkbox" id="searchCCallSub" name="searchCCallSub">(All Sub Regions)</label>
+								<br><label><input type="checkbox" id="search2Sub" name="search2Sub">Highway 2</label>
+								<br><label><input type="checkbox" id="searchLoopSub" name="searchLoopSub">Mountain Loop Highway</label>
+								<br><label><input type="checkbox" id="searchLworthSub" name="searchLworthSub">Leavenworth</label>
+								<br><label><input type="checkbox" id="searchEnchantSub" name="searchEnchantSub">Enchantments</label>
+								<br><label><input type="checkbox" id="searchCWSub" name="searchCWSub">Central Washington</label>
+								<br><label><input type="checkbox" id="searchCCSub" name="searchCCSub">Central Cascades</label>
+							</div>
+						</div>
+						
+						<div class="locationBox">
+							<label><button id="searchOWSLoc" class="dropButton">v</button> Outside Washington State</label>
+							<div id="divOWSLoc">
+								<br><label class="allSub"><input type="checkbox" id="searchOWSallSub" name="searchOWSallSub">(All Sub Regions)</label>
+								<br><label><input type="checkbox" id="searchCanSub" name="searchCanSub">Canada</label>
+								<br><label><input type="checkbox" id="searchOrSub" name="searchOrSub">Oregon</label>
+								<br><label><input type="checkbox" id="searchCaliSub" name="searchCaliSub">California</label>
+								<br><label><input type="checkbox" id="searchWestSub" name="searchWestSub">West</label>
+								<br><label><input type="checkbox" id="searchSouthSub" name="searchSouthSub">South</label>
+							</div>
+						</div>
+						<div class="locationBox">
+							<label><input type="checkbox" id="searchOlyLoc" name="searchOlyLoc">Olympic Peninsula</label>
+						</div>
+					<div class="endFloat"></div>
+					</div>		
+					</p>
+					
+					<!--Distance & Elevation-->
+					<p><strong>Total Distance</strong> |
+						Minimum: <input type="number" id="searchMinDist" class="searchNumText" min="0" max="100"> miles<span class="tab1"></span>
+						Maximum: <input type="number" id="searchMaxDist" class="searchNumText" min="0" max="100"> miles<span class="tab1"></span>
+						<div id="distErrorLessThan" class="errorMessage">***Error: The minimum distance should be less than the maximum distance</div>
+						<div id="distErrorPositive" class="errorMessage">***Error: The distance values should be greater than 0</div>
+					</p>
+					<p><strong>Elevation Gain</strong> |
+						Minimum: <input type="number" id="searchMinElev" class="searchNumText" min="0" max="28000"> feet<span class="tab1"></span>
+						Maximum: <input type="number" id="searchMaxElev" class="searchNumText" min="0" max="28000"> feet<span class="tab1"></span>
+						<div id="elevErrorLessThan" class="errorMessage">***Error: The minimum elevation gain should be less than the maximum elevation gain</div>
+						<div id="elevErrorPositive" class="errorMessage">***Error: The elevation gain values should be greater than 0</div>
+					</p>
+					
+					<button id="submitForm">Search</button>
+					<button id="resetForm">Reset Fields</button>	
+					<br>
+					<span><button onclick="toggle('activityDescriptions')">v</button>Search Hints</span>
+					<div id="activityDescriptions">
+						<p>The activity categories are defined as follows:
+							<ul>
+								<li><strong>Hike</strong>: Does not matter the destination as long as no technical skills were required</li>
+								<li><strong>Climb</strong>: Technical skills required to reach the summit (i.e. use of ice axe or rope). Some snow climbs would be considered hikes during the summer</li>
+								<li><strong>Crag</strong>: Within climbing I have separated cragging, those areas where I solely rock climbed</li>
+								<li><strong>BC Ski</strong>: Backcountry skiing, heading up something on my skis</li>
+							</ul>
+						</p>
+						<!--
+						<p>Crag Areas:
+							<ul>
+								<li><strong>Exit 38</strong>: Far Side</li>
+								<li><strong>Leavenworth</strong>: 8-Mile Crag, Alphabet Rock, Barney's Rubble, Bruce's Boulder, Castle Rock, Clamshell Cave, Clem's Holler, Daiber Buttress, Domestic Dome, February Buttress, Hammerhead Rock, Mountaineer's Dome, Playground Point, R&D, Roto Wall, Sam Hill, Stump Route, Surf City, The Boneyard, The Underhill, Tree Route, XY Crag</li>
+								<li><strong>Smith</strong>: Kiss of the Lepers Buttress, Morning Glory Wall, Pleasure Palace, Red Wall, Spiderman Buttress, The Christian Brothers, The Dihedrals, </li>
+								<li><strong>Smoke Bluffs</strong>: Alexis, Call It a Day, Channel Road, Fern Gully, Ferret's Folly, Island in the Sky, Jug Slab, Krack Rock, Neat and Cool, Nubile Woman, Octopus' Garden, Penny Lane, Pixie Corner, Ronin's Corner, Shannon Falls, Smoke Bluff Wall, Zombie Roof </li>
+								<li><strong>Tieton</strong>: Royal Columns, The Bend</li>
+								<li><strong>Toulmne Meadows</strong>:  Daff Dome, Dozier Dome, Potholes Dome</li>
+								<li><strong>Vantage</strong>: Feathers, Kotick Memorial Wall, Sunshine Wall</li>
+								<li><strong>Yosemite</strong>: Church Bowl, Glacier Point Apron</li>
+							</ul>
+						</p>-->
+						<p>If you can't quite figure out the exact name of something, try typing in a term or set of terms that you do know in the name box. The search is conducted against a list of tags associated with each trip report.
+						</p>
+					</div>
+				</fieldset>
+			</div>
+			<div id="modifySearchDiv">
+				<span><button id="modifySearchButton">Modify Search</button></span>
+			</div>
+			
+			<!-- Search Results-->
+			<div id="searchResultsDiv">
+				<br>
+				<h3 class="tab1">Search Results</h3>
+				<div id="resultsMessage"></div>
+				<!--Results-->
+				<div id="allResultsDiv">
+					<div class="resultRow">
+							<div class='picFloatDiv'>
+								<img height='100' width='100' src='images/unknownPic.jpg'>
+							</div>
+							<div class='nameFloatDiv'>
+								<h4><a href="http://alpinealicia.com/2015/20150621_HiddenLake.html">Hidden Lake Lookout</a></h4>
+								<p>
+									Cascade River Road, North Cascades
+									<br>Hike
+								</p>
+							</div>
+							<div class="statsFloatDiv">
+								<p>
+									Distance: 8.19 miles
+									<br>Elevation Gain: 3717'
+									<br>6/21/15
+								</p>
+							</div>
+						<div class="endFloat"></div>
+					</div>
+					<div class="resultRow">
+							<div class='picFloatDiv'>
+								<img height='100' width='100' src='images/unknownPic.jpg'>
+							</div>
+							<div class='nameFloatDiv'>
+								<h4><a href="http://alpinealicia.com/2014/20140914_SEWS_SouthArete.html">South Early Winters Spire - South Arete</a></h4>
+								<p>
+									Highway 20, North Cascades
+									<br>Climb
+								</p>
+							</div>
+							<div class="statsFloatDiv">
+								<p>
+									Distance: 6.54 miles
+									<br>Elevation Gain: 2333'
+									<br>9/14/2014
+								</p>
+							</div>
+						<div class="endFloat"></div>
+					</div>
+					<div class="resultRow">
+							<div class='picFloatDiv'>
+								<img height='100' width='100' src='images/unknownPic.jpg'>
+							</div>
+							<div class='nameFloatDiv'>
+								<h4><a href="http://alpinealicia.com/2015/20150426_GreenMountainLookout.html">Green Mountain Lookout</a></h4>
+								<p>
+									North Cascades, North Cascades
+									<br>Climb
+								</p>
+							</div>
+							<div class="statsFloatDiv">
+								<p>
+									Distance: 7.72 miles
+									<br>Elevation Gain: 3445'
+									<br>4/26/2015
+								</p>
+							</div>
+						<div class="endFloat"></div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		
+		
+		
+		<script src='jsAlpineAlicia.js'></script>
+		<script src='jsSearch.js'></script>
+	</body>
+</html>
