@@ -129,18 +129,30 @@ function submitForm()
 		imageLink = document.getElementById('submitImage').value;
 		pageLink = document.getElementById('submitPage').value;
 		searchTerms = document.getElementById('submitTerms').value;
+		var bool = false;
 		for (var i = 1; i < 7; i++)
 		{
 			str = "submitLoc" + i;
 			if (loc = document.getElementById(str).checked)
+			{
 				region = document.getElementById(str).value;
+				bool = true;
+			}
 		}
+		if (!bool)
+			region = "";
+		bool = false;
 		for (var i = 1; i < 23; i++)
 		{
 			str = "submitSub" + i;
 			if (loc = document.getElementById(str).checked)
+			{
 				subregion = document.getElementById(str).value;
+				bool = true;
+			}
 		}
+		if (!bool)
+			region = "";
 		
 		//Add trip report to database
 		firebase.database().ref().push({name: name, type: type, month: month, day: day, year: year, pageLink: pageLink, imageLink: imageLink, region: region, subregion: subregion, searchTerms: searchTerms, distance: distance, elevation: elevation}, function(error) {
