@@ -152,7 +152,7 @@ function submitForm()
 			}
 		}
 		if (!bool)
-			region = "";
+			subregion = "";
 		
 		//Add trip report to database
 		firebase.database().ref().push({name: name, type: type, month: month, day: day, year: year, pageLink: pageLink, imageLink: imageLink, region: region, subregion: subregion, searchTerms: searchTerms, distance: distance, elevation: elevation}, function(error) {
