@@ -15,7 +15,7 @@ firebase.initializeApp(config);
 
 
 //Trip Report Result Object Constructor
-function trObj(name, pageLink, imageLink, searchTerms, month, day, year, subregion, region, type, distance, elevation){
+function trObj(name, pageLink, imageLink, searchTerms, month, day, year, subregion, region, type, distance, elevation, date){
 	this.name = name;
 	this.pageLink = pageLink;
 	this.imageLink = imageLink;
@@ -28,6 +28,27 @@ function trObj(name, pageLink, imageLink, searchTerms, month, day, year, subregi
 	this.type = type;
 	this.distance = distance;
 	this.elevation = elevation;
+	this.date = date;
+}
+
+//createDate()
+//Takes a month, day, and year and creates a date string
+//Input: month, day, year integers
+//Output: date string
+function createDate(month, day, year)
+{
+	var tempDate;
+	if (month < 10)
+		tempDate = '0' + month + '/';
+	else
+		tempDate = month + '/';
+		
+	if (day < 10)
+		tempDate += '0' + day + '/' + year + ' 00:00';
+	else
+		tempDate += day + '/' + year + ' 00:00';
+	
+	return tempDate;
 }
 
 //validateInput()
@@ -113,16 +134,7 @@ function validateInput()
 		}
 		
 		//Create date strings for use in comparison
-		var tempDate;
-		if (month < 10)
-			tempDate = '0' + month + '/';
-		else
-			tempDate = month + '/';
-			
-		if (day < 10)
-			tempDate += '0' + day + '/' + year + ' 00:00';
-		else
-			tempDate += day + '/' + year + ' 00:00';
+		var tempDate = createDate(month, day, year);		
 		
 		if (i == 0)
 			fromDate = tempDate;
@@ -139,40 +151,82 @@ function validateInput()
 	}
 	
 	//Check Distance Inputs
-	var minDist, maxDist, number;
-	number = document.getElementById("searchMinDist").value;
-	minDist = Number(number);
-	number = document.getElementById("searchMaxDist").value;
-	maxDist = Number(number);
-	if (minDist > maxDist)
+	var minDist, maxDist, number1, number2;
+	number1 = document.getElementById("searchMinDist").value;
+	number2 = document.getElementById("searchMaxDist").value;
+	if ((number1 != "") && number2 != "")
 	{
-		console.log(minDist > maxDist);
-		document.getElementById("distErrorLessThan").style.display = "block";
-		numErrors++;
+		minDist = Number(number1);
+		maxDist = Number(number2);
+		if (minDist > maxDist)
+		{
+			document.getElementById("distErrorLessThan").style.display = "block";
+			numErrors++;
+		}
+		if ((minDist < 0) || (maxDist < 0))
+		{
+			document.getElementById("distErrorPositive").style.display = "block";
+			numErrors++;
+		}
 	}
-	if ((minDist < 0) || (maxDist < 0))
+	else if (number1 != "")
 	{
-		document.getElementById("distErrorPositive").style.display = "block";
-		numErrors++;
+		minDist = Number(number1);
+		if (minDist < 0)
+		{
+			document.getElementById("distErrorPositive").style.display = "block";
+			numErrors++;
+		}
+	}
+	else if (number2 != "")
+	{
+		maxDist = Number(number2);
+		if (maxDist < 0)
+		{
+			document.getElementById("distErrorPositive").style.display = "block";
+			numErrors++;
+		}
 	}
 	
 	//Check Elevation Inputs
-	var minElev, maxElev;
-	number = document.getElementById("searchMinElev").value;
-	minElev = Number(number);
-	number = document.getElementById("searchMaxElev").value;
-	maxElev = Number(number);
-	if (minElev > maxElev)
+	var minElev, maxElev;	
+	number1 = document.getElementById("searchMinElev").value;
+	number2 = document.getElementById("searchMaxElev").value;
+	if ((number1 != "") && number2 != "")
 	{
-		document.getElementById("elevErrorLessThan").style.display = "block";
-		numErrors++;
+		minElev = Number(number1);
+		maxElev = Number(number2);
+		if (minElev > maxElev)
+		{
+			document.getElementById("elevErrorLessThan").style.display = "block";
+			numErrors++;
+		}
+		if ((minElev < 0) || (maxElev < 0))
+		{
+			document.getElementById("elevErrorPositive").style.display = "block";
+			numErrors++;
+		}
 	}
-	if ((minElev < 0) || (maxElev < 0))
+	else if (number1 != "")
 	{
-		document.getElementById("elevErrorPositive").style.display = "block";
-		numErrors++;
+		minElev = Number(number1);
+		if (minElev < 0)
+		{
+			document.getElementById("elevErrorPositive").style.display = "block";
+			numErrors++;
+		}
+	}
+	else if (number2 != "")
+	{
+		maxElev = Number(number2);
+		if (maxElev < 0)
+		{
+			document.getElementById("elevErrorPositive").style.display = "block";
+			numErrors++;
+		}
 	}
 	
+	//If any errors found, return false
 	if (numErrors == 0)
 		return true;
 	else
@@ -225,7 +279,15 @@ function displayData(resultObjArray)
 			header.innerHTML = "<a href='" + resultObjArray[i].pageLink + "'>" + resultObjArray[i].name + "</a>";
 			nameDiv.appendChild(header);
 			var par = document.createElement('p');
-			par.innerHTML = resultObjArray[i].subregion + ", " + resultObjArray[i].region + "<br>" + resultObjArray[i].type;
+			var str = "";
+			if (resultObjArray[i].subregion != "")
+				str += resultObjArray[i].subregion;
+			if ((resultObjArray[i].subregion != "") && (resultObjArray[i].region != ""))
+				str += ", ";
+			if (resultObjArray[i].region != "")
+				str += resultObjArray[i].region;
+			str += "<br>" + resultObjArray[i].type;
+			par.innerHTML = str;
 			nameDiv.appendChild(par);
 			divRow.appendChild(nameDiv);
 			
@@ -233,7 +295,18 @@ function displayData(resultObjArray)
 			var statsDiv = document.createElement('div');
 			statsDiv.className = "statsFloatDiv";
 			par = document.createElement('p');
-			par.innerHTML = "Distance: " + resultObjArray[i].distance + " miles<br>Elevation Gain: " + resultObjArray[i].elevation + "'<br>" + resultObjArray[i].month + "." + resultObjArray[i].day + "." + resultObjArray[i].year;
+			str = "";
+			if (resultObjArray[i].distance != "")
+				str += "Distance: " + resultObjArray[i].distance + " miles<br>";
+			if (resultObjArray[i].elevation != "")
+				str += "Elevation Gain: " + resultObjArray[i].elevation + "'<br>";
+			if (resultObjArray[i].month != "")
+				str += resultObjArray[i].month + ".";
+			if (resultObjArray[i].day != "")
+				str += resultObjArray[i].day + ".";
+			if (resultObjArray[i].year != "")
+				str += resultObjArray[i].year;
+			par.innerHTML = str;
 			statsDiv.appendChild(par);
 			divRow.appendChild(statsDiv);
 			
@@ -256,16 +329,174 @@ function displayData(resultObjArray)
 function search()
 {
 	var results = [];
+	var tempResults = [];
 	var allRecords = [];
 	
 	//Get query parameters
-	var name, type, month, day, year, distance, elevation, region, subregion, imageLink, pageLink, searchTerms, TR;
-	var Qname, Qtype, Qmonth, Qday, Qyear, Qdistance, Qelevation, Qregion, Qsubregion;
-	//var type = document.getElementById('searchType').value;
+	var Qname, QmonthFrom, QdayFrom, QyearFrom, QdateFrom, QmonthTo, QdayTo, QyearTo, QdateTo, QdistanceMin, QdistanceMax, QelevationMin, QelevationMax, Qhike, Qclimb, Qcrag, Qski, Q542Sub, Q20Sub, QCCRSub, QNCSub, Q2Sub, QLoopSub, QLworthSub, QEnchSub, QCWSub, QCCSub, QIssSub, QNBSub, QSnoqSub, QI90Sub, QMtRSub, QTatSub, QSCSub, QOlyReg, QCanSub, QORSub, QCaliSub, QWestSub, QSouthSub, QOWSSub;
+	
+	//Name, distances, and elevation gains
+	Qname = document.getElementById('searchName').value;
+	QdistanceMin = document.getElementById('searchMinDist').value;
+	QelevationMin = document.getElementById('searchMinElev').value;
+	QdistanceMax = document.getElementById('searchMaxDist').value;
+	QelevationMax = document.getElementById('searchMaxElev').value;
+
+	//From Date
+	QmonthFrom = document.getElementById('searchMonthFrom').value;
+	QdayFrom = document.getElementById('searchDayFrom').value;
+	QyearFrom = document.getElementById('searchYearFrom').value;
+	QdateFrom = createDate(QmonthFrom, QdayFrom, QyearFrom);
+	
+	//To Date
+	if (document.getElementById("searchCurrentDate").checked)
+	{
+		//Reference: http://stackoverflow.com/questions/1531093/how-to-get-current-date-in-javascript
+		var today = new Date();
+		QdayTo = today.getDate();
+		QmonthTo = today.getMonth()+1; //Jan = 0
+		QyearTo = today.getFullYear();
+	}
+	else
+	{
+		QmonthTo = document.getElementById('searchMonthTo').value;
+		QdayTo = document.getElementById('searchDayTo').value;
+		QyearTo = document.getElementById('searchYearTo').value;
+	}
+	QdateTo = createDate(QmonthTo, QdayTo, QyearTo);
+	
+	//Activity types
+	if (document.getElementById("searchHike").checked)
+		Qhike = true;
+	else
+		Qhike = false;
+	if (document.getElementById("searchClimb").checked)
+		Qclimb = true;
+	else
+		Qclimb = false;
+	if (document.getElementById("searchCrag").checked)
+		Qcrag = true;
+	else
+		Qcrag = false;
+	if (document.getElementById("searchBCSki").checked)
+		Qski = true;
+	else
+		Qski = false;
+	
+	//North Cascades Region
+	if (document.getElementById("search542Sub").checked)
+		Q542Sub = true;
+	else
+		Q542Sub = false;
+	if (document.getElementById("search20Sub").checked)
+		Q20Sub = true;
+	else
+		Q20Sub = false;
+	if (document.getElementById("searchCasRiverSub").checked)
+		QCCRSub = true;
+	else
+		QCCRSub = false;
+	if (document.getElementById("searchNCSub").checked)
+		QNCSub = true;
+	else
+		QNCSub = false;
+	
+	//Central Cascades Region
+	if (document.getElementById("search2Sub").checked)
+		Q2Sub = true;
+	else
+		Q2Sub = false;
+	if (document.getElementById("searchLoopSub").checked)
+		QLoopSub = true;
+	else
+		QLoopSub = false;
+	if (document.getElementById("searchLworthSub").checked)
+		QLworthSub = true;
+	else
+		QLworthSub = false;
+	if (document.getElementById("searchEnchantSub").checked)
+		QEnchSub = true;
+	else
+		QEnchSub = false;
+	if (document.getElementById("searchCWSub").checked)
+		QCWSub = true;
+	else
+		QCWSub = false;
+	if (document.getElementById("searchCCSub").checked)
+		QCCSub = true;
+	else
+		QCCSub = false;
+	
+	//I-90 Region
+	if (document.getElementById("searchIssaSub").checked)
+		QIssSub = true;
+	else
+		QIssSub = false;
+	if (document.getElementById("searchNBendSub").checked)
+		QNBSub = true;
+	else
+		QNBSub = false;
+	if (document.getElementById("searchSnoqSub").checked)
+		QSnoqSub = true;
+	else
+		QSnoqSub = false;
+	if (document.getElementById("searchI90Sub").checked)
+		QI90Sub = true;
+	else
+		QI90Sub = false;
+	
+	//South Cascades Region	
+	if (document.getElementById("searchMtRainSub").checked)
+		QMtRSub = true;
+	else
+		QMtRSub = false;
+	if (document.getElementById("searchTatooshSub").checked)
+		QTatSub = true;
+	else
+		QTatSub = false;
+	if (document.getElementById("searchSCSub").checked)
+		QSCSub = true;
+	else
+		QSCSub = false;
+	
+	//Olympic Peninsula Region
+	if (document.getElementById("searchOlyLoc").checked)
+		QOlyReg = true;
+	else
+		QOlyReg = false;
+	
+	//Outside Washington State Region
+	if (document.getElementById("searchCanSub").checked)
+		QCanSub = true;
+	else
+		QCanSub = false;
+	if (document.getElementById("searchOrSub").checked)
+		QORSub = true;
+	else
+		QORSub = false;
+	if (document.getElementById("searchCaliSub").checked)
+		QCaliSub = true;
+	else
+		QCaliSub = false;
+	if (document.getElementById("searchWestSub").checked)
+		QWestSub = true;
+	else
+		QWestSub = false;
+	if (document.getElementById("searchSouthSub").checked)
+		QSouthSub = true;
+	else
+		QSouthSub = false;
+	if (document.getElementById("searchOWSSub").checked)
+		QOWSSub = true;
+	else
+		QOWSSub = false;
+	
+	
 	
 	
 	//Get data
-	//firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+	var name, type, month, day, year, distance, elevation, region, subregion, imageLink, pageLink, searchTerms, TR, date;
+	
 	firebase.database().ref().once("value").then(function(snapshot){
 		var data = snapshot.val()
 			//Test: console output to show data returned and number of records
@@ -291,41 +522,584 @@ function search()
 			distance = obj.val().distance;
 			elevation = obj.val().elevation;
 			
-			TR = new trObj(name, pageLink, imageLink, searchTerms, month, day, year, subregion, region, type, distance, elevation);
+			date = createDate(month, day, year);
+			
+			TR = new trObj(name, pageLink, imageLink, searchTerms, month, day, year, subregion, region, type, distance, elevation, date);
 			allRecords.push(TR);
+				//console.log(TR);
 		
-	});	
+		});	
+		
+		
 		
 		//Search array for query parameters
-		/*for (var i = 0; i < animalRecords.length; i++)
+		//Qname, QdateFrom, QdateTo, QdistanceMin, QdistanceMax, QelevationMin, QelevationMax, 		
+		for (var i = 0; i < allRecords.length; i++)
 		{
-			//console.log("Key: " + animalRecords[i].key + ", ID: " + animalRecords[i].id + ", Type: " + animalRecords[i].type + ", Color: " + animalRecords[i].id);
-			
-			var checkBox = document.getElementById('allAnimals').checked;
-			if (checkBox)
-				results.push(animalRecords[i]);
-			else if (type != '')
+			tempResults[i] = allRecords[i];
+		}
+		
+		//Search through regions
+		//source array splice: http://www.w3schools.com/jsref/jsref_splice.asp
+		var returned, startingNum, endingNum, startingI;
+		if (QOlyReg || Q542Sub || Q20Sub || QCCRSub || QNCSub || Q2Sub || QLoopSub || QLworthSub || QEnchSub || QCWSub || QCCSub || QIssSub || QNBSub || QSnoqSub || QI90Sub || QMtRSub || QTatSub || QSCSub || QCanSub || QORSub || QCaliSub || QWestSub || QSouthSub || QOWSSub)
+		{
+			var i = 0;
+			while(i < tempResults.length)
 			{
-				if (color != '')
+				startingNum = tempResults.length;
+				startingI = i;
+				
+				if (QOlyReg)
 				{
-					if (animalRecords[i].type == type && animalRecords[i].color == color)
-						results.push(animalRecords[i]);
+					if (tempResults[i].region == "Olympic Peninsula")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
 				}
-				else
+				if (tempResults.length == 0)
+					break;
+				if (Q542Sub)
 				{
-					if (animalRecords[i].type == type)
-						results.push(animalRecords[i]);
+					if (tempResults[i].subregion == "Highway 542")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (Q20Sub)
+				{
+					if (tempResults[i].subregion == "Highway 20")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (QCCRSub)
+				{
+					if (tempResults[i].subregion == "Cascade River Road")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (QNCSub)
+				{
+					if (tempResults[i].subregion == "North Cascades")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+					
+				}
+				if (tempResults.length == 0)
+					break;
+				if (Q2Sub)
+				{
+					if (tempResults[i].subregion == "Highway 2")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (QLoopSub)
+				{
+					if (tempResults[i].subregion == "Mountain Loop Highway")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (QLworthSub)
+				{
+					if (tempResults[i].subregion == "Leavenworth")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (QEnchSub)
+				{
+					if (tempResults[i].subregion == "Enchantments")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (QCWSub)
+				{
+					if (tempResults[i].subregion == "Central Washington")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (QCCSub)
+				{
+					if (tempResults[i].subregion == "Central Cascades")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (QIssSub)
+				{
+					if (tempResults[i].subregion == "Issaquah")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (QNBSub)
+				{
+					if (tempResults[i].subregion == "North Bend")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (QSnoqSub)
+				{
+					if (tempResults[i].subregion == "Snoqualmie Pass")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (QI90Sub)
+				{
+					if (tempResults[i].subregion == "I-90")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (QMtRSub)
+				{
+					if (tempResults[i].subregion == "Mount Rainier")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (QTatSub)
+				{
+					if (tempResults[i].subregion == "Tatoosh Range")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (QSCSub)
+				{
+					if (tempResults[i].subregion == "South Cascades")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (QCanSub)
+				{
+					if (tempResults[i].subregion == "Canada")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (QORSub)
+				{
+					if (tempResults[i].subregion == "Oregon")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (QCaliSub)
+				{
+					if (tempResults[i].subregion == "California")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (QWestSub)
+				{
+					if (tempResults[i].subregion == "West")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (QSouthSub)
+				{
+					if (tempResults[i].subregion == "South")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (QOWSSub)
+				{
+					if (tempResults[i].subregion == "Outside Washington State")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				
+				//Increment i if record did not match criteria, otherwise check that index again as the past element was removed 
+				endingNum = tempResults.length;
+				if (endingNum != startingNum)
+					i = startingI;
+				else
+					i++;
+			}
+		}
+		else
+		{
+			//No location filters so add all reports in temp results to final results array, no filter to apply
+			for (var i = 0; i < tempResults.length; i++)
+			{
+				results[i] = tempResults[i];
+			}
+		}
+		
+		//Assign results to temp results and clear results to get only those that make it through this filter
+		tempResults = [];
+		for (var i = 0; i < results.length; i++)
+		{
+			tempResults[i] = results[i];
+		}
+		results = [];
+		
+		//Search through activity type
+		if (Qhike || Qclimb || Qcrag || Qski)
+		{
+			var i = 0;
+			while(i < tempResults.length)
+			{
+				startingNum = tempResults.length;
+				startingI = i;
+				
+				if (Qhike)
+				{
+					if (tempResults[i].type == "Hike")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (Qclimb)
+				{
+					if (tempResults[i].type == "Climb")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (Qcrag)
+				{
+					if (tempResults[i].type == "Crag")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				if (tempResults.length == 0)
+					break;
+				if (Qski)
+				{
+					if (tempResults[i].type == "Ski")
+					{
+						returned = tempResults.splice(i, 1);
+						results.push(returned[0]);
+					}
+				}
+				
+				//Increment i if record did not match criteria, otherwise check that index again as the past element was removed 
+				endingNum = tempResults.length;
+				if (endingNum != startingNum)
+					i = startingI;
+				else
+					i++;
+				
+				//console.log("Ending: " + endingNum + ", i: " + i);
+			}
+		}
+		else
+		{
+			for (var i = 0; i < tempResults.length; i++)
+			{
+				results[i] = tempResults[i];
+			}
+		}	
+		
+		//Assign results to temp results and clear results to get only those that make it through this filter
+		tempResults = [];
+		for (var i = 0; i < results.length; i++)
+		{
+			tempResults[i] = results[i];
+		}
+		results = [];
+		
+		//Search distance minimum
+		if (QdistanceMin != "")
+		{
+			for (var i = 0; i < tempResults.length; i++)
+			{
+				//console.log("Record distance: " + tempResults[i].distance);
+				if (tempResults[i].distance != "")
+				{
+					if (tempResults[i].distance >= QdistanceMin)
+						results.push(tempResults[i]);
 				}
 			}
-			else
+		}
+		else
+		{
+			for (var i = 0; i < tempResults.length; i++)
 			{
-				if (color != '')
+				results[i] = tempResults[i];
+			}
+		}	
+		
+		//Assign results to temp results and clear results to get only those that make it through this filter
+		tempResults = [];
+		for (var i = 0; i < results.length; i++)
+		{
+			tempResults[i] = results[i];
+		}
+		results = [];
+		
+		//Search distance maximum
+		if (QdistanceMax != "")
+		{
+			for (var i = 0; i < tempResults.length; i++)
+			{
+				if (tempResults[i].distance != "")
 				{
-					if (animalRecords[i].color == color)
-						results.push(animalRecords[i]);
+					if (tempResults[i].distance <= QdistanceMax)
+						results.push(tempResults[i]);
 				}
-				else
-					break;
+			}
+		}
+		else
+		{
+			for (var i = 0; i < tempResults.length; i++)
+			{
+				results[i] = tempResults[i];
+			}
+		}
+
+		//Assign results to temp results and clear results to get only those that make it through this filter
+		tempResults = [];
+		for (var i = 0; i < results.length; i++)
+		{
+			tempResults[i] = results[i];
+		}
+		results = [];
+		
+		//Search elevation gain minimum
+		if (QelevationMin != "")
+		{
+			var minElev = Number(QelevationMin);
+			for (var i = 0; i < tempResults.length; i++)
+			{
+				if (tempResults[i].elevation != "")
+				{
+					if (tempResults[i].elevation >= minElev)
+						results.push(tempResults[i]);
+				}
+			}
+		}
+		else
+		{
+			for (var i = 0; i < tempResults.length; i++)
+			{
+				results[i] = tempResults[i];
+			}
+		}	
+		
+		//Assign results to temp results and clear results to get only those that make it through this filter
+		tempResults = [];
+		for (var i = 0; i < results.length; i++)
+		{
+			tempResults[i] = results[i];
+		}
+		results = [];
+		
+		//Search elevation gain maximum
+		if (QelevationMax != "")
+		{
+			var maxElev = Number(QelevationMax);
+			for (var i = 0; i < tempResults.length; i++)
+			{
+				if (tempResults[i].elevation != "")
+				{
+					if (tempResults[i].elevation <= maxElev)
+						results.push(tempResults[i]);
+				}
+			}
+		}
+		else
+		{
+			for (var i = 0; i < tempResults.length; i++)
+			{
+				results[i] = tempResults[i];
+			}
+		}		
+		
+		//Assign results to temp results and clear results to get only those that make it through this filter
+		tempResults = [];
+		for (var i = 0; i < results.length; i++)
+		{
+			tempResults[i] = results[i];
+		}
+		results = [];
+		
+		//Search from date 
+		if (QdateFrom != "00/00/0 00:00")
+		{
+			for (var i = 0; i < tempResults.length; i++)
+			{
+				if (tempResults[i].date != "00/00/0 00:00")
+				{
+					if (new Date(QdateFrom).getTime() <= new Date(tempResults[i].date).getTime())
+						results.push(tempResults[i]);
+				}
+			}
+		}
+		else
+		{
+			for (var i = 0; i < tempResults.length; i++)
+			{
+				results[i] = tempResults[i];
+			}
+		}		
+		
+		//Assign results to temp results and clear results to get only those that make it through this filter
+		tempResults = [];
+		for (var i = 0; i < results.length; i++)
+		{
+			tempResults[i] = results[i];
+		}
+		results = [];
+		
+		//Search to date 
+		if (QdateTo != "00/00/0 00:00")
+		{
+			for (var i = 0; i < tempResults.length; i++)
+			{
+				if (tempResults[i].date != "00/00/0 00:00")
+				{
+					if (new Date(QdateTo).getTime() >= new Date(tempResults[i].date).getTime())
+						results.push(tempResults[i]);
+				}
+			}
+		}
+		else
+		{
+			for (var i = 0; i < tempResults.length; i++)
+			{
+				results[i] = tempResults[i];
+			}
+		}
+	
+		//Assign results to temp results and clear results to get only those that make it through this filter
+		tempResults = [];
+		for (var i = 0; i < results.length; i++)
+		{
+			tempResults[i] = results[i];
+		}
+		results = [];
+	
+		//Search name with search term field
+		var terms, res, termArray, Qlower, termLower;
+		/*tempArray = tempResults[0].searchTerms;
+		console.log(tempArray);
+		console.log(tempArray.length);
+		
+		var res = tempArray.replace("[", "");
+		tempArray = res;
+		res = tempArray.replace("]", "");
+		tempArray = res;
+		res = tempArray.split(", ");
+		console.log(res);
+		console.log("Length: " + res.length);*/
+
+		if (Qname != "")
+		{
+			Qlower = Qname.toLowerCase(); 	//make name query parameter all lower case
+			for (var i = 0; i < tempResults.length; i++)
+			{
+				//Split search term string into individual array elements
+				terms = tempResults[i].searchTerms;
+				res = terms.replace("[", "");
+				terms = res.replace("]", "");
+				termArray = terms.split(", ");
+				
+				//Iterate over term array to see if it matches name query parameter
+				for (var j = 0; j < termArray.length; j++)
+				{
+					termLower = termArray[j].toLowerCase();
+					console.log("Qname: " + Qlower + ", Term: " + termLower);
+					if (Qlower == termLower)
+						results.push(tempResults[i]);
+				}
+			}
+		}
+		else
+		{
+			for (var i = 0; i < tempResults.length; i++)
+			{
+				results[i] = tempResults[i];
 			}
 		}
 		
@@ -334,15 +1108,16 @@ function search()
 			console.log(results);*/
 		
 		//Print results
-		if (allRecords.length <= 0)
+		if (results.length <= 0)
 		{
 			document.getElementById("searchResultsMessage").textContent = "No results, try another search.";
+			displayData(results); 
 		}
 		else
 		{
-			document.getElementById("searchResultsMessage").textContent = allRecords.length + " Trip Reports Returned";
-				//console.log(allRecords);
-			displayData(allRecords);  //need to change to results once filters are added
+			document.getElementById("searchResultsMessage").textContent = results.length + " Trip Reports Returned";
+				//console.log(results);
+			displayData(results); 
 		}
 	});
 }	
@@ -407,9 +1182,7 @@ function resetForm()
 	document.getElementById("searchMonthFrom").value = 0;
 	document.getElementById("searchDayFrom").value = 0;
 	document.getElementById("searchYearFrom").value = 0;
-	document.getElementById("searchMonthTo").value = 0;
-	document.getElementById("searchDayTo").value = 0;
-	document.getElementById("searchYearTo").value = 0;
+	zeroToDate();
 	document.getElementById("searchCurrentDate").checked = false;
 	
 	//Activity Types
@@ -462,6 +1235,7 @@ function resetForm()
 	document.getElementById("searchCaliSub").checked = false;
 	document.getElementById("searchWestSub").checked = false;
 	document.getElementById("searchSouthSub").checked = false;
+	document.getElementById("searchOWSSub").checked = false;
 	document.getElementById("divOWSLoc").style.display = "none";
 	
 	//Hide error messages
@@ -571,6 +1345,7 @@ function checkToggleOWS()
 		document.getElementById("searchCaliSub").checked = true;
 		document.getElementById("searchWestSub").checked = true;
 		document.getElementById("searchSouthSub").checked = true;
+		document.getElementById("searchOWSSub").checked = true;
 	}
 	else
 	{
@@ -579,6 +1354,7 @@ function checkToggleOWS()
 		document.getElementById("searchCaliSub").checked = false;
 		document.getElementById("searchWestSub").checked = false;
 		document.getElementById("searchSouthSub").checked = false;
+		document.getElementById("searchOWSSub").checked = false;
 	}
 }
 
@@ -590,6 +1366,17 @@ function searchFormToggle()
 {
 	toggle("searchForm");
 	toggle("modifySearchDiv");
+}
+
+//zeroToDate()
+//Set to date to 0/0/0 if current date selected
+//Input: None
+//Output: To date fields all set to 0
+function zeroToDate()
+{
+	document.getElementById("searchMonthTo").value = 0;
+	document.getElementById("searchDayTo").value = 0;
+	document.getElementById("searchYearTo").value = 0;
 }
 
 //Initialize Page
@@ -615,6 +1402,7 @@ document.getElementById("searchSCallSub").addEventListener('click', checkToggleS
 document.getElementById("searchOWSLoc").addEventListener('click', function() {toggle("divOWSLoc");});
 document.getElementById("searchOWSallSub").addEventListener('click', checkToggleOWS);
 document.getElementById("modifySearchButton").addEventListener('click', searchFormToggle);
+document.getElementById("searchCurrentDate").addEventListener('click', zeroToDate);
 
 //Initialize Page
 document.addEventListener('DOMContentLoaded', initializePage);

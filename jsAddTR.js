@@ -34,24 +34,24 @@ function validateInput()
 	}
 		
 	//Check the dates
-	var number = document.getElementById("submitMonth").value;
-	var month = Number(number);
+	var number1 = document.getElementById("submitMonth").value;
+	var month = Number(number1);
 	if (month < 1 || month > 12)
 	{
 		document.getElementById("monthError").style.display = "block";
 		numErrors++;
 	}
 	
-	var number = document.getElementById("submitYear").value;
-	var year = Number(number);
+	var number2 = document.getElementById("submitYear").value;
+	var year = Number(number2);
 	if (year < 2008)
 	{
 		document.getElementById("yearError").style.display = "block";
 		numErrors++;
 	}
 	
-	var number = document.getElementById("submitDay").value;
-	var day = Number(number);
+	var number3 = document.getElementById("submitDay").value;
+	var day = Number(number3);
 	if ((month == 4) || (month == 6) || (month == 9) || (month == 11))
 	{
 		if (day < 1 || day > 30)
@@ -61,34 +61,35 @@ function validateInput()
 		}
 	}
 	else if (month == 2)
+	{
+		var yearMod = year % 4;
+			//console.log("Year mod: " + yearMod);
+		if (yearMod == 0) 
 		{
-			var yearMod = year % 4;
-				//console.log("Year mod: " + yearMod);
-			if (yearMod == 0) 
-			{
-				if (day > 29)
-				{
-					document.getElementById("dayError").style.display = "block";
-					numErrors++;
-				}
-			}
-			else
-			{
-				if (day > 28)
-				{
-					document.getElementById("dayError").style.display = "block";
-					numErrors++;
-				}
-			}
-		}
-		else
-		{
-			if (day < 1 || day > 31)
+			if (day < 1 || day > 29)
 			{
 				document.getElementById("dayError").style.display = "block";
 				numErrors++;
 			}
-		}	
+		}
+		else
+		{
+			if (day < 1 || day > 28)
+			{
+				document.getElementById("dayError").style.display = "block";
+				numErrors++;
+			}
+		}
+	}
+	else
+	{
+		if (day < 1 || day > 31)
+		{
+			document.getElementById("dayError").style.display = "block";
+			numErrors++;
+		}
+	}	
+		
 	
 	//Check Distance Inputs
 	var dist, elev;
@@ -142,7 +143,7 @@ function submitForm()
 		if (!bool)
 			region = "";
 		bool = false;
-		for (var i = 1; i < 23; i++)
+		for (var i = 1; i < 24; i++)
 		{
 			str = "submitSub" + i;
 			if (loc = document.getElementById(str).checked)
@@ -207,7 +208,7 @@ function resetForm()
 			str = "submitLoc" + i;
 			document.getElementById(str).checked = false;
 		}
-		for (var i = 1; i < 23; i++)
+		for (var i = 1; i < 24; i++)
 		{
 			str = "submitSub" + i;
 			document.getElementById(str).checked = false;
