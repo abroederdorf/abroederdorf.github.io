@@ -143,12 +143,12 @@ function submitForm()
 		}
 		
 		//Add trip report to database
-		firebase.database().push({name: name, type: type, month: month, day: day, year: year, pageLink: pageLink, imageLink: imageLink, region: region, subregion: subregion, searchTerms: searchTerms, distance: distance, elevation: elevation}, function(error) {
+		firebase.database().ref().push({name: name, type: type, month: month, day: day, year: year, pageLink: pageLink, imageLink: imageLink, region: region, subregion: subregion, searchTerms: searchTerms, distance: distance, elevation: elevation}, function(error) {
 			if (error){
-				document.getElementByID('submitStatus').textContent = "Data could not be saved." + error;
+				document.getElementById('submitStatus').textContent = "Data could not be saved." + error;
 			}
 			else {
-				document.getElementByID('submitStatus').textContent = "Data saved successfully.";
+				document.getElementById('submitStatus').textContent = "Data saved successfully.";
 				resetForm();
 			}
 		});
