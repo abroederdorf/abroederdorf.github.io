@@ -542,10 +542,12 @@ function search()
 		//Search through regions
 		//source array splice: http://www.w3schools.com/jsref/jsref_splice.asp
 		var returned, startingNum, endingNum, startingI;
+		var endArray = new trObj('','EOA');  //Create end sentinel for array
+		tempResults.push(endArray);
 		if (QOlyReg || Q542Sub || Q20Sub || QCCRSub || QNCSub || Q2Sub || QLoopSub || QLworthSub || QEnchSub || QCWSub || QCCSub || QIssSub || QNBSub || QSnoqSub || QI90Sub || QMtRSub || QTatSub || QSCSub || QCanSub || QORSub || QCaliSub || QWestSub || QSouthSub || QOWSSub)
 		{
 			var i = 0;
-			while(i < tempResults.length)
+			while(tempResults[i].pageLink != 'EOA')
 			{
 				startingNum = tempResults.length;
 				startingI = i;
@@ -558,7 +560,7 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (Q542Sub)
 				{
@@ -568,7 +570,7 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (Q20Sub)
 				{
@@ -578,7 +580,7 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (QCCRSub)
 				{
@@ -588,7 +590,7 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (QNCSub)
 				{
@@ -599,7 +601,7 @@ function search()
 					}
 					
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (Q2Sub)
 				{
@@ -609,7 +611,7 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (QLoopSub)
 				{
@@ -619,7 +621,7 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (QLworthSub)
 				{
@@ -629,7 +631,7 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (QEnchSub)
 				{
@@ -639,7 +641,7 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (QCWSub)
 				{
@@ -649,7 +651,7 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (QCCSub)
 				{
@@ -659,7 +661,7 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (QIssSub)
 				{
@@ -669,17 +671,18 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (QNBSub)
 				{
+					//console.log(tempResults[i]);
 					if (tempResults[i].subregion == "North Bend")
 					{
 						returned = tempResults.splice(i, 1);
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (QSnoqSub)
 				{
@@ -689,7 +692,7 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (QI90Sub)
 				{
@@ -699,7 +702,7 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (QMtRSub)
 				{
@@ -709,7 +712,7 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (QTatSub)
 				{
@@ -719,7 +722,7 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (QSCSub)
 				{
@@ -729,7 +732,7 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (QCanSub)
 				{
@@ -739,7 +742,7 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (QORSub)
 				{
@@ -749,7 +752,7 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (QCaliSub)
 				{
@@ -759,7 +762,7 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (QWestSub)
 				{
@@ -769,7 +772,7 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (QSouthSub)
 				{
@@ -779,7 +782,7 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (QOWSSub)
 				{
@@ -792,6 +795,7 @@ function search()
 				
 				//Increment i if record did not match criteria, otherwise check that index again as the past element was removed 
 				endingNum = tempResults.length;
+				console.log("Start: " + startingNum + ", End: " + endingNum);
 				if (endingNum != startingNum)
 					i = startingI;
 				else
@@ -816,10 +820,11 @@ function search()
 		results = [];
 		
 		//Search through activity type
+		tempResults.push(endArray); //Add end sentinel to results
 		if (Qhike || Qclimb || Qcrag || Qski)
 		{
 			var i = 0;
-			while(i < tempResults.length)
+			while(tempResults[i].pageLink != 'EOA')
 			{
 				startingNum = tempResults.length;
 				startingI = i;
@@ -832,7 +837,7 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (Qclimb)
 				{
@@ -842,17 +847,20 @@ function search()
 						results.push(returned[0]);
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (Qcrag)
 				{
-					if (tempResults[i].type == "Crag")
+					if (tempResults[i].type != "")
 					{
-						returned = tempResults.splice(i, 1);
-						results.push(returned[0]);
+						if (tempResults[i].type == "Crag")
+						{
+							returned = tempResults.splice(i, 1);
+							results.push(returned[0]);
+						}
 					}
 				}
-				if (tempResults.length == 0)
+				if (tempResults[i].pageLink == 'EOA')
 					break;
 				if (Qski)
 				{
@@ -1062,17 +1070,6 @@ function search()
 	
 		//Search name with search term field
 		var terms, res, termArray, Qlower, termLower;
-		/*tempArray = tempResults[0].searchTerms;
-		console.log(tempArray);
-		console.log(tempArray.length);
-		
-		var res = tempArray.replace("[", "");
-		tempArray = res;
-		res = tempArray.replace("]", "");
-		tempArray = res;
-		res = tempArray.split(", ");
-		console.log(res);
-		console.log("Length: " + res.length);*/
 
 		if (Qname != "")
 		{
