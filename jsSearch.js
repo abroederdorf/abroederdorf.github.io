@@ -268,7 +268,7 @@ function displayData(resultObjArray)
 				pic.src = "https://c5.staticflickr.com/8/7284/26709392604_67938bb47a_q.jpg";
 			pic.width = "100";
 			pic.height = "100";
-			pic.className = "picture";
+			pic.className = "resultPicture";
 			picDiv.appendChild(pic);
 			divRow.appendChild(picDiv);
 			
@@ -804,6 +804,7 @@ function search()
 		}
 		else
 		{
+			tempResults.pop(); //get rid of end sentinel
 			//No location filters so add all reports in temp results to final results array, no filter to apply
 			for (var i = 0; i < tempResults.length; i++)
 			{
@@ -883,6 +884,7 @@ function search()
 		}
 		else
 		{
+			tempResults.pop(); //get rid of end sentinel
 			for (var i = 0; i < tempResults.length; i++)
 			{
 				results[i] = tempResults[i];
@@ -1078,6 +1080,7 @@ function search()
 			{
 				//Split search term string into individual array elements
 				terms = tempResults[i].searchTerms;
+				//console.log(tempResults[i].searchTerms);
 				res = terms.replace("[", "");
 				terms = res.replace("]", "");
 				termArray = terms.split(", ");
@@ -1086,7 +1089,7 @@ function search()
 				for (var j = 0; j < termArray.length; j++)
 				{
 					termLower = termArray[j].toLowerCase();
-					console.log("Qname: " + Qlower + ", Term: " + termLower);
+					//console.log("Qname: " + Qlower + ", Term: " + termLower);
 					if (Qlower == termLower)
 						results.push(tempResults[i]);
 				}
@@ -1132,15 +1135,6 @@ function submitForm()
 		console.log("No errors, get data");
 		
 		//Search data
-		var objArray = [];
-		var obj1 = new trObj('Hidden Lake Lookout', 'http://alpinealicia.com/2015/20150621_HiddenLake.html', 'https://c3.staticflickr.com/8/7716/26709395234_1ebfda278d_q.jpg', ['hidden lake lookout', 'hidden', 'lookout'], 6, 21, 15, 'Cascade River Road', 'North Cascades', 'Hike', 8.19, 3717);
-		var obj2 = new trObj('South Early Winters Spire - South Arete', 'http://alpinealicia.com/2014/20140914_SEWS_SouthArete.html', '', ['south early winters spire', 'sews', 'south arete', 'early', 'south early winter spires'], 9, 14, 14, 'Highway 20', 'North Cascades', 'Climb', 6.54, 2333);
-		var obj3 = new trObj('Green Mountain Lookout', 'http://alpinealicia.com/2015/20150426_GreenMountainLookout.html', 'https://c7.staticflickr.com/8/7569/26709397014_09f29f8063_q.jpg', ['green mountain lookout', 'green', 'lookout'], 4, 26, 15, 'North Cascades', 'North Cascades', 'Climb', 7.72, 3445);
-		objArray.push(obj1);
-		objArray.push(obj2);
-		objArray.push(obj3);
-		
-		//Display data
 		search();
 	}
 	else

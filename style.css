@@ -77,6 +77,11 @@ button{
 	padding: 1px;
 }
 
+.resultPicture{
+	border: solid 2px gray;
+	padding: 1px;
+}
+
 .RSSLink{
 	border: outset 5px gray;
 	padding: 10px;
