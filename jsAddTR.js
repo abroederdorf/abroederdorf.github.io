@@ -211,7 +211,7 @@ function resetForm()
 			str = "submitLoc" + i;
 			document.getElementById(str).checked = false;
 		}
-		for (var i = 1; i < 24; i++)
+		for (var i = 1; i < 25; i++)
 		{
 			str = "submitSub" + i;
 			document.getElementById(str).checked = false;
