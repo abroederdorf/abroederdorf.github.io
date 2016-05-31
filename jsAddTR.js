@@ -202,6 +202,9 @@ function resetForm()
 	document.getElementById("submitPage").value = "";
 	document.getElementById("submitTerms").value = "";
 	
+	//Status message
+	document.getElementById('submitStatus').style.display = "none";
+	
 	//Selection Menus
 	document.getElementById("submitType").value = 0;
 	
