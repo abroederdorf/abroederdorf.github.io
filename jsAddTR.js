@@ -198,6 +198,9 @@ function resetForm()
 	document.getElementById("submitYear").value = "";
 	document.getElementById("submitDistance").value = "";
 	document.getElementById("submitElevation").value = "";
+	document.getElementById("submitImage").value = "";
+	document.getElementById("submitPage").value = "";
+	document.getElementById("submitTerms").value = "";
 	
 	//Selection Menus
 	document.getElementById("submitType").value = 0;
