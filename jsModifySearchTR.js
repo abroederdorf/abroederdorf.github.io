@@ -138,6 +138,7 @@ function updateTR(key)
 		document.getElementById("submitYear").value = year;
 		document.getElementById("submitTerms").value = searchTerms;
 		document.getElementById("hiddenKey").value = keyID;
+		document.getElementById("showKey").textContent = keyID;
 		
 		
 		
@@ -147,7 +148,7 @@ function updateTR(key)
 			
 			if (region == document.getElementById(str).value)
 			{
-				console.log("Region: " + region + ", Value: " + document.getElementById(str).value);
+				//console.log("Region: " + region + ", Value: " + document.getElementById(str).value);
 				document.getElementById(str).checked = true;
 			}
 		}
@@ -158,7 +159,7 @@ function updateTR(key)
 			if (subregion == document.getElementById(str).value)
 			{
 				document.getElementById(str).checked = true;
-				console.log("Subregion: " + subregion + ", Value: " + document.getElementById(str).value);
+				//console.log("Subregion: " + subregion + ", Value: " + document.getElementById(str).value);
 			}
 		}
 		
