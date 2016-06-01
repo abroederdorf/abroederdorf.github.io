@@ -18,7 +18,36 @@
 			<br>
 			<div id="searchForm">
 				<fieldset>
-					<legend><span><h3>Add Trip Report</h3></span></legend>
+					<legend><span><h3>Search</h3></span></legend>
+					
+					<!--Name & Route-->
+					<p>
+						Name: <input type="text" id="searchName2"><span class="tab2"></span>
+					</p>
+					<p>
+						Date | From: Month <input type="number" id="searchMonthFrom" class="addNumText" min="1" max="12">
+						Day <input type="number" id="searchDayFrom" class="addNumText" min="1" max="31">
+						Year <input type="number" id="searchYearFrom" class="addNumText" min="2008">
+						<span class="tab1">To: Month <input type="number" id="searchMonthTo" class="addNumText" min="1" max="12">
+						Day <input type="number" id="searchDayTo" class="addNumText" min="1" max="31">
+						Year <input type="number" id="searchYearTo" class="addNumText" min="2008">
+						<div id="dateErrorUnfilled" class="errorMessage">***Error: Please specify all fields of the date - day, month, and year</div>
+						<div id="dateErrorDay" class="errorMessage">***Error: The day is not valid for the specified month and year.</div>
+						<div id="dateErrorLessThan" class="errorMessage">***Error: The from date should occur before the to date.</div>
+					</p>
+					<button id="submitSearchForm">Search</button>
+					<button id="resetSearchForm">Reset Fields</button>
+				</fieldset>
+			</div>
+			
+			<br>
+			<span class="allSub"><div id="operationStatus"></div></span>
+			
+			<!--Modify Form-->
+			<br>
+			<div id="modifyForm">
+				<fieldset>
+					<legend><span><h3>Modify Trip Report</h3></span></legend>
 					
 					<!--Text Fields-->
 					<p>
@@ -107,20 +136,48 @@
 									<br><label><input type="radio" id="submitSub24" name="subregion" value="Olympic Peninsula">Olympic Peninsula</label>
 								</div>
 							</div>
+							<div class="locationBox">
+								<label><input type="radio" id="submitLoc7" name="region" value="">No Region</label>
+								<div id="divOlyLoc">
+									<br><label><input type="radio" id="submitSub25" name="subregion" value="">No Subregion</label>
+								</div>
+							</div>
 							<div class="endFloat"></div>
 						</div>		
 					</p>
+					<!--Hidden Input for Key-->
+					<input type="hidden" id="hiddenKey">
 					
-					<div id="submitStatus"></div>
-					
-					<button id="submitForm">Add Trip Report</button>
-					<button id="resetForm">Reset Fields</button>	
+					<button id="submitModifyForm">Modify Trip Report</button>
+					<button onclick="toggle('modifyForm')">Close</button>
 				</fieldset>
 			</div>
 
+			
+			<!-- Results Table-->
+			<br>
+			<div id="resultsTableDiv">
+				<fieldset>
+					<legend><span><h3>Results</h3></span></legend>
+					<table id="resultsTable">
+						<span><div id="resultsStatus"></div></span>
+						<thead>
+							<th>Name</th>
+							<th>Date</th>
+							<th>Type</th>
+							<th>Location</th>
+							<th colspan=2> </th>
+						</thead>
+						<tbody id="resultsTblBody"> 
+						</tbody>
+					</table>
+				</fieldset>
+			</div>
+			
 		</div>
 	
 		<script src='jsAlpineAlicia.js'></script>
-		<script src='jsAddTR.js'></script>
+		<script src='jsModifySearchTR.js'></script>
+		<script src='jsModifyTR.js'></script>
 	</body>
 </html>

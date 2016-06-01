@@ -16,6 +16,42 @@ function toggle(id){
 		div.style.display = "none";
 }
 
+//createDate()
+//Takes a month, day, and year and creates a date string
+//Input: month, day, year integers
+//Output: date string
+function createDate(month, day, year)
+{
+	var tempDate;
+	if (month < 10)
+		tempDate = '0' + month + '/';
+	else
+		tempDate = month + '/';
+		
+	if (day < 10)
+		tempDate += '0' + day + '/' + year + ' 00:00';
+	else
+		tempDate += day + '/' + year + ' 00:00';
+	
+	return tempDate;
+}
+
+//Trip Report Result Object Constructor
+function trObj(name, pageLink, imageLink, searchTerms, month, day, year, subregion, region, type, distance, elevation, date){
+	this.name = name;
+	this.pageLink = pageLink;
+	this.imageLink = imageLink;
+	this.searchTerms = searchTerms;
+	this.month = month;
+	this.day = day;
+	this.year = year;
+	this.subregion = subregion;
+	this.region = region;
+	this.type = type;
+	this.distance = distance;
+	this.elevation = elevation;
+	this.date = date;
+}
 
 //Google analytics tracking
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

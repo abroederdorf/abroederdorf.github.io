@@ -13,44 +13,6 @@ storageBucket: "project-5802414869996009310.appspot.com",
 };
 firebase.initializeApp(config);
 
-
-//Trip Report Result Object Constructor
-function trObj(name, pageLink, imageLink, searchTerms, month, day, year, subregion, region, type, distance, elevation, date){
-	this.name = name;
-	this.pageLink = pageLink;
-	this.imageLink = imageLink;
-	this.searchTerms = searchTerms;
-	this.month = month;
-	this.day = day;
-	this.year = year;
-	this.subregion = subregion;
-	this.region = region;
-	this.type = type;
-	this.distance = distance;
-	this.elevation = elevation;
-	this.date = date;
-}
-
-//createDate()
-//Takes a month, day, and year and creates a date string
-//Input: month, day, year integers
-//Output: date string
-function createDate(month, day, year)
-{
-	var tempDate;
-	if (month < 10)
-		tempDate = '0' + month + '/';
-	else
-		tempDate = month + '/';
-		
-	if (day < 10)
-		tempDate += '0' + day + '/' + year + ' 00:00';
-	else
-		tempDate += day + '/' + year + ' 00:00';
-	
-	return tempDate;
-}
-
 //validateInput()
 //Validate all of the input data provided in the form
 //Inout: No direct input, will read values from form fields
@@ -320,10 +282,354 @@ function displayData(resultObjArray)
 	}
 }
 	
+//sortData(array)
+//Sorts returned results based on specified category (date, name, type, subregion,
+//distance, or elevation) and type (asc or desc)
+//Input: Array of trOBj
+//Output: None
+function sortData(array)
+{
+	var cat, type, str;
+	for (var i = 1; i < 7; i++)
+	{	
+		str = "sortCat" + i;
+		if (document.getElementById(str).checked)
+			cat = document.getElementById(str).value;
+	}
+	for (var i = 1; i < 3; i++)
+	{	
+		str = "sortType" + i;
+		if (document.getElementById(str).checked)
+			type = document.getElementById(str).value;
+	}
+	
+	//Check what case
+	if (cat == 'name')
+	{
+		if (type == 'asc')
+			sortNameAsc(array);
+		else
+			sortNameDesc(array);
+	}
+	else if (cat == 'date')
+	{
+		if (type == 'asc')
+			sortDateAsc(array);
+		else
+			sortDateDesc(array);
+	}
+	else if (cat == 'type')
+	{
+		if (type == 'asc')
+			sortTypeAsc(array);
+		else
+			sortTypeDesc(array);
+	}
+	else if (cat == 'subregion')
+	{
+		if (type == 'asc')
+			sortSubregionAsc(array);
+		else
+			sortSubregionDesc(array);
+	}
+	else if (cat == 'distance')
+	{
+		if (type == 'asc')
+			sortDistanceAsc(array);
+		else
+			sortDistanceDesc(array);
+	}
+	else 
+	{
+		if (type == 'asc')
+			sortElevationAsc(array);
+		else
+			sortElevationDesc(array);
+	}
+}
+	
+//sortNameAsc
+//Sorts array by name in ascending order
+//Input: Array of trObj
+//Output: Sorted array
+function sortNameAsc(array)
+{
+	var temp;
+	for (var i = 0; i < array.length; i++)
+	{
+		temp = array[i];
+		var j = i - 1;
+		while (j >= 0 && array[j].name > temp.name)
+		{
+			array[j+1] = array[j];
+			j--;
+		}
+		array[j+1] = temp;
+	}
+	
+	//Display data
+	displayData(array);
+}
+
+//sortNameDesc
+//Sorts array by name in descending order
+//Input: Array of trObj
+//Output: Sorted array
+function sortNameDesc(array)
+{
+	var temp;
+	for (var i = 0; i < array.length; i++)
+	{
+		temp = array[i];
+		var j = i - 1;
+		while (j >= 0 && array[j].name < temp.name)
+		{
+			array[j+1] = array[j];
+			j--;
+		}
+		array[j+1] = temp;
+	}
+	
+	//Display data
+	displayData(array);
+}
+
+//sortDateAsc
+//Sorts array by date in ascending order
+//Input: Array of trObj
+//Output: Sorted array
+function sortDateAsc(array)
+{
+	var temp;
+	for (var i = 0; i < array.length; i++)
+	{
+		temp = array[i];
+		var j = i - 1;
+		
+		
+		while ((j >= 0) && (new Date(array[j].date).getTime() > new Date(temp.date).getTime()))
+		{
+			array[j+1] = array[j];
+			j--;
+		}
+		array[j+1] = temp;
+	}
+	
+	//Display data
+	displayData(array);
+}
+
+//sortDateDesc
+//Sorts array by date in descending order
+//Input: Array of trObj
+//Output: Sorted array
+function sortDateDesc(array)
+{
+	var temp;
+	for (var i = 0; i < array.length; i++)
+	{
+		temp = array[i];
+		var j = i - 1;
+		while ((j >= 0) && (new Date(array[j].date).getTime() < new Date(temp.date).getTime()))
+		{
+			array[j+1] = array[j];
+			j--;
+		}
+		array[j+1] = temp;
+	}
+	
+	//Display data
+	displayData(array);
+}
+	
+//sortTypeAsc
+//Sorts array by type in ascending order
+//Input: Array of trObj
+//Output: Sorted array
+function sortTypeAsc(array)
+{
+	var temp;
+	for (var i = 0; i < array.length; i++)
+	{
+		temp = array[i];
+		var j = i - 1;
+		while (j >= 0 && array[j].type > temp.type)
+		{
+			array[j+1] = array[j];
+			j--;
+		}
+		array[j+1] = temp;
+	}
+	
+	//Display data
+	displayData(array);
+}
+
+//sortTypeDesc
+//Sorts array by type in descending order
+//Input: Array of trObj
+//Output: Sorted array
+function sortTypeDesc(array)
+{
+	var temp;
+	for (var i = 0; i < array.length; i++)
+	{
+		temp = array[i];
+		var j = i - 1;
+		while (j >= 0 && array[j].type < temp.type)
+		{
+			array[j+1] = array[j];
+			j--;
+		}
+		array[j+1] = temp;
+	}
+	
+	//Display data
+	displayData(array);
+}
+	
+//sortSubregionAsc
+//Sorts array by subregion in ascending order
+//Input: Array of trObj
+//Output: Sorted array
+function sortSubregionAsc(array)
+{
+	var temp;
+	for (var i = 0; i < array.length; i++)
+	{
+		temp = array[i];
+		var j = i - 1;
+		while (j >= 0 && array[j].subregion > temp.subregion)
+		{
+			array[j+1] = array[j];
+			j--;
+		}
+		array[j+1] = temp;
+	}
+	
+	//Display data
+	displayData(array);
+}
+
+//sortSubregionDesc
+//Sorts array by subregion in descending order
+//Input: Array of trObj
+//Output: Sorted array
+function sortSubregionDesc(array)
+{
+	var temp;
+	for (var i = 0; i < array.length; i++)
+	{
+		temp = array[i];
+		var j = i - 1;
+		while (j >= 0 && array[j].subregion < temp.subregion)
+		{
+			array[j+1] = array[j];
+			j--;
+		}
+		array[j+1] = temp;
+	}
+	
+	//Display data
+	displayData(array);
+}	
+
+//sortDistanceAsc
+//Sorts array by distance in ascending order
+//Input: Array of trObj
+//Output: Sorted array
+function sortDistanceAsc(array)
+{
+	var temp;
+	for (var i = 0; i < array.length; i++)
+	{
+		temp = array[i];
+		var j = i - 1;
+		while (j >= 0 && Number(array[j].distance) > Number(temp.distance))
+		{
+			array[j+1] = array[j];
+			j--;
+		}
+		array[j+1] = temp;
+	}
+	
+	//Display data
+	displayData(array);
+}
+
+//sortDistanceDesc
+//Sorts array by distance in descending order
+//Input: Array of trObj
+//Output: Sorted array
+function sortDistanceDesc(array)
+{
+	var temp;
+	for (var i = 0; i < array.length; i++)
+	{
+		temp = array[i];
+		var j = i - 1;
+		while (j >= 0 && Number(array[j].distance) < Number(temp.distance))
+		{
+			array[j+1] = array[j];
+			j--;
+		}
+		array[j+1] = temp;
+	}
+	
+	//Display data
+	displayData(array);
+}
+
+//sortElevationAsc
+//Sorts array by elevation in ascending order
+//Input: Array of trObj
+//Output: Sorted array
+function sortElevationAsc(array)
+{
+	var temp;
+	for (var i = 0; i < array.length; i++)
+	{
+		temp = array[i];
+		var j = i - 1;
+		while (j >= 0 && Number(array[j].elevation) > Number(temp.elevation))
+		{
+			array[j+1] = array[j];
+			j--;
+		}
+		array[j+1] = temp;
+	}
+	
+	//Display data
+	displayData(array);
+}
+
+//sortElevationDesc
+//Sorts array by elevation in descending order
+//Input: Array of trObj
+//Output: Sorted array
+function sortElevationDesc(array)
+{
+	var temp;
+	for (var i = 0; i < array.length; i++)
+	{
+		temp = array[i];
+		var j = i - 1;
+		while (j >= 0 && Number(array[j].elevation) < Number(temp.elevation))
+		{
+			array[j+1] = array[j];
+			j--;
+		}
+		array[j+1] = temp;
+	}
+	
+	//Display data
+	displayData(array);
+}
+	
 //Name: search
 //Description: Use input from HTML form to search database. Get
 //snapshot of data, then use displayData() to update the results 
-//Input: HTML form input fields
+//Input: HTML form input field values
 //Output: Results div shown and rows added with results, or results message
 //that nothing was found. Nothing returned from function
 function search()
@@ -1069,7 +1375,7 @@ function search()
 			tempResults[i] = results[i];
 		}
 		results = [];
-	
+		
 		//Search name with search term field
 		var terms, res, termArray, Qlower, termLower;
 
@@ -1117,7 +1423,7 @@ function search()
 		{
 			document.getElementById("searchResultsMessage").textContent = results.length + " Trip Reports Returned";
 				//console.log(results);
-			displayData(results); 
+			sortData(results); 
 		}
 	});
 }	
@@ -1359,6 +1665,15 @@ function searchFormToggle()
 	toggle("modifySearchDiv");
 }
 
+//resultSortInitialize
+//Set sort options to date and desc
+function resultSortInitialize()
+{
+	document.getElementById('sortCat1').checked = true;
+	document.getElementById('sortType2').checked = true;
+}
+
+
 //zeroToDate()
 //Set to date to 0/0/0 if current date selected
 //Input: None
@@ -1377,11 +1692,13 @@ function initializePage()
 	document.getElementById("activityDescriptions").style.display = "none";
 	document.getElementById("searchResultsDiv").style.display = "none";
 	document.getElementById("modifySearchDiv").style.display = "none";
+	resultSortInitialize();
 }
 
 //Event Listeners
 document.getElementById("resetForm").addEventListener('click', resetForm);
 document.getElementById("submitForm").addEventListener('click', submitForm);
+document.getElementById("sortData").addEventListener('click', submitForm);
 document.getElementById("searchNCLoc").addEventListener('click', function() {toggle("divNCLoc");});
 document.getElementById("searchNCallSub").addEventListener('click', checkToggleNC);
 document.getElementById("searchCCLoc").addEventListener('click', function() {toggle("divCCLoc");});

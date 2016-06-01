@@ -13,6 +13,7 @@ storageBucket: "project-5802414869996009310.appspot.com",
 };
 firebase.initializeApp(config);
 
+
 //validateInput()
 //Validate all of the input data provided in the form
 //Inout: No direct input, will read values from form fields
@@ -118,8 +119,8 @@ function submitForm()
 	if (validateInput())
 	{
 		//Get data
-		console.log("No errors, get data");
-		var name, type, month, day, year, distance, elevation, region, subregion, imageLink, pageLink, searchTerms, loc, str;
+		//console.log("No errors, get data");
+		var name, type, month, day, year, distance, elevation, region, subregion, imageLink, pageLink, searchTerms, keyId, str;
 		name = document.getElementById('submitName').value;
 		type = document.getElementById('submitType').value;
 		month = document.getElementById('submitMonth').value;
@@ -130,6 +131,8 @@ function submitForm()
 		imageLink = document.getElementById('submitImage').value;
 		pageLink = document.getElementById('submitPage').value;
 		searchTerms = document.getElementById('submitTerms').value;
+		keyId = document.getElementById('hiddenKey').value;
+		
 		var bool = false;
 		for (var i = 1; i < 7; i++)
 		{
@@ -156,12 +159,12 @@ function submitForm()
 			subregion = "";
 		
 		//Add trip report to database
-		firebase.database().ref().push({name: name, type: type, month: month, day: day, year: year, pageLink: pageLink, imageLink: imageLink, region: region, subregion: subregion, searchTerms: searchTerms, distance: distance, elevation: elevation}, function(error) {
+		firebase.database().refFromURL("https://project-5802414869996009310.firebaseio.com/" + keyId).set({name: name, type: type, month: month, day: day, year: year, pageLink: pageLink, imageLink: imageLink, region: region, subregion: subregion, searchTerms: searchTerms, distance: distance, elevation: elevation}, function(error) {
 			if (error){
-				document.getElementById('submitStatus').textContent = "Data could not be saved." + error;
+				document.getElementById('operationStatus').textContent = "Trip report could not be updated." + error;
 			}
 			else {
-				document.getElementById('submitStatus').textContent = "Data saved successfully.";
+				document.getElementById('operationStatus').textContent = "Trip report updated successfully.";
 				resetForm();
 			}
 		});
@@ -170,6 +173,9 @@ function submitForm()
 	{
 		console.log("Check form, errors.");
 	}
+	
+	document.getElementById("modifyForm").style.display = "none";
+	submitSearchForm();
 }
 
 //hideErrorMessages()
@@ -178,51 +184,50 @@ function submitForm()
 //Output: Nothing, but divs' style.display are set to none
 function hideErrorMessages()
 {
+	document.getElementById("dateErrorUnfilled").style.display = "none";
+	document.getElementById("dateErrorDay").style.display = "none";
+	document.getElementById("dateErrorLessThan").style.display = "none";
 	document.getElementById("nameError").style.display = "none";
 	document.getElementById("monthError").style.display = "none";
 	document.getElementById("dayError").style.display = "none";
 	document.getElementById("yearError").style.display = "none";
 	document.getElementById("distElevError").style.display = "none";
+	
 }
 
-//resetForm()
+//resetSearchForm()
 //Reset form fields to blank
 //Input: None
 //Output: No values in input fields
-function resetForm()
+function resetSearchForm()
 {
 	//Text Fields
-	document.getElementById("submitName").value = "";
-	document.getElementById("submitMonth").value = "";
-	document.getElementById("submitDay").value = "";
-	document.getElementById("submitYear").value = "";
-	document.getElementById("submitDistance").value = "";
-	document.getElementById("submitElevation").value = "";
-	document.getElementById("submitImage").value = "";
-	document.getElementById("submitPage").value = "";
-	document.getElementById("submitTerms").value = "";
-	
-	//Selection Menus
-	document.getElementById("submitType").value = 0;
-	
-	//Locations
-	for (var i = 1; i < 7; i++)
-		{
-			str = "submitLoc" + i;
-			document.getElementById(str).checked = false;
-		}
-		for (var i = 1; i < 25; i++)
-		{
-			str = "submitSub" + i;
-			document.getElementById(str).checked = false;
-		}
+	document.getElementById("searchName2").value = "";
+	document.getElementById("searchMonthFrom").value = "";
+	document.getElementById("searchDayFrom").value = "";
+	document.getElementById("searchYearFrom").value = "";
+	document.getElementById("searchMonthTo").value = "";
+	document.getElementById("searchDayTo").value = "";
+	document.getElementById("searchYearTo").value = "";
 	
 	//Hide error messages
 	hideErrorMessages();
 }
 
-//Event Listeners
-document.getElementById("resetForm").addEventListener('click', resetForm);
-document.getElementById("submitForm").addEventListener('click', submitForm);
+//initializePage()
+//Hide update and results divisions, make sure form is clear
+//Input: None
+//Output: Divs hidden
+function initializePage()
+{
+	resetSearchForm();
+	document.getElementById("modifyForm").style.display = "none";
+	document.getElementById("resultsTableDiv").style.display = "none";
+}
 
-document.addEventListener('DOMContentLoaded', resetForm);
+//Event Listeners
+document.getElementById("resetSearchForm").addEventListener('click', resetSearchForm);
+document.getElementById("submitSearchForm").addEventListener('click', submitSearchForm);
+document.getElementById("submitModifyForm").addEventListener('click', submitForm);
+
+document.addEventListener('DOMContentLoaded', initializePage);

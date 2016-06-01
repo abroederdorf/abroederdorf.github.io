@@ -268,6 +268,11 @@ button{
 	height: 50px;
 }
 
+.navLink{
+	font-variant: small-caps;
+	font-weight: bold;
+}
+
 #pageDiv{
 	max-width: 1000px;
 	margin: auto;
@@ -303,11 +308,6 @@ button{
 #homeLink{
 	margin-left: 15px;
 	margin-right: 5px;
-}
-
-#tripLink{
-	font-variant: small-caps;
-	font-weight: bold;
 }
 
 #status2015{
@@ -359,6 +359,10 @@ button{
 
 #searchName{
 	width: 500px;
+}
+
+#searchName2{
+	width: 300px;
 }
 
 #searchForm{

@@ -26,7 +26,7 @@
 					</p>
 					
 					<!--Date-->
-					<p><strong>Date</strong> |    From: 
+					<p><strong>Date</strong> |    From <span class="caption">(mm/dd/yyyy)</span>: 
 						<select id="searchMonthFrom" name="searchMonthFrom">
 							<option value="0"> </option>
 							<option value="1">1</option>
@@ -87,7 +87,7 @@
 							<option value="2015">2015</option>
 							<option value="2016">2016</option>
 						</select>
-						<span class="tab1"></span>To:
+						<span class="tab1"></span>To <span class="caption">(mm/dd/yyyy)</span>:
 						<select id="searchMonthTo" name="searchMonthTo">
 							<option value="0"> </option>
 							<option value="1">1</option>
@@ -255,19 +255,6 @@
 								<li><strong>BC Ski</strong>: Backcountry skiing, heading up something on my skis</li>
 							</ul>
 						</p>
-						<!--
-						<p>Crag Areas:
-							<ul>
-								<li><strong>Exit 38</strong>: Far Side</li>
-								<li><strong>Leavenworth</strong>: 8-Mile Crag, Alphabet Rock, Barney's Rubble, Bruce's Boulder, Castle Rock, Clamshell Cave, Clem's Holler, Daiber Buttress, Domestic Dome, February Buttress, Hammerhead Rock, Mountaineer's Dome, Playground Point, R&D, Roto Wall, Sam Hill, Stump Route, Surf City, The Boneyard, The Underhill, Tree Route, XY Crag</li>
-								<li><strong>Smith</strong>: Kiss of the Lepers Buttress, Morning Glory Wall, Pleasure Palace, Red Wall, Spiderman Buttress, The Christian Brothers, The Dihedrals, </li>
-								<li><strong>Smoke Bluffs</strong>: Alexis, Call It a Day, Channel Road, Fern Gully, Ferret's Folly, Island in the Sky, Jug Slab, Krack Rock, Neat and Cool, Nubile Woman, Octopus' Garden, Penny Lane, Pixie Corner, Ronin's Corner, Shannon Falls, Smoke Bluff Wall, Zombie Roof </li>
-								<li><strong>Tieton</strong>: Royal Columns, The Bend</li>
-								<li><strong>Toulmne Meadows</strong>:  Daff Dome, Dozier Dome, Potholes Dome</li>
-								<li><strong>Vantage</strong>: Feathers, Kotick Memorial Wall, Sunshine Wall</li>
-								<li><strong>Yosemite</strong>: Church Bowl, Glacier Point Apron</li>
-							</ul>
-						</p>-->
 						<p>If you can't quite figure out the exact name of something, try typing in a term or set of terms that you do know in the name box. The search is conducted against a list of tags associated with each trip report.
 						</p>
 					</div>
@@ -282,68 +269,17 @@
 				<br>
 				<h3 class="tab1">Search Results</h3>
 				<div id="searchResultsMessage"></div>
+				<span class="tab1">Sort By: <label><input type="radio" id="sortCat1" name="sortCategory" value="date">Date</label> 
+					<label><input type="radio" id="sortCat2" name="sortCategory" value="name">Name</label> 
+					<label><input type="radio" id="sortCat3" name="sortCategory" value="type">Type</label> 
+					<label><input type="radio" id="sortCat4" name="sortCategory" value="subregion">Subregion</label> 
+					<label><input type="radio" id="sortCat5" name="sortCategory" value="distance">Distance</label> 
+					<label><input type="radio" id="sortCat6" name="sortCategory" value="elevation">Elevation</label>
+					<span class="tab1">[<label><input type="radio" id="sortType1" name="sortType" value="asc">Ascending</label> | <label><input type="radio" id="sortType2" name="sortType" value="desc">Descending</label> ]</span>
+					<span class="tab1"><button id="sortData">Sort</button></span>
+					<br>
 				<!--Results-->
 				<div id="allResultsDiv">
-					<div class="resultRow">
-							<div class='picFloatDiv'>
-								<img height='100' width='100' src='images/unknownPic.jpg'>
-							</div>
-							<div class='nameFloatDiv'>
-								<h4><a href="http://alpinealicia.com/2015/20150621_HiddenLake.html">Hidden Lake Lookout</a></h4>
-								<p>
-									Cascade River Road, North Cascades
-									<br>Hike
-								</p>
-							</div>
-							<div class="statsFloatDiv">
-								<p>
-									Distance: 8.19 miles
-									<br>Elevation Gain: 3717'
-									<br>6/21/15
-								</p>
-							</div>
-						<div class="endFloat"></div>
-					</div>
-					<div class="resultRow">
-							<div class='picFloatDiv'>
-								<img height='100' width='100' src='images/unknownPic.jpg'>
-							</div>
-							<div class='nameFloatDiv'>
-								<h4><a href="http://alpinealicia.com/2014/20140914_SEWS_SouthArete.html">South Early Winters Spire - South Arete</a></h4>
-								<p>
-									Highway 20, North Cascades
-									<br>Climb
-								</p>
-							</div>
-							<div class="statsFloatDiv">
-								<p>
-									Distance: 6.54 miles
-									<br>Elevation Gain: 2333'
-									<br>9/14/2014
-								</p>
-							</div>
-						<div class="endFloat"></div>
-					</div>
-					<div class="resultRow">
-							<div class='picFloatDiv'>
-								<img height='100' width='100' src='images/unknownPic.jpg'>
-							</div>
-							<div class='nameFloatDiv'>
-								<h4><a href="http://alpinealicia.com/2015/20150426_GreenMountainLookout.html">Green Mountain Lookout</a></h4>
-								<p>
-									North Cascades, North Cascades
-									<br>Climb
-								</p>
-							</div>
-							<div class="statsFloatDiv">
-								<p>
-									Distance: 7.72 miles
-									<br>Elevation Gain: 3445'
-									<br>4/26/2015
-								</p>
-							</div>
-						<div class="endFloat"></div>
-					</div>
 				</div>
 			</div>
 
