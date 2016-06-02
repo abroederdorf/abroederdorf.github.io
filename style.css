@@ -6,7 +6,7 @@ p {
 	margin-left: 10px;
 }
 
-span, label {
+span, label, dl {
 	text-align: justify;
 	font-family: sans-serif;
 	line-height: 150%;
