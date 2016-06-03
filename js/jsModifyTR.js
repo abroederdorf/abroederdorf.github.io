@@ -1,7 +1,8 @@
 /*******************************
 * Author: Alicia Broederdorf
 * May 28, 2016
-* Description: Add trip report Page Script for Alpine Alicia
+* Description: Modify trip report Page Script for Alpine Alicia
+* to handle the update form and updating the database
 *******************************/
 
 // Initialize Firebase
@@ -13,18 +14,17 @@ storageBucket: "project-5802414869996009310.appspot.com",
 };
 firebase.initializeApp(config);
 
-
-//validateInput()
+//validateInputUpdate()
 //Validate all of the input data provided in the form
 //Inout: No direct input, will read values from form fields
 //Output: If any errors are found, messages will be displayed before the
 //corresponding input field and returns false
-function validateInput()
+function validateInputUpdate()
 {
 	var numErrors = 0;
 	
 	//Hide error messages to start clean
-	hideErrorMessages();
+	hideErrorMessagesMod();
 
 	//Check that name is not empty
 	var str = document.getElementById('submitName').value;
@@ -110,13 +110,13 @@ function validateInput()
 		return false;
 }
 
-//submitForm()
+//submitUpdateForm()
 //Submits form by first calling validation, then adding data to database
 //Input: None
 //Output: None
-function submitForm()
+function submitUpdateForm()
 {
-	if (validateInput())
+	if (validateInputUpdate())
 	{
 		//Get data
 		//console.log("No errors, get data");
@@ -175,59 +175,23 @@ function submitForm()
 	}
 	
 	document.getElementById("modifyForm").style.display = "none";
-	submitSearchForm();
+	submitModSearchForm();
 }
 
-//hideErrorMessages()
-//Hides divs that contain the error messages for the input form
-//Input: Non
-//Output: Nothing, but divs' style.display are set to none
-function hideErrorMessages()
-{
-	document.getElementById("dateErrorUnfilled").style.display = "none";
-	document.getElementById("dateErrorDay").style.display = "none";
-	document.getElementById("dateErrorLessThan").style.display = "none";
-	document.getElementById("nameError").style.display = "none";
-	document.getElementById("monthError").style.display = "none";
-	document.getElementById("dayError").style.display = "none";
-	document.getElementById("yearError").style.display = "none";
-	document.getElementById("distElevError").style.display = "none";
-	
-}
-
-//resetSearchForm()
-//Reset form fields to blank
-//Input: None
-//Output: No values in input fields
-function resetSearchForm()
-{
-	//Text Fields
-	document.getElementById("searchName2").value = "";
-	document.getElementById("searchMonthFrom").value = "";
-	document.getElementById("searchDayFrom").value = "";
-	document.getElementById("searchYearFrom").value = "";
-	document.getElementById("searchMonthTo").value = "";
-	document.getElementById("searchDayTo").value = "";
-	document.getElementById("searchYearTo").value = "";
-	
-	//Hide error messages
-	hideErrorMessages();
-}
-
-//initializePage()
+//initializePageMod()
 //Hide update and results divisions, make sure form is clear
 //Input: None
 //Output: Divs hidden
-function initializePage()
+function initializePageMod()
 {
-	resetSearchForm();
+	resetModSearchForm();
 	document.getElementById("modifyForm").style.display = "none";
 	document.getElementById("resultsTableDiv").style.display = "none";
 }
 
 //Event Listeners
-document.getElementById("resetSearchForm").addEventListener('click', resetSearchForm);
-document.getElementById("submitSearchForm").addEventListener('click', submitSearchForm);
-document.getElementById("submitModifyForm").addEventListener('click', submitForm);
+document.getElementById("resetSearchForm").addEventListener('click', resetModSearchForm);
+document.getElementById("submitSearchForm").addEventListener('click', submitModSearchForm);
+document.getElementById("submitModifyForm").addEventListener('click', submitUpdateForm);
 
-document.addEventListener('DOMContentLoaded', initializePage);
+document.addEventListener('DOMContentLoaded', initializePageMod);

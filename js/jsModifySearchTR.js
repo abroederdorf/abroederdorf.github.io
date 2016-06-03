@@ -1,7 +1,8 @@
 /*******************************
 * Author: Alicia Broederdorf
 * May 31, 2016
-* Description: Add trip report Page Script for Alpine Alicia
+* Description: Modify Search trip report Page Script for Alpine Alicia
+* to handle the search and displaying search results
 *******************************/
 
 //Trip Report Search Object Constructor
@@ -18,15 +19,19 @@ function trSearchObj(key, name, month, day, year, subregion, region, type, searc
 	this.date = date;
 }
 
-//validateSearchInput()
+//validateModSearchInput()
 //Validate date data provided in the form
 //Inout: No direct input, will read values from form fields
 //Output: If any errors are found, messages will be displayed before the
 //corresponding input field and returns false
-function validateSearchInput()
+function validateModSearchInput()
 {
 //Check the dates
 	var formDay, formMonth, formYear, designation, day, month, year, fromDate, toDate;
+	var numErrors = 0;
+	
+	hideErrorMessagesMod();
+	
 	for (var i = 0; i < 2; i++)
 	{
 		formDay = 'searchDay';
@@ -95,6 +100,11 @@ function validateSearchInput()
 		document.getElementById("dateErrorLessThan").style.display = "block";
 		numErrors++;
 	}
+	
+	if (numErrors == 0)
+		return true;
+	else
+		return false;
 }
 
 //updateTR(key)
@@ -192,7 +202,7 @@ function removeTR(key)
 	firebase.database().refFromURL("https://project-5802414869996009310.firebaseio.com/" + keyID).remove(oncomplete);
 		
 	//Show updated results
-	submitSearchForm();
+	submitModSearchForm();
 }
 
 //toggleDiv(obj)
@@ -209,16 +219,13 @@ function toggleDiv(obj)
 	toggle(divId);
 }
 
-//Name: displayData
+//Name: displayDataModSearch
 //Description: Add rows to table for all of the data in the animal database
 //Input: Animal object array
 //Output: Rows added to document table and division shown with results
-function displayData(resultObjArray)
+function displayDataModSearch(resultObjArray)
 {
 	var resultBody = document.getElementById("resultsTblBody");
-
-	//Set division to show table body
-	//document.getElementById("resultsTblBody").style.display = "block";
 	
 	//Delete rows from table body
 	while (resultBody.hasChildNodes())
@@ -311,185 +318,210 @@ function displayData(resultObjArray)
 	}
 }
 
-//submitSearchForm()
+//submitModSearchForm()
 //Submits search form by getting data, then displaying data that fits criteria
 //Input: None
 //Output: None
-function submitSearchForm()
+function submitModSearchForm()
 {
 	var results = [];
 	var tempResults = [];
 	
-	//Get query parameters
-	var Qname, QmonthFrom, QdayFrom, QyearFrom, QdateFrom, QmonthTo, QdayTo, QyearTo, QdateTo;
+	if (validateModSearchInput())
+	{
 	
-	//Name query parameters
-	Qname = document.getElementById('searchName2').value;
+		//Get query parameters
+		var Qname, QmonthFrom, QdayFrom, QyearFrom, QdateFrom, QmonthTo, QdayTo, QyearTo, QdateTo;
+		
+		//Name query parameters
+		Qname = document.getElementById('searchName2').value;
 
-	//From Date
-	QmonthFrom = document.getElementById('searchMonthFrom').value;
-	QdayFrom = document.getElementById('searchDayFrom').value;
-	QyearFrom = document.getElementById('searchYearFrom').value;
-	QdateFrom = createDate(QmonthFrom, QdayFrom, QyearFrom);
-	
-	//To Date
-	QmonthTo = document.getElementById('searchMonthTo').value;
-	QdayTo = document.getElementById('searchDayTo').value;
-	QyearTo = document.getElementById('searchYearTo').value;
-	QdateTo = createDate(QmonthTo, QdayTo, QyearTo);	
-	
-	
-	//Get data
-	var name, type, month, day, year, region, subregion, searchTerms, TR, date, keys;
-	
-	firebase.database().ref().once("value").then(function(snapshot){
-		var data = snapshot.val()
-			//Test: console output to show data returned and number of records
-			//console.log(data);
-			//console.log("Number of records: " + snapshot.numChildren());
-			
-			//var parsedData = Object.keys(snapshot.val());
-			//console.log(parsedData);		
+		//From Date
+		QmonthFrom = document.getElementById('searchMonthFrom').value;
+		QdayFrom = document.getElementById('searchDayFrom').value;
+		QyearFrom = document.getElementById('searchYearFrom').value;
+		QdateFrom = createDate(QmonthFrom, QdayFrom, QyearFrom);
 		
-		snapshot.forEach(function(obj){
-			var resultObj = obj.val();
-				//console.log(resultObj);
-			keys = obj.key;
-			name = obj.val().name;
-			type = obj.val().type;
-			month = obj.val().month;
-			day = obj.val().day;
-			year = obj.val().year;
-			region = obj.val().region;
-			subregion = obj.val().subregion;
-			searchTerms = obj.val().searchTerms;
-			
-			date = createDate(month, day, year);
-			
-			TR = new trSearchObj(keys, name, month, day, year, subregion, region, type, searchTerms, date);
-			tempResults.push(TR);
-				//console.log(TR);
+		//To Date
+		QmonthTo = document.getElementById('searchMonthTo').value;
+		QdayTo = document.getElementById('searchDayTo').value;
+		QyearTo = document.getElementById('searchYearTo').value;
+		QdateTo = createDate(QmonthTo, QdayTo, QyearTo);	
 		
-		});	
 		
-		//Search from date 
-		if (QdateFrom != "0/0/ 00:00")
-		{
-			for (var i = 0; i < tempResults.length; i++)
-			{
-				if (tempResults[i].date != "0/0/ 00:00")
-				{
-					if (new Date(QdateFrom).getTime() <= new Date(tempResults[i].date).getTime())
-						results.push(tempResults[i]);
-				}
-			}
-		}
-		else
-		{
-			for (var i = 0; i < tempResults.length; i++)
-			{
-				results[i] = tempResults[i];
-			}
-		}		
+		//Get data
+		var name, type, month, day, year, region, subregion, searchTerms, TR, date, keys;
 		
-		//Assign results to temp results and clear results to get only those that make it through this filter
-		tempResults = [];
-		for (var i = 0; i < results.length; i++)
-		{
-			tempResults[i] = results[i];
-		}
-		results = [];
-		
-		//Search to date 
-		if (QdateTo != "0/0/ 00:00")
-		{
-			for (var i = 0; i < tempResults.length; i++)
-			{
-				if (tempResults[i].date != "0/0/ 00:00")
-				{
-					if (new Date(QdateTo).getTime() >= new Date(tempResults[i].date).getTime())
-						results.push(tempResults[i]);
-				}
-			}
-		}
-		else
-		{
-			for (var i = 0; i < tempResults.length; i++)
-			{
-				results[i] = tempResults[i];
-			}
-		}
-	
-		//Assign results to temp results and clear results to get only those that make it through this filter
-		tempResults = [];
-		for (var i = 0; i < results.length; i++)
-		{
-			tempResults[i] = results[i];
-		}
-		results = [];
-	
-		//Search name with search term field
-		var terms, res, termArray, Qlower, termLower;
-
-		if (Qname != "")
-		{
-			Qlower = Qname.toLowerCase(); 	//make name query parameter all lower case
-			for (var i = 0; i < tempResults.length; i++)
-			{
-				//Split search term string into individual array elements
-				terms = tempResults[i].searchTerms;
-				//console.log(tempResults[i].searchTerms);
-				res = terms.replace("[", "");
-				terms = res.replace("]", "");
-				termArray = terms.split(", ");
+		firebase.database().ref().once("value").then(function(snapshot){
+			var data = snapshot.val()
+				//Test: console output to show data returned and number of records
+				//console.log(data);
+				//console.log("Number of records: " + snapshot.numChildren());
 				
-				//Iterate over term array to see if it matches name query parameter
-				for (var j = 0; j < termArray.length; j++)
+				//var parsedData = Object.keys(snapshot.val());
+				//console.log(parsedData);		
+			
+			snapshot.forEach(function(obj){
+				var resultObj = obj.val();
+					//console.log(resultObj);
+				keys = obj.key;
+				name = obj.val().name;
+				type = obj.val().type;
+				month = obj.val().month;
+				day = obj.val().day;
+				year = obj.val().year;
+				region = obj.val().region;
+				subregion = obj.val().subregion;
+				searchTerms = obj.val().searchTerms;
+				
+				date = createDate(month, day, year);
+				
+				TR = new trSearchObj(keys, name, month, day, year, subregion, region, type, searchTerms, date);
+				tempResults.push(TR);
+					//console.log(TR);
+			
+			});	
+			
+			//Search from date 
+			if (QdateFrom != "0/0/ 00:00")
+			{
+				for (var i = 0; i < tempResults.length; i++)
 				{
-					termLower = termArray[j].toLowerCase();
-					//console.log("Qname: " + Qlower + ", Term: " + termLower);
-					if (Qlower == termLower)
-						results.push(tempResults[i]);
+					if (tempResults[i].date != "0/0/ 00:00")
+					{
+						if (new Date(QdateFrom).getTime() <= new Date(tempResults[i].date).getTime())
+							results.push(tempResults[i]);
+					}
 				}
 			}
-		}
-		else
-		{
-			for (var i = 0; i < tempResults.length; i++)
+			else
 			{
-				results[i] = tempResults[i];
+				for (var i = 0; i < tempResults.length; i++)
+				{
+					results[i] = tempResults[i];
+				}
+			}		
+			
+			//Assign results to temp results and clear results to get only those that make it through this filter
+			tempResults = [];
+			for (var i = 0; i < results.length; i++)
+			{
+				tempResults[i] = results[i];
 			}
-		}
+			results = [];
+			
+			//Search to date 
+			if (QdateTo != "0/0/ 00:00")
+			{
+				for (var i = 0; i < tempResults.length; i++)
+				{
+					if (tempResults[i].date != "0/0/ 00:00")
+					{
+						if (new Date(QdateTo).getTime() >= new Date(tempResults[i].date).getTime())
+							results.push(tempResults[i]);
+					}
+				}
+			}
+			else
+			{
+				for (var i = 0; i < tempResults.length; i++)
+				{
+					results[i] = tempResults[i];
+				}
+			}
 		
-		//Test: Console print results array
-			//console.log("Results array:");
-			//console.log(results);
-			//console.log('Results length: ' + results.length);
+			//Assign results to temp results and clear results to get only those that make it through this filter
+			tempResults = [];
+			for (var i = 0; i < results.length; i++)
+			{
+				tempResults[i] = results[i];
+			}
+			results = [];
 		
-		//Print results
-		document.getElementById("resultsTableDiv").style.display="block";
-		if (results.length <= 0)
-		{
-			document.getElementById("resultsStatus").textContent = "No results, try another search.";
-			document.getElementById("resultsTable").style.display="none";
-			displayData(results); 
-		}
-		else
-		{
-			document.getElementById("resultsStatus").textContent = results.length + " Trip Reports Returned";
-			document.getElementById("resultsTable").style.display="block";
+			//Search name with search term field
+			var terms, res, termArray, Qlower, termLower;
+
+			if (Qname != "")
+			{
+				Qlower = Qname.toLowerCase(); 	//make name query parameter all lower case
+				for (var i = 0; i < tempResults.length; i++)
+				{
+					//Split search term string into individual array elements
+					terms = tempResults[i].searchTerms;
+					//console.log(tempResults[i].searchTerms);
+					res = terms.replace("[", "");
+					terms = res.replace("]", "");
+					termArray = terms.split(", ");
+					
+					//Iterate over term array to see if it matches name query parameter
+					for (var j = 0; j < termArray.length; j++)
+					{
+						termLower = termArray[j].toLowerCase();
+						//console.log("Qname: " + Qlower + ", Term: " + termLower);
+						if (Qlower == termLower)
+							results.push(tempResults[i]);
+					}
+				}
+			}
+			else
+			{
+				for (var i = 0; i < tempResults.length; i++)
+				{
+					results[i] = tempResults[i];
+				}
+			}
+			
+			//Test: Console print results array
+				//console.log("Results array:");
 				//console.log(results);
-			displayData(results); 
-		}
-	});
+				//console.log('Results length: ' + results.length);
+			
+			//Print results
+			document.getElementById("resultsTableDiv").style.display="block";
+			if (results.length <= 0)
+			{
+				document.getElementById("resultsStatus").textContent = "No results, try another search.";
+				document.getElementById("resultsTable").style.display="none";
+				displayDataModSearch(results); 
+			}
+			else
+			{
+				document.getElementById("resultsStatus").textContent = results.length + " Trip Reports Returned";
+				document.getElementById("resultsTable").style.display="block";
+					//console.log(results);
+				displayDataModSearch(results); 
+			}
+		});
+	}
+	else
+	{
+		console.log("Check form, errors.");
+	}
 	
 }
 
-//resetSearchForm()
+//hideErrorMessagesMod()
+//Hides divs that contain the error messages for the input form
+//Input: Non
+//Output: Nothing, but divs' style.display are set to none
+function hideErrorMessagesMod()
+{
+	document.getElementById("dateErrorUnfilled").style.display = "none";
+	document.getElementById("dateErrorDay").style.display = "none";
+	document.getElementById("dateErrorLessThan").style.display = "none";
+	document.getElementById("nameError").style.display = "none";
+	document.getElementById("monthError").style.display = "none";
+	document.getElementById("dayError").style.display = "none";
+	document.getElementById("yearError").style.display = "none";
+	document.getElementById("distElevError").style.display = "none";
+	
+}
+
+//resetModSearchForm()
 //Reset form fields to blank
 //Input: None
 //Output: No values in input fields
-function resetSearchForm()
+function resetModSearchForm()
 {
 	//Text Fields
 	document.getElementById("searchName2").value = "";
@@ -501,6 +533,6 @@ function resetSearchForm()
 	document.getElementById("searchYearTo").value = "";
 	
 	//Hide error messages
-	hideErrorMessages();
+	hideErrorMessagesMod();
 }
 

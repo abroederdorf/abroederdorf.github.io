@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Alpine Alicia</title>
+		<title>Modify Database</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>    
 	</head>
@@ -51,7 +51,7 @@
 					
 					<!--Text Fields-->
 					<p>
-						Name: <input type="text" id="submitName"><span class="tab1"></span>
+						Name: <input type="text" id="submitName" class="modifyName"><span class="tab1"></span>
 						Activity Type:
 						<select id="submitType" name="submitType">
 							<option value=" "> </option>
@@ -67,7 +67,7 @@
 						<br>Image Link: <input type="text" id="submitImage" class="submitText">
 						<br>Distance: <input type="number" id="submitDistance" class="addNumText2" min="0"> miles<span class="tab1"></span>
 						<span class="tab1"></span>Elevation Gain: <input type="number" id="submitElevation" class="addNumText2" min="0"> feet
-						<br>Search Terms:<br><input type="text" id="submitTerms" class="submitTextBlock">
+						<br>Search Terms:<br><textarea id="submitTerms" rows="3"></textarea>
 						<br>(array with items separated by commas i.e. [lookout, green mountain, green, green mountain lookout])
 						<br>Key: <span id="showKey"></span>
 						<div id="nameError" class="errorMessage">***Error: Name cannot be blank</div>
@@ -178,7 +178,7 @@
 		</div>
 	
 		<script src='jsAlpineAlicia.js'></script>
-		<script src='jsModifySearchTR.js'></script>
-		<script src='jsModifyTR.js'></script>
+		<script src='js/jsModifySearchTR.js'></script>
+		<script src='js/jsModifyTR.js'></script>
 	</body>
 </html>

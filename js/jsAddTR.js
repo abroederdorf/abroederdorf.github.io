@@ -13,17 +13,17 @@ storageBucket: "project-5802414869996009310.appspot.com",
 };
 firebase.initializeApp(config);
 
-//validateInput()
+//validateInputAdd()
 //Validate all of the input data provided in the form
 //Inout: No direct input, will read values from form fields
 //Output: If any errors are found, messages will be displayed before the
 //corresponding input field and returns false
-function validateInput()
+function validateInputAdd()
 {
 	var numErrors = 0;
 	
 	//Hide error messages to start clean
-	hideErrorMessages();
+	hideErrorMessagesAdd();
 
 	//Check that name is not empty
 	var str = document.getElementById('submitName').value;
@@ -109,13 +109,13 @@ function validateInput()
 		return false;
 }
 
-//submitForm()
+//submitFormAdd()
 //Submits form by first calling validation, then adding data to database
 //Input: None
 //Output: None
-function submitForm()
+function submitFormAdd()
 {
-	if (validateInput())
+	if (validateInputAdd())
 	{
 		//Get data
 		console.log("No errors, get data");
@@ -162,7 +162,7 @@ function submitForm()
 			}
 			else {
 				document.getElementById('submitStatus').textContent = "Data saved successfully.";
-				resetForm();
+				resetFormAdd();
 			}
 		});
 	}
@@ -172,11 +172,11 @@ function submitForm()
 	}
 }
 
-//hideErrorMessages()
+//hideErrorMessagesAdd()
 //Hides divs that contain the error messages for the input form
 //Input: Non
 //Output: Nothing, but divs' style.display are set to none
-function hideErrorMessages()
+function hideErrorMessagesAdd()
 {
 	document.getElementById("nameError").style.display = "none";
 	document.getElementById("monthError").style.display = "none";
@@ -185,11 +185,11 @@ function hideErrorMessages()
 	document.getElementById("distElevError").style.display = "none";
 }
 
-//resetForm()
+//resetFormAdd()
 //Reset form fields to blank
 //Input: None
 //Output: No values in input fields
-function resetForm()
+function resetFormAdd()
 {
 	//Text Fields
 	document.getElementById("submitName").value = "";
@@ -218,11 +218,11 @@ function resetForm()
 		}
 	
 	//Hide error messages
-	hideErrorMessages();
+	hideErrorMessagesAdd();
 }
 
 //Event Listeners
-document.getElementById("resetForm").addEventListener('click', resetForm);
-document.getElementById("submitForm").addEventListener('click', submitForm);
+document.getElementById("resetForm").addEventListener('click', resetFormAdd);
+document.getElementById("submitForm").addEventListener('click', submitFormAdd);
 
-document.addEventListener('DOMContentLoaded', resetForm);
+document.addEventListener('DOMContentLoaded', resetFormAdd);

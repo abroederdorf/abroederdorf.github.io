@@ -12,7 +12,7 @@
 function buildNavDiv()
 {
 	var newDiv = document.createElement("div");
-	var displayContent = "<span id='homeLink'><a href='http://alpinealicia.com'>Home</a>  | </span><span><a href='/search.html'>Search</a> | </span><span class='nLink'> trip reports by </span><a href='/date.html'><span>Date</span></a></span>";
+	var displayContent = "<span id='homeLink'><a href='http://alpinealicia.com'>Home</a>  | </span><span><a href='/search.html'>Search</a> | </span><span class='navLink'> trip reports by </span><a href='/date.html'><span>Date</span></a></span>";
 	newDiv.innerHTML = displayContent;
 	
 	return newDiv;

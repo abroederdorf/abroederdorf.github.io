@@ -273,6 +273,10 @@ button{
 	font-weight: bold;
 }
 
+.modifyName{
+	width: 300px;
+}
+
 #pageDiv{
 	max-width: 1000px;
 	margin: auto;
