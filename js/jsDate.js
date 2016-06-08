@@ -46,6 +46,29 @@ function hideAllBoxes(){
 	}
 }
 
+//sortDate
+//Sorts array by date in descending order
+//Input: Array of trObj
+//Output: Sorted array
+function sortDate(array)
+{
+	var temp;
+	for (var i = 0; i < array.length; i++)
+	{
+		temp = array[i];
+		var j = i - 1;
+		while ((j >= 0) && (new Date(array[j].date).getTime() < new Date(temp.date).getTime()))
+		{
+			array[j+1] = array[j];
+			j--;
+		}
+		array[j+1] = temp;
+	}
+	
+	//Display data
+	displayDateData(array);
+}
+
 //createYearDiv(year)
 //Create new year div that includes another div with a table, table head,
 //and table body including header cells
@@ -231,7 +254,8 @@ function searchDate()
 		{
 			document.getElementById("showButtons").style.display="block";
 				//console.log(allRecords);
-			displayDateData(allRecords); 
+			sortDate(allRecords);
+			//displayDateData(allRecords); 
 		}
 	});
 }	

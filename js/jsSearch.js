@@ -238,10 +238,14 @@ function displayDataSearch(resultObjArray)
 			var nameDiv = document.createElement('div');
 			nameDiv.className = "nameFloatDiv";
 			var header = document.createElement('h4');
-			header.innerHTML = "<a href='" + resultObjArray[i].pageLink + "'>" + resultObjArray[i].name + "</a>";
+			var str = "";
+			if (resultObjArray[i].pageLink != "")
+				header.innerHTML = "<a href='" + resultObjArray[i].pageLink + "'>" + resultObjArray[i].name + "</a>";
+			else
+				header.textContent = resultObjArray[i].name;
 			nameDiv.appendChild(header);
 			var par = document.createElement('p');
-			var str = "";
+			str = "";
 			if (resultObjArray[i].subregion != "")
 				str += resultObjArray[i].subregion;
 			if ((resultObjArray[i].subregion != "") && (resultObjArray[i].region != ""))
