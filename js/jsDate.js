@@ -204,7 +204,13 @@ function displayDateData(array)
 		cell.textContent = array[i].subregion;
 		row.appendChild(cell);
 		cell = document.createElement('td');
-		cell.innerHTML = '<a href="' + array[i].pageLink + '">' + array[i].month + '.' + array[i].day + '.' + array[i].year + '</a>';
+		var numberYear = array[i].year;
+		var yearDigits = Number(numberYear);
+		yearDigits -= 2000;
+		if (yearDigits < 10)
+			yearDigits = '0' + yearDigits;
+		console.log("yearDigits: " + yearDigits);
+		cell.innerHTML = '<a href="' + array[i].pageLink + '">' + array[i].month + '.' + array[i].day + '.' + yearDigits + '</a>';
 		row.appendChild(cell);
 	}
 	//Hide all divs
