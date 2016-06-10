@@ -1,0 +1,75 @@
+body{
+	padding: 2.5%;
+	background-color: #D0E2E9;
+}
+
+p {
+	text-align: justify;
+}
+
+.actHike{
+	background-color: #fed8a8;
+}
+
+.actClimb{
+	background-color: #aeeeaf;
+}
+
+.actCrag{
+	background-color: #ccb3f8;
+}
+
+.actSki{
+	background-color: white;
+}
+
+.caption{
+	font-weight: lighter;
+	padding-bottom: 10px;
+	font-size: 90%;
+}
+
+.statsTitle{
+	font-weight: bold;
+}
+
+.statsPanel{
+	max-width: 600px;
+}
+
+.tab1{
+	padding-left: 11%;
+}
+
+.listTab1{
+	padding-left: 12%;
+}
+
+.tab2{
+	padding-left: 12%;
+}
+
+.listTab2{
+	padding-left: 14%;
+}
+
+.modal-pic{
+	max-height: 475px;
+	max-width: 80%;
+}
+
+.pic-well{
+	border: 1px solid darkgray;
+}
+
+#pageTitle{
+	font-size: 175%;
+	padding: 10px;
+	color: #3673b3;
+}
+
+#siteSlogan{
+	color: #2a9554;
+	font-weight: bold;
+	padding-right: 20px;
+}
