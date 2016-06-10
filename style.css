@@ -105,15 +105,15 @@ button{
 }
 
 .actHike{
-	background-color: #FFE87C;
+	background-color: #fed8a8;
 }
 
 .actClimb{
-	background-color: #6CBB3C;
+	background-color: #aeeeaf;
 }
 
 .actCrag{
-	background-color: #FF8040;
+	background-color: #ccb3f8;
 }
 
 .actSki{
@@ -280,7 +280,7 @@ button{
 #pageDiv{
 	max-width: 1000px;
 	margin: auto;
-	background-color: #CFECEC;
+	background-color: #ebfcfc;
 	padding: 20px;
 	border-radius: 20px;
 }
