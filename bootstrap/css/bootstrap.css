@@ -6238,11 +6238,17 @@ button.close {
   border-left-color: #fff;
 }
 .carousel {
-  position: relative;
+  position: absolute;
+  top: 125px;
+  left: 0px;
+  width: 100%;
+  height: 515px;
+  background-color: #D0E2E9;
 }
 .carousel-inner {
   position: relative;
   width: 100%;
+  max-height: 500px;
   overflow: hidden;
 }
 .carousel-inner > .item {

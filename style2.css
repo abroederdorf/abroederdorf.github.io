@@ -62,10 +62,58 @@ p {
 	border: 1px solid darkgray;
 }
 
+.statusLine{
+	margin-left: 50px;
+}
+
+.statusYear{
+	float: left;
+	margin-left: 20px;
+}
+
+.statusBar{
+	float: left;
+	width: 100px;
+	border: solid black 1px;
+	background-color: #F5B7B1;
+	margin-left: 10px;
+}
+
+.statusComplete{
+	margin-left: 30px;
+}
+
+.slide-title{
+    font-size: 175%;
+	font-weight: bold;
+	text-shadow: 2px 2px #FFFFFF;
+}
+
+.slidePicture{
+	margin: auto;
+}
+
 #pageTitle{
 	font-size: 175%;
 	padding: 10px;
 	color: #3673b3;
+}
+
+#description{
+	padding-top: 20px;
+	width: 100%;
+	margin: auto;
+}
+
+#siteTitle{
+	color: #000000;
+	text-shadow: 2px 2px #FFFFFF;
+	margin-left: 5px;
+	margin-top: 10px;
+	font-family: sans-serif;
+	font-size: 200%;
+	font-weight: bold;
+	line-height: 130%;
 }
 
 #siteSlogan{
@@ -73,3 +121,4 @@ p {
 	font-weight: bold;
 	padding-right: 20px;
 }
+
