@@ -87,7 +87,7 @@ function createYearDiv(year){
 	var span = document.createElement('span');
 	strCon = "container" + year;
 	strYear = year;
-	span.innerHTML = '<button onclick="toggle(' + "'" +  strCon + "'" + ')" class="toggle">+</button><strong>' + strYear + '</strong>';
+	span.innerHTML = '<button onclick="toggle(' + "'" +  strCon + "'" + ')" class="btn btn-default">+</button><strong>&nbsp&nbsp' + strYear + '</strong>';
 	divAccordion.appendChild(span);
 	
 	//Create div to hide and show containing table
@@ -97,7 +97,7 @@ function createYearDiv(year){
 	
 	//Create table
 	var table = document.createElement('table');
-	table.className = "reportTable";
+	table.className = "table";
 	divContainer.appendChild(table);
 	
 	//Create table head with row
@@ -109,12 +109,15 @@ function createYearDiv(year){
 	//Create header cells
 	var headCell = document.createElement('th');
 	headCell.textContent = 'Mountain/Trail';
+	headCell.className = "text-center";
 	row.appendChild(headCell);
 	headCell = document.createElement('th');
 	headCell.textContent = 'Subregion';
+	headCell.className = "text-center";
 	row.appendChild(headCell);
 	headCell = document.createElement('th');
 	headCell.textContent = 'Date';
+	headCell.className = "text-center";
 	row.appendChild(headCell);
 	
 	//Create table body

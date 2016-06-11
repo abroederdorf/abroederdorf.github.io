@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Trip Reports by Date New</title>
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="style2.css">
+		<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>   
+	</head>
+	<body>
+		<div id="pageDiv">
+			<div id="navBar"></div>
+			<script src='jsNavBarBS.js'></script>
+			<p class="pageDescription">Trip reports are organized by the years listed below.</p>
+			<p><u>Activity Categories</u>: 
+			<ul>
+				<li><span class="actHike descripBorder">&nbsp&nbspHike&nbsp&nbsp</span>: Does not matter the destination as long as no technical skills were required</li>
+				<li><span class="actClimb descripBorder">&nbsp&nbspClimb&nbsp&nbsp</span>: Technical skills required to reach the summit (i.e. use of ice axe or rope). Some snow climbs would be considered hikes during the summer</li>
+				<li><span class="actCrag descripBorder">&nbsp&nbspCrag&nbsp&nbsp</span>: Within climbing I have separated cragging, those areas where I solely rock climbed</li>
+				<li><span class="actSki descripBorder">&nbsp&nbspBackcountry Ski&nbsp&nbsp</span>: Heading up something on my skis</li>
+			</ul>
+			</p>
+			<div id="showButtons" class="showAllBut">
+				<span><button type=button class="btn btn-default" id="showAll">Show All</button></span>
+				<span><button type=button class="btn btn-default" id="hideAll">Hide All</button></span>
+				<span class="caption"><em>[Tip: To use CTRL+F to search for a mountain/trail on this page, show all first]</em></span>
+			</div>
+			<div class="row"></div>
+			<div id="dateStatusMessage"></div>
+			<div id="TRlist"></div>
+			
+		</div>
+		
+		<script src='jsAlpineAlicia.js'></script>
+		<script src='js/jsDate.js'></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+	</body>
+</html>

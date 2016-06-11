@@ -7,6 +7,27 @@ p {
 	text-align: justify;
 }
 
+th {
+	padding-left: 5px;
+	padding-right: 5px;
+	border: solid 1px black;
+	background-color: #BCC6CC;
+}
+
+td {
+	border: solid 1px black;
+	padding-left: 5px;
+	padding-right: 5px;
+	text-align: center;
+}
+
+table
+{
+	border-spacing: 0px;
+	border: solid 1px;
+	margin-top:20px;
+}
+
 .actHike{
 	background-color: #fed8a8;
 }
@@ -92,6 +113,40 @@ p {
 
 .buttonGroup{
 	margin-top: 20px;
+}
+
+.pageDescription{
+	padding-top: 20px;
+}
+
+.descripBorder{
+	border: 1px solid black;
+}
+
+.accordion {
+	/*border-radius: 5px;
+	border: solid 1px gray;*/
+	margin-left: 25px;
+	padding: 10px;
+	width: 90%;
+}
+
+.cellName{
+	width: 70%;
+}
+
+.cellRegion{
+	width: 25%;
+}
+
+.cellDate{
+	width: 5%;
+}
+
+.monthRow{
+	text-align: left;
+	font-weight: bold;
+	font-variant: small-caps;
 }
 
 #searchName{
