@@ -397,7 +397,7 @@ function resetFormSearch()
 	
 	//Locations
 	//North Cascades
-	document.getElementById("searchNCallSub").checked = false;
+	document.getElementById('hiddenNCLoc').value = 0;
 	document.getElementById("search542Sub").checked = false;
 	document.getElementById("search20Sub").checked = false;
 	document.getElementById("searchCasRiverSub").checked = false;
@@ -405,7 +405,7 @@ function resetFormSearch()
 	document.getElementById("divNCLoc").style.display = "none";
 	
 	//Central Cascades
-	document.getElementById("searchCCallSub").checked = false;
+	document.getElementById('hiddenCCLoc').value = 0;
 	document.getElementById("search2Sub").checked = false;
 	document.getElementById("searchLoopSub").checked = false;
 	document.getElementById("searchLworthSub").checked = false;
@@ -415,7 +415,7 @@ function resetFormSearch()
 	document.getElementById("divCCLoc").style.display = "none";
 	
 	//I-90
-	document.getElementById("searchI90allSub").checked = false;
+	document.getElementById('hiddenI90Loc').value = 0;
 	document.getElementById("searchIssaSub").checked = false;
 	document.getElementById("searchNBendSub").checked = false;
 	document.getElementById("searchSnoqSub").checked = false;
@@ -423,7 +423,7 @@ function resetFormSearch()
 	document.getElementById("divI90Loc").style.display = "none";
 	
 	//South Cascades
-	document.getElementById("searchSCallSub").checked = false;
+	document.getElementById('hiddenSCLoc').value = 0;
 	document.getElementById("searchMtRainSub").checked = false;
 	document.getElementById("searchTatooshSub").checked = false;
 	document.getElementById("searchSCSub").checked = false;
@@ -433,7 +433,7 @@ function resetFormSearch()
 	document.getElementById("searchOlyLoc").checked = false;
 	
 	//Outside Washington State
-	document.getElementById("searchOWSallSub").checked = false;
+	document.getElementById('hiddenOWSLoc').value = 0;
 	document.getElementById("searchCanSub").checked = false;
 	document.getElementById("searchOrSub").checked = false;
 	document.getElementById("searchCaliSub").checked = false;
@@ -491,15 +491,15 @@ document.getElementById("resetForm").addEventListener('click', resetFormSearch);
 document.getElementById("submitForm").addEventListener('click', submitFormSearch);
 document.getElementById("sortData").addEventListener('click', submitFormSearch);
 document.getElementById("searchNCLoc").addEventListener('click', function() {toggle("divNCLoc");});
-document.getElementById("searchNCallSub").addEventListener('click', checkToggleNC);
+document.getElementById("searchNCLoc").addEventListener('click', checkToggleNC);
 document.getElementById("searchCCLoc").addEventListener('click', function() {toggle("divCCLoc");});
-document.getElementById("searchCCallSub").addEventListener('click', checkToggleCC);
+document.getElementById("searchCCLoc").addEventListener('click', checkToggleCC);
 document.getElementById("searchI90Loc").addEventListener('click', function() {toggle("divI90Loc");});
-document.getElementById("searchI90allSub").addEventListener('click', checkToggleI90);
+document.getElementById("searchI90Loc").addEventListener('click', checkToggleI90);
 document.getElementById("searchSCLoc").addEventListener('click', function() {toggle("divSCLoc");});
-document.getElementById("searchSCallSub").addEventListener('click', checkToggleSC);
+document.getElementById("searchSCLoc").addEventListener('click', checkToggleSC);
 document.getElementById("searchOWSLoc").addEventListener('click', function() {toggle("divOWSLoc");});
-document.getElementById("searchOWSallSub").addEventListener('click', checkToggleOWS);
+document.getElementById("searchOWSLoc").addEventListener('click', checkToggleOWS);
 document.getElementById("modifySearchButton").addEventListener('click', searchFormToggle);
 document.getElementById("searchCurrentDate").addEventListener('click', zeroToDate);
 

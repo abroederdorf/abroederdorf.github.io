@@ -168,7 +168,7 @@
 						<div class="locationBox">
 							<label><button id="searchNCLoc" class="dropButton">v </button> North Cascades</label>
 							<div id="divNCLoc">
-								<br><label class="allSub"><input type="checkbox" id="searchNCallSub" name="searchNCallSub">(All Sub Regions)</label>
+								<input type="hidden" value="0" id="hiddenNCLoc">
 								<br><label><input type="checkbox" id="search542Sub" name="search542Sub">Highway 542</label>
 								<br><label><input type="checkbox" id="search20Sub" name="search20Sub">Highway 20</label>
 								<br><label><input type="checkbox" id="searchCasRiverSub" name="searchCasRiverSub">Cascade River Road</label>
@@ -179,7 +179,7 @@
 						<div class="locationBox">
 							<label><button id="searchI90Loc" class="dropButton">v</button> I-90</label>
 							<div id="divI90Loc">
-								<br><label class="allSub"><input type="checkbox" id="searchI90allSub" name="searchI90allSub">(All Sub Regions)</label>
+								<input type="hidden" value="0" id="hiddenI90Loc">
 								<br><label><input type="checkbox" id="searchIssaSub" name="searchIssaSub">Issaquah</label>
 								<br><label><input type="checkbox" id="searchNBendSub" name="searchNBendSub">North Bend</label>
 								<br><label><input type="checkbox" id="searchSnoqSub" name="searchSnoqSub">Snoqualmie Pass</label>
@@ -189,7 +189,7 @@
 						<div class="locationBox">
 							<label><button id="searchSCLoc" class="dropButton">v</button> South Cascades</label>
 							<div id="divSCLoc">
-								<br><label class="allSub"><input type="checkbox" id="searchSCallSub" name="searchSCallSub">(All Sub Regions)</label>
+								<input type="hidden" value="0" id="hiddenSCLoc">
 								<br><label><input type="checkbox" id="searchMtRainSub" name="searchMtRainSub">Mount Rainier</label>
 								<br><label><input type="checkbox" id="searchTatooshSub" name="searchTatooshSub">Tatoosh Range</label>
 								<br><label><input type="checkbox" id="searchSCSub" name="searchSCSub">South Cascades</label>
@@ -199,7 +199,7 @@
 						<div class="locationBox">
 							<label><button id="searchCCLoc" class="dropButton">v</button> Central Cascades</label>
 							<div id="divCCLoc">
-								<br><label class="allSub"><input type="checkbox" id="searchCCallSub" name="searchCCallSub">(All Sub Regions)</label>
+								<input type="hidden" value="0" id="hiddenCCLoc">
 								<br><label><input type="checkbox" id="search2Sub" name="search2Sub">Highway 2</label>
 								<br><label><input type="checkbox" id="searchLoopSub" name="searchLoopSub">Mountain Loop Highway</label>
 								<br><label><input type="checkbox" id="searchLworthSub" name="searchLworthSub">Leavenworth</label>
@@ -212,7 +212,7 @@
 						<div class="locationBox">
 							<label><button id="searchOWSLoc" class="dropButton">v</button> Outside Washington State</label>
 							<div id="divOWSLoc">
-								<br><label class="allSub"><input type="checkbox" id="searchOWSallSub" name="searchOWSallSub">(All Sub Regions)</label>
+								<input type="hidden" value="0" id="hiddenOWSLoc">
 								<br><label><input type="checkbox" id="searchCanSub" name="searchCanSub">Canada</label>
 								<br><label><input type="checkbox" id="searchOrSub" name="searchOrSub">Oregon</label>
 								<br><label><input type="checkbox" id="searchCaliSub" name="searchCaliSub">California</label>
@@ -248,24 +248,12 @@
 					<span><button onclick="toggle('activityDescriptions')">v</button>Search Hints</span>
 					<div id="activityDescriptions">
 						<p>The activity categories are defined as follows:
-						<!-->
 							<ul>
 								<li><strong>Hike</strong>: Does not matter the destination as long as no technical skills were required</li>
 								<li><strong>Climb</strong>: Technical skills required to reach the summit (i.e. use of ice axe or rope). Some snow climbs would be considered hikes during the summer</li>
 								<li><strong>Crag</strong>: Within climbing I have separated cragging, those areas where I solely rock climbed</li>
 								<li><strong>BC Ski</strong>: Backcountry skiing, heading up something on my skis</li>
 							</ul>
-							<!-->
-							<dl>
-								<dt>Hike</dt>
-								<dd>Does not matter the destination as long as no technical skills were required</dd>
-								<dt>Climb</dt> 
-								<dd>Technical skills required to reach the summit (i.e. use of ice axe or rope). Some snow climbs would be considered hikes during the summer</dd>
-								<dt>Crag</dt>
-								<dd>Within climbing I have separated cragging, those areas where I solely rock climbed</dd>
-								<dt>BC Ski</dt>
-								<dd>Backcountry skiing, heading up something on my skis</dd>
-							</dl>
 						</p>
 						<p>If you can't quite figure out the exact name of something, try typing in a term or set of terms that you do know in the name box. The search is conducted against a list of tags associated with each trip report.
 						</p>

@@ -198,12 +198,15 @@ function displayDateData(array)
 		
 		//Add cells
 		var cell = document.createElement('td');
+		cell.className = "cellName";
 		cell.textContent = array[i].name;
 		row.appendChild(cell);
 		cell = document.createElement('td');
+		cell.className = "cellRegion";
 		cell.textContent = array[i].subregion;
 		row.appendChild(cell);
 		cell = document.createElement('td');
+		cell.className = "cellDate";
 		var numberYear = array[i].year;
 		var yearDigits = Number(numberYear);
 		yearDigits -= 2000;

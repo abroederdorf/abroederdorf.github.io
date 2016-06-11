@@ -101,7 +101,7 @@ button{
 }
 
 .reportTable{
-	margin-left: 45px;
+	/*margin-left: 45px;*/
 }
 
 .actHike{
@@ -275,6 +275,22 @@ button{
 
 .modifyName{
 	width: 500px;
+}
+
+.cellName{
+	width: 75%;
+}
+
+.cellRegion{
+	width: 25%;
+}
+
+.cellDate{
+	width: 5%;
+}
+
+.descripBorder{
+	border: 1px solid black;
 }
 
 #pageDiv{
