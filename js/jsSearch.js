@@ -63,6 +63,7 @@ function validateInputSearch()
 		{
 			if ((day == 0) || (month == 0) || (year == 0))
 			{
+				document.getElementById("errorPanel").style.display = "block";
 				document.getElementById("dateErrorUnfilled").style.display = "block";
 				numErrors++;
 			}
@@ -70,6 +71,7 @@ function validateInputSearch()
 		
 		if (((month == 4) || (month == 6) || (month == 9) || (month == 11)) && (day == 31))
 		{
+			document.getElementById("errorPanel").style.display = "block";
 			document.getElementById("dateErrorDay").style.display = "block";
 			numErrors++;
 		}
@@ -81,6 +83,7 @@ function validateInputSearch()
 			{
 				if (day > 29)
 				{
+					document.getElementById("errorPanel").style.display = "block";
 					document.getElementById("dateErrorDay").style.display = "block";
 					numErrors++;
 				}
@@ -89,6 +92,7 @@ function validateInputSearch()
 			{
 				if (day > 28)
 				{
+					document.getElementById("errorPanel").style.display = "block";
 					document.getElementById("dateErrorDay").style.display = "block";
 					numErrors++;
 				}
@@ -108,6 +112,7 @@ function validateInputSearch()
 		//console.log("To Date: " + toDate + ", From Date: " + fromDate);
 	if (new Date(fromDate).getTime() > new Date(toDate).getTime())
 	{
+		document.getElementById("errorPanel").style.display = "block";
 		document.getElementById("dateErrorLessThan").style.display = "block";
 		numErrors++;
 	}
@@ -122,11 +127,13 @@ function validateInputSearch()
 		maxDist = Number(number2);
 		if (minDist > maxDist)
 		{
+			document.getElementById("errorPanel").style.display = "block";
 			document.getElementById("distErrorLessThan").style.display = "block";
 			numErrors++;
 		}
 		if ((minDist < 0) || (maxDist < 0))
 		{
+			document.getElementById("errorPanel").style.display = "block";
 			document.getElementById("distErrorPositive").style.display = "block";
 			numErrors++;
 		}
@@ -136,6 +143,7 @@ function validateInputSearch()
 		minDist = Number(number1);
 		if (minDist < 0)
 		{
+			document.getElementById("errorPanel").style.display = "block";
 			document.getElementById("distErrorPositive").style.display = "block";
 			numErrors++;
 		}
@@ -145,6 +153,7 @@ function validateInputSearch()
 		maxDist = Number(number2);
 		if (maxDist < 0)
 		{
+			document.getElementById("errorPanel").style.display = "block";
 			document.getElementById("distErrorPositive").style.display = "block";
 			numErrors++;
 		}
@@ -160,11 +169,13 @@ function validateInputSearch()
 		maxElev = Number(number2);
 		if (minElev > maxElev)
 		{
+			document.getElementById("errorPanel").style.display = "block";
 			document.getElementById("elevErrorLessThan").style.display = "block";
 			numErrors++;
 		}
 		if ((minElev < 0) || (maxElev < 0))
 		{
+			document.getElementById("errorPanel").style.display = "block";
 			document.getElementById("elevErrorPositive").style.display = "block";
 			numErrors++;
 		}
@@ -174,6 +185,7 @@ function validateInputSearch()
 		minElev = Number(number1);
 		if (minElev < 0)
 		{
+			document.getElementById("errorPanel").style.display = "block";
 			document.getElementById("elevErrorPositive").style.display = "block";
 			numErrors++;
 		}
@@ -183,6 +195,7 @@ function validateInputSearch()
 		maxElev = Number(number2);
 		if (maxElev < 0)
 		{
+			document.getElementById("errorPanel").style.display = "block";
 			document.getElementById("elevErrorPositive").style.display = "block";
 			numErrors++;
 		}
@@ -218,11 +231,11 @@ function displayDataSearch(resultObjArray)
 		if (resultObjArray[i].name)
 		{
 			var divRow = document.createElement('div');
-			divRow.className = "resultRow";
+			divRow.className = "resultRow container col-xs-12";
 			
 			//Create picture div
 			var picDiv = document.createElement('div');
-			picDiv.className = "picFloatDiv";
+			picDiv.className = "col-xs-2";
 			var pic = document.createElement('img');
 			if (resultObjArray[i].imageLink != '')
 				pic.src = resultObjArray[i].imageLink;
@@ -236,7 +249,7 @@ function displayDataSearch(resultObjArray)
 			
 			//Create name, type, and location div
 			var nameDiv = document.createElement('div');
-			nameDiv.className = "nameFloatDiv";
+			nameDiv.className = "col-xs-6";
 			var header = document.createElement('h4');
 			var str = "";
 			if (resultObjArray[i].pageLink != "")
@@ -259,7 +272,7 @@ function displayDataSearch(resultObjArray)
 			
 			//Create dist, elev gain, and date div
 			var statsDiv = document.createElement('div');
-			statsDiv.className = "statsFloatDiv";
+			statsDiv.className = "col-xs-4";
 			par = document.createElement('p');
 			str = "";
 			if (resultObjArray[i].distance != "")
@@ -275,11 +288,6 @@ function displayDataSearch(resultObjArray)
 			par.innerHTML = str;
 			statsDiv.appendChild(par);
 			divRow.appendChild(statsDiv);
-			
-			//Create end float div
-			var endDiv = document.createElement('div');
-			endDiv.className = "endFloat";
-			divRow.appendChild(endDiv);
 			
 			resultDiv.appendChild(divRow); 
 		}	
@@ -342,6 +350,10 @@ function getDataSearch()
 //Output: Table of results returned
 function submitFormSearch()
 {
+	//Hide results panels
+	document.getElementById("resultsPanel").style.display = "none";
+	document.getElementById("noResultsPanel").style.display = "none";
+	
 	if (validateInputSearch())
 	{
 		//Get data
@@ -367,6 +379,7 @@ function hideErrorMessagesSearch()
 	document.getElementById("distErrorPositive").style.display = "none";
 	document.getElementById("elevErrorLessThan").style.display = "none";
 	document.getElementById("elevErrorPositive").style.display = "none";
+	document.getElementById("errorPanel").style.display = "none";
 }
 
 //resetFormSearch()
@@ -480,7 +493,8 @@ function zeroToDate()
 function initializePageSearch()
 {
 	resetFormSearch();
-	document.getElementById("activityDescriptions").style.display = "none";
+	document.getElementById("resultsPanel").style.display = "none";
+	document.getElementById("noResultsPanel").style.display = "none";
 	document.getElementById("searchResultsDiv").style.display = "none";
 	document.getElementById("modifySearchDiv").style.display = "none";
 	resultSortInitialize();

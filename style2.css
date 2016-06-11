@@ -53,34 +53,8 @@ p {
 	padding-left: 14%;
 }
 
-.modal-pic{
-	max-height: 475px;
-	max-width: 80%;
-}
-
 .pic-well{
 	border: 1px solid darkgray;
-}
-
-.statusLine{
-	margin-left: 50px;
-}
-
-.statusYear{
-	float: left;
-	margin-left: 20px;
-}
-
-.statusBar{
-	float: left;
-	width: 100px;
-	border: solid black 1px;
-	background-color: #F5B7B1;
-	margin-left: 10px;
-}
-
-.statusComplete{
-	margin-left: 30px;
 }
 
 .slide-title{
@@ -91,6 +65,41 @@ p {
 
 .slidePicture{
 	margin: auto;
+}
+
+.row{
+	padding-bottom: 10px;
+}
+
+.locationBox{
+	border-radius: 5px;
+	border: solid 1px gray;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.boxOutline{
+	border-radius: 5px;
+	border: solid 1px gray;
+	padding: 10px;
+}
+
+.resultRow{
+	border-radius: 20px;
+	border: solid 1px gray;
+	padding: 15px;
+}
+
+.buttonGroup{
+	margin-top: 20px;
+}
+
+#searchName{
+	width: 715px;
+}
+
+#searchResultsMessage{
+	font-style: italic;
 }
 
 #pageTitle{
