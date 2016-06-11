@@ -119,7 +119,7 @@ function submitFormAdd()
 	{
 		//Get data
 		console.log("No errors, get data");
-		var name, type, month, day, year, distance, elevation, region, subregion, imageLink, pageLink, searchTerms, loc, str;
+		var name, type, month, day, year, distance, elevation, region, subregion, imageLink, pageLink, searchTerms, imageSlide, loc, str;
 		name = document.getElementById('submitName').value;
 		type = document.getElementById('submitType').value;
 		month = document.getElementById('submitMonth').value;
@@ -130,6 +130,7 @@ function submitFormAdd()
 		imageLink = document.getElementById('submitImage').value;
 		pageLink = document.getElementById('submitPage').value;
 		searchTerms = document.getElementById('submitTerms').value;
+		imageSlide = document.getElementById('submitImageSlide').value;
 		var bool = false;
 		for (var i = 1; i < 7; i++)
 		{
@@ -156,7 +157,7 @@ function submitFormAdd()
 			subregion = "";
 		
 		//Add trip report to database
-		firebase.database().ref().push({name: name, type: type, month: month, day: day, year: year, pageLink: pageLink, imageLink: imageLink, region: region, subregion: subregion, searchTerms: searchTerms, distance: distance, elevation: elevation}, function(error) {
+		firebase.database().ref().push({name: name, type: type, month: month, day: day, year: year, pageLink: pageLink, imageLink: imageLink, region: region, subregion: subregion, searchTerms: searchTerms, distance: distance, elevation: elevation, imageSlide: imageSlide}, function(error) {
 			if (error){
 				document.getElementById('submitStatus').textContent = "Data could not be saved." + error;
 			}
@@ -201,6 +202,7 @@ function resetFormAdd()
 	document.getElementById("submitImage").value = "";
 	document.getElementById("submitPage").value = "";
 	document.getElementById("submitTerms").value = "";
+	document.getElementById('submitImageSlide').value = "";
 	
 	//Selection Menus
 	document.getElementById("submitType").value = 0;

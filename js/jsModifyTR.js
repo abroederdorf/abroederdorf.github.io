@@ -120,7 +120,7 @@ function submitUpdateForm()
 	{
 		//Get data
 		//console.log("No errors, get data");
-		var name, type, month, day, year, distance, elevation, region, subregion, imageLink, pageLink, searchTerms, keyId, str;
+		var name, type, month, day, year, distance, elevation, region, subregion, imageLink, pageLink, imageSlide, searchTerms, keyId, str;
 		name = document.getElementById('submitName').value;
 		type = document.getElementById('submitType').value;
 		month = document.getElementById('submitMonth').value;
@@ -129,6 +129,7 @@ function submitUpdateForm()
 		distance = document.getElementById('submitDistance').value;
 		elevation = document.getElementById('submitElevation').value;
 		imageLink = document.getElementById('submitImage').value;
+		imageSlide = document.getElementById('submitImageSlide').value;
 		pageLink = document.getElementById('submitPage').value;
 		searchTerms = document.getElementById('submitTerms').value;
 		keyId = document.getElementById('hiddenKey').value;
@@ -159,7 +160,7 @@ function submitUpdateForm()
 			subregion = "";
 		
 		//Add trip report to database
-		firebase.database().refFromURL("https://project-5802414869996009310.firebaseio.com/" + keyId).set({name: name, type: type, month: month, day: day, year: year, pageLink: pageLink, imageLink: imageLink, region: region, subregion: subregion, searchTerms: searchTerms, distance: distance, elevation: elevation}, function(error) {
+		firebase.database().refFromURL("https://project-5802414869996009310.firebaseio.com/" + keyId).set({name: name, type: type, month: month, day: day, year: year, pageLink: pageLink, imageLink: imageLink, region: region, subregion: subregion, searchTerms: searchTerms, distance: distance, elevation: elevation, imageSlide: imageSlide}, function(error) {
 			if (error){
 				document.getElementById('operationStatus').textContent = "Trip report could not be updated." + error;
 			}

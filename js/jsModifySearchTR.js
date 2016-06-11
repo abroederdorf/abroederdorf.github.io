@@ -6,7 +6,7 @@
 *******************************/
 
 //Trip Report Search Object Constructor
-function trSearchObj(key, name, month, day, year, subregion, region, type, searchTerms, date){
+function trSearchObj(key, name, month, day, year, subregion, region, type, searchTerms, date, imageSlide){
 	this.key = key;
 	this.name = name;
 	this.month = month;
@@ -17,6 +17,7 @@ function trSearchObj(key, name, month, day, year, subregion, region, type, searc
 	this.type = type;
 	this.searchTerms = searchTerms;
 	this.date = date;
+	this.imageSlide = imageSlide;
 }
 
 //validateModSearchInput()
@@ -114,7 +115,7 @@ function validateModSearchInput()
 //Output: Form is shown with values populated
 function updateTR(key)
 {
-	var name, type, month, day, year, pageLink, imageLink, region, subregion, searchTerms, strDistance, distance, strElevation, elevation
+	var name, type, month, day, year, pageLink, imageLink, region, subregion, searchTerms, strDistance, distance, strElevation, elevation, imageSlide;
 
 	//Get key from form submitted
 	var keyID = key.value;
@@ -132,6 +133,7 @@ function updateTR(key)
 		searchTerms = snapshot.val().searchTerms;
 		strDistance = snapshot.val().distance;
 		strElevation = snapshot.val().elevation;
+		imageSlide = snapshot.val().imageSlide;
 		
 		distance = Number(strDistance);
 		elevation = Number(strElevation);
@@ -149,6 +151,7 @@ function updateTR(key)
 		document.getElementById("submitTerms").value = searchTerms;
 		document.getElementById("hiddenKey").value = keyID;
 		document.getElementById("showKey").textContent = keyID;
+		document.getElementById("submitImageSlide").value = imageSlide;
 		
 		
 		
