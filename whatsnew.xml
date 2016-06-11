@@ -7,6 +7,14 @@
 <atom:link href="http://alpinealicia/whatsnew.xml" rel="self" type="application/rss+xml" />
 
 <item>
+<title>All Trip Reports and Search</title>
+<link>http://alpinealicia.com</link>
+<pubDate>Sat, 11 June 2016 11:30:00 -0800</pubDate>
+<guid isPermaLink="true">http://alpinealicia.com</guid>
+<description>Search function completed and all trip reports migrated from old blog</description>
+</item>
+
+<item>
 <title>72% of 2011 Trip Reports</title>
 <link>http://alpinealicia.com</link>
 <pubDate>Wed, 11 May 2016 11:30:00 -0800</pubDate>
