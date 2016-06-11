@@ -397,49 +397,49 @@ function resetFormSearch()
 	
 	//Locations
 	//North Cascades
-	document.getElementById('hiddenNCLoc').value = 0;
 	document.getElementById("search542Sub").checked = false;
 	document.getElementById("search20Sub").checked = false;
 	document.getElementById("searchCasRiverSub").checked = false;
 	document.getElementById("searchNCSub").checked = false;
+	document.getElementById("searchNCLoc").checked = false;
 	document.getElementById("divNCLoc").style.display = "none";
 	
 	//Central Cascades
-	document.getElementById('hiddenCCLoc').value = 0;
 	document.getElementById("search2Sub").checked = false;
 	document.getElementById("searchLoopSub").checked = false;
 	document.getElementById("searchLworthSub").checked = false;
 	document.getElementById("searchEnchantSub").checked = false;
 	document.getElementById("searchCWSub").checked = false;
 	document.getElementById("searchCCSub").checked = false;
+	document.getElementById("searchCCLoc").checked = false;
 	document.getElementById("divCCLoc").style.display = "none";
 	
 	//I-90
-	document.getElementById('hiddenI90Loc').value = 0;
 	document.getElementById("searchIssaSub").checked = false;
 	document.getElementById("searchNBendSub").checked = false;
 	document.getElementById("searchSnoqSub").checked = false;
 	document.getElementById("searchI90Sub").checked = false;
+	document.getElementById("searchI90Loc").checked = false;
 	document.getElementById("divI90Loc").style.display = "none";
 	
 	//South Cascades
-	document.getElementById('hiddenSCLoc').value = 0;
 	document.getElementById("searchMtRainSub").checked = false;
 	document.getElementById("searchTatooshSub").checked = false;
 	document.getElementById("searchSCSub").checked = false;
+	document.getElementById("searchSCLoc").checked = false;
 	document.getElementById("divSCLoc").style.display = "none";
 	
 	//Olympic Peninsula
 	document.getElementById("searchOlyLoc").checked = false;
 	
 	//Outside Washington State
-	document.getElementById('hiddenOWSLoc').value = 0;
 	document.getElementById("searchCanSub").checked = false;
 	document.getElementById("searchOrSub").checked = false;
 	document.getElementById("searchCaliSub").checked = false;
 	document.getElementById("searchWestSub").checked = false;
 	document.getElementById("searchSouthSub").checked = false;
 	document.getElementById("searchOWSSub").checked = false;
+	document.getElementById("searchOWSLoc").checked = false;
 	document.getElementById("divOWSLoc").style.display = "none";
 	
 	//Hide error messages
