@@ -258,7 +258,7 @@ th {
   }
   .table-bordered th,
   .table-bordered td {
-    border: 1px solid black !important;
+    border: 5px solid #000000;
   }
 }
 @font-face {

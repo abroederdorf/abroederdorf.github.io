@@ -107,17 +107,17 @@ function createYearDiv(year){
 	head.appendChild(row);
 	
 	//Create header cells
-	var headCell = document.createElement('th');
+	var headCell = document.createElement('td');
 	headCell.textContent = 'Mountain/Trail';
-	headCell.className = "text-center";
+	headCell.className = "text-center headerCell";
 	row.appendChild(headCell);
-	headCell = document.createElement('th');
+	headCell = document.createElement('td');
 	headCell.textContent = 'Subregion';
-	headCell.className = "text-center";
+	headCell.className = "text-center headerCell";
 	row.appendChild(headCell);
-	headCell = document.createElement('th');
+	headCell = document.createElement('td');
 	headCell.textContent = 'Date';
-	headCell.className = "text-center";
+	headCell.className = "text-center headerCell";
 	row.appendChild(headCell);
 	
 	//Create table body
@@ -141,7 +141,7 @@ function createMonthRow(month, year){
 	var row = document.createElement('tr');
 	body.appendChild(row);
 	var cell = document.createElement('td');
-	cell.className = "monthRow";
+	cell.className = "monthRow dateCell";
 	cell.colSpan = 3;
 	cell.textContent = monthNames[month];
 	row.appendChild(cell);
@@ -176,11 +176,11 @@ function displayDateData(array)
 		}
 		
 		//Add month rows
-		if (i == 0 || array[i].month != month)
+		/*if (i == 0 || array[i].month != month)
 		{
 			month = array[i].month;
 			createMonthRow(array[i].month, array[i].year);
-		}
+		}*/
 		
 		//Create trip report row
 		//Get body to append row to
@@ -189,14 +189,14 @@ function displayDateData(array)
 		
 		//Create row
 		var row = document.createElement('tr');
-		if (array[i].type == 'Hike')
+		/*if (array[i].type == 'Hike')
 			row.className = 'actHike';
 		else if (array[i].type == 'Climb')
 			row.className = 'actClimb';
 		else if (array[i].type == 'Crag')
 			row.className = 'actCrag';
 		else if (array[i].type == 'Ski')
-			row.className = 'actSki';
+			row.className = 'actSki';*/
 		body.appendChild(row);
 		
 		//Add cells
@@ -205,11 +205,11 @@ function displayDateData(array)
 		cell.textContent = array[i].name;
 		row.appendChild(cell);
 		cell = document.createElement('td');
-		cell.className = "cellRegion";
+		cell.className = "cellRegion locDateCell";
 		cell.textContent = array[i].subregion;
 		row.appendChild(cell);
 		cell = document.createElement('td');
-		cell.className = "cellDate";
+		cell.className = "cellDate locDateCell";
 		var numberYear = array[i].year;
 		var yearDigits = Number(numberYear);
 		yearDigits -= 2000;
