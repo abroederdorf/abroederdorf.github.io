@@ -10,7 +10,7 @@ html {
       -ms-text-size-adjust: 100%;
 }
 body {
-  margin: 200;
+  margin: 30px;
 }
 article,
 aside,
@@ -6239,8 +6239,8 @@ button.close {
   border-left-color: #fff;
 }
 .carousel {
-  position: absolute;
-  top: 125px;
+  position: relative;
+  top: 10px;
   left: 0px;
   width: 100%;
   height: 515px;
