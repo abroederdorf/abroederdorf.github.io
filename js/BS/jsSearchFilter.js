@@ -840,11 +840,12 @@ function nameFilter(tempResults)
 	//Print results
 	if (results.length <= 0)
 	{
-		document.getElementById("searchResultsMessage").textContent = "No results, try another search.";
+		document.getElementById("noResultsPanel").style.display = "block";
 		displayDataSearch(results); 
 	}
 	else
 	{
+		document.getElementById("resultsPanel").style.display = "block";
 		document.getElementById("searchResultsMessage").textContent = results.length + " Trip Reports Returned";
 			//console.log(results);
 		sortData(results); 

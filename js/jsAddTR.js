@@ -29,7 +29,6 @@ function validateInputAdd()
 	var str = document.getElementById('submitName').value;
 	if (str == "")
 	{
-		document.getElementById('errorPanel').style.display = "block";
 		document.getElementById("nameError").style.display = "block";
 		numErrors++;
 	}
@@ -39,7 +38,6 @@ function validateInputAdd()
 	var month = Number(number1);
 	if (month < 1 || month > 12)
 	{
-		document.getElementById('errorPanel').style.display = "block";
 		document.getElementById("monthError").style.display = "block";
 		numErrors++;
 	}
@@ -48,7 +46,6 @@ function validateInputAdd()
 	var year = Number(number2);
 	if (year < 2008)
 	{
-		document.getElementById('errorPanel').style.display = "block";
 		document.getElementById("yearError").style.display = "block";
 		numErrors++;
 	}
@@ -59,7 +56,6 @@ function validateInputAdd()
 	{
 		if (day < 1 || day > 30)
 		{
-			document.getElementById('errorPanel').style.display = "block";
 			document.getElementById("dayError").style.display = "block";
 			numErrors++;
 		}
@@ -72,7 +68,6 @@ function validateInputAdd()
 		{
 			if (day < 1 || day > 29)
 			{
-				document.getElementById('errorPanel').style.display = "block";
 				document.getElementById("dayError").style.display = "block";
 				numErrors++;
 			}
@@ -81,7 +76,6 @@ function validateInputAdd()
 		{
 			if (day < 1 || day > 28)
 			{
-				document.getElementById('errorPanel').style.display = "block";
 				document.getElementById("dayError").style.display = "block";
 				numErrors++;
 			}
@@ -91,7 +85,6 @@ function validateInputAdd()
 	{
 		if (day < 1 || day > 31)
 		{
-			document.getElementById('errorPanel').style.display = "block";
 			document.getElementById("dayError").style.display = "block";
 			numErrors++;
 		}
@@ -106,7 +99,6 @@ function validateInputAdd()
 	elev = Number(number);
 	if ((dist < 0) || (elev < 0))
 	{
-		document.getElementById('errorPanel').style.display = "block";
 		document.getElementById("distElevError").style.display = "block";
 		numErrors++;
 	}
@@ -167,13 +159,9 @@ function submitFormAdd()
 		//Add trip report to database
 		firebase.database().ref().push({name: name, type: type, month: month, day: day, year: year, pageLink: pageLink, imageLink: imageLink, region: region, subregion: subregion, searchTerms: searchTerms, distance: distance, elevation: elevation, imageSlide: imageSlide}, function(error) {
 			if (error){
-				document.getElementById('statusPanel').style.display = "block";
-				document.getElementById('statusPanel').className = "panel panel-danger";
 				document.getElementById('submitStatus').textContent = "Data could not be saved." + error;
 			}
 			else {
-				document.getElementById('statusPanel').style.display = "block";
-				document.getElementById('statusPanel').className = "panel panel-success";
 				document.getElementById('submitStatus').textContent = "Data saved successfully.";
 				resetFormAdd();
 			}
@@ -191,7 +179,6 @@ function submitFormAdd()
 //Output: Nothing, but divs' style.display are set to none
 function hideErrorMessagesAdd()
 {
-	document.getElementById('errorPanel').style.display = "none";
 	document.getElementById("nameError").style.display = "none";
 	document.getElementById("monthError").style.display = "none";
 	document.getElementById("dayError").style.display = "none";
@@ -222,30 +209,22 @@ function resetFormAdd()
 	
 	//Locations
 	for (var i = 1; i < 7; i++)
-	{
-		str = "submitLoc" + i;
-		document.getElementById(str).checked = false;
-	}
-	for (var i = 1; i < 25; i++)
-	{
-		str = "submitSub" + i;
-		document.getElementById(str).checked = false;
-	}
+		{
+			str = "submitLoc" + i;
+			document.getElementById(str).checked = false;
+		}
+		for (var i = 1; i < 25; i++)
+		{
+			str = "submitSub" + i;
+			document.getElementById(str).checked = false;
+		}
 	
-	//Hide error messages and status
+	//Hide error messages
 	hideErrorMessagesAdd();
-}
-
-function initializePage()
-{
-	resetFormAdd();
-	document.getElementById('statusPanel').style.display = "none";
-	document.getElementById('errorPanel').style.display = "none";
-	
 }
 
 //Event Listeners
 document.getElementById("resetForm").addEventListener('click', resetFormAdd);
 document.getElementById("submitForm").addEventListener('click', submitFormAdd);
 
-document.addEventListener('DOMContentLoaded', initializePage);
+document.addEventListener('DOMContentLoaded', resetFormAdd);

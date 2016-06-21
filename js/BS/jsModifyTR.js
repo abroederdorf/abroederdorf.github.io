@@ -30,6 +30,7 @@ function validateInputUpdate()
 	var str = document.getElementById('submitName').value;
 	if (str == "")
 	{
+		document.getElementById("errorUpdatePanel").style.display = "block";
 		document.getElementById("nameError").style.display = "block";
 		numErrors++;
 	}
@@ -39,6 +40,7 @@ function validateInputUpdate()
 	var month = Number(number1);
 	if (month < 1 || month > 12)
 	{
+		document.getElementById("errorUpdatePanel").style.display = "block";
 		document.getElementById("monthError").style.display = "block";
 		numErrors++;
 	}
@@ -47,6 +49,7 @@ function validateInputUpdate()
 	var year = Number(number2);
 	if (year < 2008)
 	{
+		document.getElementById("errorUpdatePanel").style.display = "block";
 		document.getElementById("yearError").style.display = "block";
 		numErrors++;
 	}
@@ -57,7 +60,9 @@ function validateInputUpdate()
 	{
 		if (day < 1 || day > 30)
 		{
+			document.getElementById("errorUpdatePanel").style.display = "block";
 			document.getElementById("dayError").style.display = "block";
+				console.log("ValidateInputUpdate Day Error in Error Update Panel");
 			numErrors++;
 		}
 	}
@@ -69,6 +74,7 @@ function validateInputUpdate()
 		{
 			if (day < 1 || day > 29)
 			{
+				document.getElementById("errorUpdatePanel").style.display = "block";
 				document.getElementById("dayError").style.display = "block";
 				numErrors++;
 			}
@@ -77,6 +83,7 @@ function validateInputUpdate()
 		{
 			if (day < 1 || day > 28)
 			{
+				document.getElementById("errorUpdatePanel").style.display = "block";
 				document.getElementById("dayError").style.display = "block";
 				numErrors++;
 			}
@@ -86,6 +93,7 @@ function validateInputUpdate()
 	{
 		if (day < 1 || day > 31)
 		{
+			document.getElementById("errorUpdatePanel").style.display = "block";
 			document.getElementById("dayError").style.display = "block";
 			numErrors++;
 		}
@@ -100,6 +108,7 @@ function validateInputUpdate()
 	elev = Number(number);
 	if ((dist < 0) || (elev < 0))
 	{
+		document.getElementById("errorUpdatePanel").style.display = "block";
 		document.getElementById("distElevError").style.display = "block";
 		numErrors++;
 	}
@@ -162,12 +171,18 @@ function submitUpdateForm()
 		//Add trip report to database
 		firebase.database().refFromURL("https://project-5802414869996009310.firebaseio.com/" + keyId).set({name: name, type: type, month: month, day: day, year: year, pageLink: pageLink, imageLink: imageLink, region: region, subregion: subregion, searchTerms: searchTerms, distance: distance, elevation: elevation, imageSlide: imageSlide}, function(error) {
 			if (error){
+				document.getElementById('statusPanel').className = "panel panel-danger";
+				document.getElementById('statusPanel').style.display = "block";
 				document.getElementById('operationStatus').textContent = "Trip report could not be updated." + error;
 			}
 			else {
+				document.getElementById('statusPanel').className = "panel panel-success";
+				document.getElementById('statusPanel').style.display = "block";
 				document.getElementById('operationStatus').textContent = "Trip report updated successfully.";
-				resetForm();
+				
 			}
+			
+			submitModSearchForm();
 		});
 	}
 	else
@@ -175,8 +190,7 @@ function submitUpdateForm()
 		console.log("Check form, errors.");
 	}
 	
-	document.getElementById("modifyForm").style.display = "none";
-	submitModSearchForm();
+	
 }
 
 //initializePageMod()

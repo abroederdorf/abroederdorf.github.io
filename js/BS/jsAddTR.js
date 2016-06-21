@@ -1,8 +1,7 @@
 /*******************************
 * Author: Alicia Broederdorf
 * May 28, 2016
-* Description: Modify trip report Page Script for Alpine Alicia
-* to handle the update form and updating the database
+* Description: Add trip report Page Script for Alpine Alicia
 *******************************/
 
 // Initialize Firebase
@@ -14,22 +13,23 @@ storageBucket: "project-5802414869996009310.appspot.com",
 };
 firebase.initializeApp(config);
 
-//validateInputUpdate()
+//validateInputAdd()
 //Validate all of the input data provided in the form
 //Inout: No direct input, will read values from form fields
 //Output: If any errors are found, messages will be displayed before the
 //corresponding input field and returns false
-function validateInputUpdate()
+function validateInputAdd()
 {
 	var numErrors = 0;
 	
 	//Hide error messages to start clean
-	hideErrorMessagesMod();
+	hideErrorMessagesAdd();
 
 	//Check that name is not empty
 	var str = document.getElementById('submitName').value;
 	if (str == "")
 	{
+		document.getElementById('errorPanel').style.display = "block";
 		document.getElementById("nameError").style.display = "block";
 		numErrors++;
 	}
@@ -39,6 +39,7 @@ function validateInputUpdate()
 	var month = Number(number1);
 	if (month < 1 || month > 12)
 	{
+		document.getElementById('errorPanel').style.display = "block";
 		document.getElementById("monthError").style.display = "block";
 		numErrors++;
 	}
@@ -47,6 +48,7 @@ function validateInputUpdate()
 	var year = Number(number2);
 	if (year < 2008)
 	{
+		document.getElementById('errorPanel').style.display = "block";
 		document.getElementById("yearError").style.display = "block";
 		numErrors++;
 	}
@@ -57,6 +59,7 @@ function validateInputUpdate()
 	{
 		if (day < 1 || day > 30)
 		{
+			document.getElementById('errorPanel').style.display = "block";
 			document.getElementById("dayError").style.display = "block";
 			numErrors++;
 		}
@@ -69,6 +72,7 @@ function validateInputUpdate()
 		{
 			if (day < 1 || day > 29)
 			{
+				document.getElementById('errorPanel').style.display = "block";
 				document.getElementById("dayError").style.display = "block";
 				numErrors++;
 			}
@@ -77,6 +81,7 @@ function validateInputUpdate()
 		{
 			if (day < 1 || day > 28)
 			{
+				document.getElementById('errorPanel').style.display = "block";
 				document.getElementById("dayError").style.display = "block";
 				numErrors++;
 			}
@@ -86,6 +91,7 @@ function validateInputUpdate()
 	{
 		if (day < 1 || day > 31)
 		{
+			document.getElementById('errorPanel').style.display = "block";
 			document.getElementById("dayError").style.display = "block";
 			numErrors++;
 		}
@@ -100,6 +106,7 @@ function validateInputUpdate()
 	elev = Number(number);
 	if ((dist < 0) || (elev < 0))
 	{
+		document.getElementById('errorPanel').style.display = "block";
 		document.getElementById("distElevError").style.display = "block";
 		numErrors++;
 	}
@@ -110,17 +117,17 @@ function validateInputUpdate()
 		return false;
 }
 
-//submitUpdateForm()
+//submitFormAdd()
 //Submits form by first calling validation, then adding data to database
 //Input: None
 //Output: None
-function submitUpdateForm()
+function submitFormAdd()
 {
-	if (validateInputUpdate())
+	if (validateInputAdd())
 	{
 		//Get data
-		//console.log("No errors, get data");
-		var name, type, month, day, year, distance, elevation, region, subregion, imageLink, pageLink, imageSlide, searchTerms, keyId, str;
+		console.log("No errors, get data");
+		var name, type, month, day, year, distance, elevation, region, subregion, imageLink, pageLink, searchTerms, imageSlide, loc, str;
 		name = document.getElementById('submitName').value;
 		type = document.getElementById('submitType').value;
 		month = document.getElementById('submitMonth').value;
@@ -129,11 +136,9 @@ function submitUpdateForm()
 		distance = document.getElementById('submitDistance').value;
 		elevation = document.getElementById('submitElevation').value;
 		imageLink = document.getElementById('submitImage').value;
-		imageSlide = document.getElementById('submitImageSlide').value;
 		pageLink = document.getElementById('submitPage').value;
 		searchTerms = document.getElementById('submitTerms').value;
-		keyId = document.getElementById('hiddenKey').value;
-		
+		imageSlide = document.getElementById('submitImageSlide').value;
 		var bool = false;
 		for (var i = 1; i < 7; i++)
 		{
@@ -160,13 +165,17 @@ function submitUpdateForm()
 			subregion = "";
 		
 		//Add trip report to database
-		firebase.database().refFromURL("https://project-5802414869996009310.firebaseio.com/" + keyId).set({name: name, type: type, month: month, day: day, year: year, pageLink: pageLink, imageLink: imageLink, region: region, subregion: subregion, searchTerms: searchTerms, distance: distance, elevation: elevation, imageSlide: imageSlide}, function(error) {
+		firebase.database().ref().push({name: name, type: type, month: month, day: day, year: year, pageLink: pageLink, imageLink: imageLink, region: region, subregion: subregion, searchTerms: searchTerms, distance: distance, elevation: elevation, imageSlide: imageSlide}, function(error) {
 			if (error){
-				document.getElementById('operationStatus').textContent = "Trip report could not be updated." + error;
+				document.getElementById('statusPanel').style.display = "block";
+				document.getElementById('statusPanel').className = "panel panel-danger";
+				document.getElementById('submitStatus').textContent = "Data could not be saved." + error;
 			}
 			else {
-				document.getElementById('operationStatus').textContent = "Trip report updated successfully.";
-				resetForm();
+				document.getElementById('statusPanel').style.display = "block";
+				document.getElementById('statusPanel').className = "panel panel-success";
+				document.getElementById('submitStatus').textContent = "Data saved successfully.";
+				resetFormAdd();
 			}
 		});
 	}
@@ -174,25 +183,69 @@ function submitUpdateForm()
 	{
 		console.log("Check form, errors.");
 	}
-	
-	document.getElementById("modifyForm").style.display = "none";
-	submitModSearchForm();
 }
 
-//initializePageMod()
-//Hide update and results divisions, make sure form is clear
-//Input: None
-//Output: Divs hidden
-function initializePageMod()
+//hideErrorMessagesAdd()
+//Hides divs that contain the error messages for the input form
+//Input: Non
+//Output: Nothing, but divs' style.display are set to none
+function hideErrorMessagesAdd()
 {
-	resetModSearchForm();
-	document.getElementById("modifyForm").style.display = "none";
-	document.getElementById("resultsTableDiv").style.display = "none";
+	document.getElementById('errorPanel').style.display = "none";
+	document.getElementById("nameError").style.display = "none";
+	document.getElementById("monthError").style.display = "none";
+	document.getElementById("dayError").style.display = "none";
+	document.getElementById("yearError").style.display = "none";
+	document.getElementById("distElevError").style.display = "none";
+}
+
+//resetFormAdd()
+//Reset form fields to blank
+//Input: None
+//Output: No values in input fields
+function resetFormAdd()
+{
+	//Text Fields
+	document.getElementById("submitName").value = "";
+	document.getElementById("submitMonth").value = "";
+	document.getElementById("submitDay").value = "";
+	document.getElementById("submitYear").value = "";
+	document.getElementById("submitDistance").value = "";
+	document.getElementById("submitElevation").value = "";
+	document.getElementById("submitImage").value = "";
+	document.getElementById("submitPage").value = "";
+	document.getElementById("submitTerms").value = "";
+	document.getElementById('submitImageSlide').value = "";
+	
+	//Selection Menus
+	document.getElementById("submitType").value = 0;
+	
+	//Locations
+	for (var i = 1; i < 7; i++)
+	{
+		str = "submitLoc" + i;
+		document.getElementById(str).checked = false;
+	}
+	for (var i = 1; i < 25; i++)
+	{
+		str = "submitSub" + i;
+		document.getElementById(str).checked = false;
+	}
+	
+	//Hide error messages and status
+	hideErrorMessagesAdd();
+}
+
+function initializePage()
+{
+	resetFormAdd();
+	document.getElementById('statusPanel').style.display = "none";
+	document.getElementById('errorPanel').style.display = "none";
+	
 }
 
 //Event Listeners
-document.getElementById("resetSearchForm").addEventListener('click', resetModSearchForm);
-document.getElementById("submitSearchForm").addEventListener('click', submitModSearchForm);
-document.getElementById("submitModifyForm").addEventListener('click', submitUpdateForm);
+document.getElementById("resetForm").addEventListener('click', resetFormAdd);
+document.getElementById("submitForm").addEventListener('click', submitFormAdd);
 
-document.addEventListener('DOMContentLoaded', initializePageMod);
+document.addEventListener('DOMContentLoaded', initializePage);
