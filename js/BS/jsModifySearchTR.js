@@ -336,7 +336,7 @@ function displayDataModSearch(resultObjArray)
 			newInput.setAttribute("type", "button");
 			newInput.textContent = "Yes";
 			newInput.style.textAlign = "center";
-			newInput.className = "btn btn-success";
+			newInput.className = "btn btn-success buttonYes";
 			newInput.value = resultObjArray[i].key;
 			newInput.addEventListener('click', function(){removeTR(this);});
 			divInner.appendChild(newInput);

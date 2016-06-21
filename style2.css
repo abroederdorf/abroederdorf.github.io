@@ -148,6 +148,12 @@ table {
 	background: #BCC6CC;
 }
 
+.buttonYes{
+	margin-right: 10px;
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
 #searchName, #searchName2, #submitName, #submitPage, #submitImage, #submitImageSlide{
 	width: 715px;
 }
