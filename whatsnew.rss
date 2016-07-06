@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
 <title>What's New on Alpine Alicia</title>
-<link>"http://alpinealicia/whatsnew.rss"</link>
+<link>http://alpinealicia/whatsnew.rss</link>
 <description>Track updates made to Alpine Alicia</description>
 <atom:link href="http://alpinealicia/whatsnew.rss" rel="self" type="application/rss+xml">
 
