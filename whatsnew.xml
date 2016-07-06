@@ -1,33 +1,31 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="ISO-8859-1" ?>
 <rss version="2.0">
-	<channel>
-		<title>What's New on Alpine Alicia</title>
-		<link>http://alpinealicia.com</link>
-		<description>Updates made to Alpine Alicia</description>
-
-		<item>
-			<title>Added Mount Margaret and Guye Peak</title>
-			<link>http://alpinealicia.com</link>
-			<pubDate>Tue, 05 Jul 2016 11:30:00 -0800</pubDate>
-			<guid isPermaLink="true">http://alpinealicia.com/003</guid>
-			<description>Added Mount Margaret and Guye Peak trip reports</description>
-		</item>
-
-		<item>
-			<title>All Trip Reports and Search</title>
-			<link>http://alpinealicia.com</link>
-			<pubDate>Sat, 11 Jun 2016 11:30:00 -0800</pubDate>
-			<guid isPermaLink="true">http://alpinealicia.com/002</guid>
-			<description>Search function completed and all trip reports migrated from old blog</description>
-		</item>
-
-		<item>
-			<title>72% of 2011 Trip Reports</title>
-			<link>http://alpinealicia.com</link>
-			<pubDate>Wed, 11 May 2016 11:30:00 -0800</pubDate>
-			<guid isPermaLink="true">http://alpinealicia.com/001</guid>
-			<description>Up to 72% complete for 2011 trip reports</description>
-		</item>
-
-	</channel>
+  <channel>
+    <title>Alpine Alicia Updates</title>
+    <link>http://alpinealicia.com</link>
+    <description>Personal Trip Report Repository</description>
+    <language>en-us</language>
+    <category>Outdoors</category>
+    <ttl>60</ttl>
+    <lastBuildDate>Tuesday, 5 Jul 2016</lastBuildDate>
+    <generator>notepad++</generator>
+	
+    <item>
+      <title>Added Guye Peak 7.3.16</title>
+      <link>http://alpinealicia.com/2016/20160703_GuyePeak.html</link>
+      <description>Added Guye Peak trip report</description>
+    </item>
+	
+    <item>
+      <title>All Trip Reports and Search</title>
+      <link>http://alpinealicia.com/search.html</link>
+      <description>Search function completed and all trip reports migrated from old blog</description>
+    </item>
+	
+    <item>
+      <title>72% of 2011 Trip Reports</title>
+      <link>http://alpinealicia.com/date.html</link>
+      <description>Up to 72% complete for 2011 trip reports</description>
+    </item>
+  </channel>
 </rss>
