@@ -4,6 +4,7 @@
 		<meta charset="UTF-8">
 		<title>Alpine Alicia</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 	</head>
 	<body>
 		<div id="pageDiv">
@@ -16,28 +17,8 @@
 			<br>
 			<div>
 				<h4>Recent Trip Reports</h4>
-				<div class="recentReports">
-					<center>
-						<a href="http://alpinealicia.com/2016/20160703_GuyePeak.html"><img class="picture" src="https://c3.staticflickr.com/8/7291/28086071106_ce6d5e24f2_q.jpg" width="150" height="150"><br><span>Guye Peak via Commonwealth Basin 7.3.16</span></a>
-					</center>
-				</div>
-				<div class="recentReports">
-					<center>
-						<a href="http://alpinealicia.com/2016/20160612_MountMargaret.html"><img class="picture" src="https://c6.staticflickr.com/8/7363/27751623701_561a2b8fa5_q.jpg" width="150" height="150" alt="IMG_2696"><br><span>Mount Margaret 6.12.16</span></a>
-					</center>
-				</div>
-				<div class="recentReports">
-					<center>
-						<a href="http://alpinealicia.com/2016/20160423_PooPooPoint.html"><img class="picture" src="https://farm2.staticflickr.com/1636/26346810800_b06bd35f0c_q.jpg" width="150" height="150"><br><span>Poo Poo Point 4.23.16</span></a>
-					</center>
-				</div>
-				<div class="recentReports">
-					<center>
-						<a href="http://alpinealicia.com/2016/20160319_CastleBC.html"><img class="picture" src="https://farm2.staticflickr.com/1453/26503552761_392d4dac6b_q.jpg" width="150" height="150"><br><span>Castle Peak BC Ski 3.19.16</span></a>
-					</center>
-				</div>
-			</div>
-			<div class="endFloat"></div>
+				<div id="mostRecentReports"></div>
+				<div class="endFloat"></div>
 			<div id="RSSDiv">
 				<center><span class="RSSLink"><a href="http://alpinealicia.com/whatsnew.xml">Subscribe to what's new</a></span></center>
 			</div>
@@ -123,5 +104,6 @@
 		</div>
 		
 		<script src='jsAlpineAlicia.js'></script>
+		<script src='js/jsIndexRecentReports.js'></script>
 	</body>
 </html>
