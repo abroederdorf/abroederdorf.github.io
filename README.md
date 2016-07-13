@@ -9,4 +9,4 @@ is used for adding new trip reports to the database, while the other provides th
 
 To-Do: Update styling of website to using bootstrap. Files already included in this directory, need to update trip report pages themselves.
 
-Website: http://alpinealicia.com
+Website: http://alpinealicia.com (In-Progress Updated style: http://alpinealicia.com/indexBS.html)
