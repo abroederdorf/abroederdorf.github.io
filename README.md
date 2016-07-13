@@ -8,3 +8,5 @@ Database Management: There are two pages to create the database management porti
 is used for adding new trip reports to the database, while the other provides the functions to update data entires or remove them.
 
 To-Do: Update styling of website to using bootstrap. Files already included in this directory, need to update trip report pages themselves.
+
+Website: http://alpinealicia.com
