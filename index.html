@@ -2,108 +2,57 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Alpine Alicia</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+		<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="style2.css">
+		<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>  
 	</head>
 	<body>
 		<div id="pageDiv">
-			<span id="pageTitle">Alpine Alicia</span>
-			<br>
-			<span id="pageSubtitle">Trip reports from my hikes, climbs, and other adventures.</span>
 			<div id="navBar"></div>
-			<script src='jsNavBar.js'></script>
-			<p>Welcome to my repository of trip reports. These trip reports are from my various adventures starting with my first hikes after moving to Seattle from the flatlands of the Midwest, continuing through completing a mountaineering course and learning to rock climb. These trip reports are the personal account of my adventures - both the good and the bad - but also generally include beta about the climb/hike. Happy trails!</p>
-			<br>
-			<div>
-				<h4>Recent Trip Reports</h4>
-				<div id="mostRecentReports"></div>
-				<div class="endFloat"></div>
-			<div id="RSSDiv">
-				<center><span class="RSSLink"><a href="http://alpinealicia.com/whatsnew.xml">Subscribe to what's new</a></span></center>
+			<script src='jsNavBarBS.js'></script>
+			<div class="container">Welcome to my repository of trip reports. These trip reports are from my various adventures starting with my first hikes after moving to Seattle from the flatlands of the Midwest, continuing through completing a mountaineering course and learning to rock climb. These trip reports are the personal account of my adventures - both the good and the bad - but also generally include beta about the climb/hike. Happy trails!
 			</div>
-			<br>
-			<div>
-				<h4>Trip Report Migration Status</h4>
-				<p>The status of the trip reports I'm migrating from my old blog to this new site.</p>
-				<div class="statusLine">
-					<div class="statusYear">
-						<span>2015:</span>
-					</div>
-					<div class="statusBar">
-						<div id="status2015">
-							<span class="statusComplete">100%</span>
-						</div>
-					</div>
-				</div>
-				<div class="statusLine">
-					<div class="statusYear">
-						<span>2014:</span>
-					</div>
-					<div class="statusBar">
-						<div id="status2014">
-							<span class="statusComplete">100%</span>
-						</div>
-					</div>
-				</div>
-				<div class="statusLine">
-					<div class="statusYear">
-						<span>2013:</span>
-					</div>
-					<div class="statusBar">
-						<div id="status2013">
-							<span class="statusComplete">100%</span>
-						</div>
-					</div>
-				</div>
-				<div class="statusLine">
-					<div class="statusYear">
-						<span>2012:</span>
-					</div>
-					<div class="statusBar">
-						<div id="status2012">
-							<span class="statusComplete">100%</span>
-						</div>
-					</div>
-				</div>
-				<div class="endFloat">
-					<br>
-				</div>
-				<div class="statusLine">
-					<div class="statusYear">
-						<span>2011:</span>
-					</div>
-					<div class="statusBar">
-						<div id="status2011">
-							<span class="statusComplete">100%</span>
-						</div>
-					</div>
-				</div>
-				<div class="statusLine">
-					<div class="statusYear">
-						<span>2010:</span>
-					</div>
-					<div class="statusBar">
-						<div id="status2010">
-							<span class="statusComplete">100%</span>
-						</div>
-					</div>
-				</div>
-				<div class="statusLine">
-					<div class="statusYear">
-						<span>2009:</span>
-					</div>
-					<div class="statusBar">
-						<div id="status2009">
-							<span class="statusComplete">100%</span>
-						</div>
-					</div>
+			<div class="container">
+			<br>NOTE: The website is undergoing a face lift. The main pages have been updated and over time the individual trip report pages will also be updated. Thanks for your patience during this transition!
+			</div>
+			<div class="container">
+				<div id="myCarousel" class="carousel" data-ride="carousel">
+					<!--Indicators-->
+					<ol class="carousel-indicators">
+						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+						<li data-target="#myCarousel" data-slide-to="2"></li>
+						<li data-target="#myCarousel" data-slide-to="3"></li>
+					</ol>
+					<div class="carousel-inner" role="listbox" id="myInnerCar"></div>
+					<script src='js/jsIndexCarousel.js'></script>
+					<!-- Controls -->
+					<a class="left carousel-control" href="#myCarousel" role="button"
+					   data-slide="prev">
+					  <span class="glyphicon glyphicon-chevron-left"
+							aria-hidden="true"></span>
+					  <span class="sr-only">Previous</span>
+					</a>
+					<a class="right carousel-control" href="#myCarousel" role="button"
+					   data-slide="next">
+					  <span class="glyphicon glyphicon-chevron-right"
+							aria-hidden="true"></span>
+					  <span class="sr-only">Next</span>
+					</a>
 				</div>
 			</div>
-			<div class="endFloat"></div>
+			<div id="RSSDiv" class="container">
+				<center>
+					<a href="http://alpinealicia.com/whatsnew.xml" class="btn btn-default" role="button"><span class="glyphicon glyphicon-share"></span>   Subscribe to what's new</a>
+				</center>
+			</div>
 		</div>
 		
-		<script src='jsAlpineAlicia.js'></script>
-		<script src='js/jsIndexRecentReports.js'></script>
+		<script src='js/jsAlpineAlicia.js'></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
 	</body>
 </html>

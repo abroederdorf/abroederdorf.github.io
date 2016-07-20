@@ -2,126 +2,209 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Add to Database</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
+		<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="style2.css">
 		<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>    
 	</head>
 	<body>
 		<div id="pageDiv">
-			<span id="pageTitle">Alpine Alicia</span>
+			<!--<span id="pageTitle">Alpine Alicia</span>
 			<br>
-			<span id="pageSubtitle">Trip reports from my hikes, climbs, and other adventures.</span>
+			<span id="pageSubtitle">Trip reports from my hikes, climbs, and other adventures.</span>-->
 			<div id="navBar"></div>
-			<script src='jsNavBarDB.js'></script>
+			<script src='jsNavBarDBBS.js'></script>
 			
 			<!--Search Form-->
-			<br>
-			<div id="searchForm">
-				<fieldset>
-					<legend><span><h3>Add Trip Report</h3></span></legend>
-					
-					<!--Text Fields-->
-					<p>
-						Name: <input type="text" id="submitName" class="modifyName">
-						<br>Activity Type:
-						<select id="submitType" name="submitType">
+			<div class="form-inline">
+				<h2>Add Trip Report</h2>
+				
+				<!--Name-->
+				<div class="form-group row">
+					<div class="container">
+						<div class="form-group col-sm-12">
+							<label>Name:</label>
+							<input type="text" class="form-control" placeholder="Name of Adventure" id="submitName"> 
+						</div>
+					</div>
+				</div>
+				
+				<!--Activity and Date-->
+				<div class="form-group col-sm-12 row">
+					<div class="form-group col-sm-3">
+						<label>Activity Type:</label>
+						<select class="form-control" id="submitType" name="submitType">
 							<option value=" "> </option>
 							<option value="Hike">Hike</option>
 							<option value="Climb">Climb</option>
 							<option value="Crag">Crag</option>
 							<option value="Ski">Ski</option>
 						</select>
-						<span class="tab1"></span>Month: <input type="number" id="submitMonth" class="addNumText" min="1" max="12">
-						Day: <input type="number" id="submitDay" class="addNumText" min="1" max="31">
-						Year: <input type="number" id="submitYear" class="addNumText" min="2008">
-						<br>Page Link: <input type="text" id="submitPage" class="submitText">
-						<br>Thumbnail Image Link: <input type="text" id="submitImage" class="submitText">
-						<br>Slide Image Link: <input type="text" id="submitImageSlide" class="submitText">
-						<br>Distance: <input type="number" id="submitDistance" class="addNumText2" min="0"> miles<span class="tab1"></span>
-						<span class="tab1"></span>Elevation Gain: <input type="number" id="submitElevation" class="addNumText2" min="0"> feet
-						<br>Search Terms:<br><textarea id="submitTerms" rows="3"></textarea>
-						<br>(array with items separated by commas i.e. [lookout, green mountain, green, green mountain lookout])
-						<div id="nameError" class="errorMessage">***Error: Name cannot be blank</div>
-						<div id="monthError" class="errorMessage">***Error: Month not valid</div>
-						<div id="dayError" class="errorMessage">***Error: Day not valid</div>
-						<div id="yearError" class="errorMessage">***Error: Year not valid</div>
-						<div id="distElevError" class="errorMessage">***Error: Distance or Elevation not positive</div>
-					</p>
-					
-					<!--Locations-->
-					<p>Location:
-						<div>
-							<div class="locationBox">
-								<label><input type="radio" id="submitLoc1" name="region" value="North Cascades">North Cascades</label>
-								<div id="divNCLoc">
-									<br><label><input type="radio" id="submitSub1" name="subregion" value="Highway 542">Highway 542</label>
-									<br><label><input type="radio" id="submitSub2" name="subregion" value="Highway 20">Highway 20</label>
-									<br><label><input type="radio" id="submitSub3" name="subregion" value="Cascade River Road">Cascade River Road</label>
-									<br><label><input type="radio" id="submitSub4" name="subregion" value="North Cascades">North Cascades</label>
-								</div>
-							</div>	
-							
-							<div class="locationBox">
-								<label><input type="radio" id="submitLoc2" name="region" value="I-90">I-90</label>
-								<div id="divI90Loc">
-									<br><label><input type="radio" id="submitSub5" name="subregion" value="Issaquah">Issaquah</label>
-									<br><label><input type="radio" id="submitSub6" name="subregion" value="North Bend">North Bend</label>
-									<br><label><input type="radio" id="submitSub7" name="subregion" value="Snoqualmie Pass">Snoqualmie Pass</label>
-									<br><label><input type="radio" id="submitSub8" name="subregion" value="I-90">I-90</label>
-								</div>
-							</div>
-							<div class="locationBox">
-								<label><input type="radio" id="submitLoc3" name="region" value="South Cascades">South Cascades</label>
-								<div id="divSCLoc">
-									<br><label><input type="radio" id="submitSub9" name="subregion" value="Mount Rainier">Mount Rainier</label>
-									<br><label><input type="radio" id="submitSub10" name="subregion" value="Tatoosh Range">Tatoosh Range</label>
-									<br><label><input type="radio" id="submitSub11" name="subregion" value="South Cascades">South Cascades</label>
-								</div>
-							</div>
-							<div class="endFloat"></div>
-							<div class="locationBox">
-								<label><input type="radio" id="submitLoc4" name="region" value="Central Cascades">Central Cascades</label>
-								<div id="divCCLoc">
-									<br><label><input type="radio" id="submitSub12" name="subregion" value="Highway 2">Highway 2</label>
-									<br><label><input type="radio" id="submitSub13" name="subregion" value="Mountain Loop Highway">Mountain Loop Highway</label>
-									<br><label><input type="radio" id="submitSub14" name="subregion" value="Leavenworth">Leavenworth</label>
-									<br><label><input type="radio" id="submitSub15" name="subregion" value="Enchantments">Enchantments</label>
-									<br><label><input type="radio" id="submitSub16" name="subregion" value="Central Washington">Central Washington</label>
-									<br><label><input type="radio" id="submitSub17" name="subregion" value="Central Cascades">Central Cascades</label>
-								</div>
-							</div>
-							
-							<div class="locationBox">
-								<label><input type="radio" id="submitLoc5" name="region" value="Outside Washington State">Outside Washington State</label>
-								<div id="divOWSLoc">
-									<br><label><input type="radio" id="submitSub18" name="subregion" value="Canada">Canada</label>
-									<br><label><input type="radio" id="submitSub19" name="subregion" value="Oregon">Oregon</label>
-									<br><label><input type="radio" id="submitSub20" name="subregion" value="California">California</label>
-									<br><label><input type="radio" id="submitSub21" name="subregion" value="West">West</label>
-									<br><label><input type="radio" id="submitSub22" name="subregion" value="South">South</label>
-									<br><label><input type="radio" id="submitSub23" name="subregion" value="Outside Washington State">Outside Washington State</label>
-								</div>
-							</div>
-							<div class="locationBox">
-								<label><input type="radio" id="submitLoc6" name="region" value="Olympic Peninsula">Olympic Peninsula</label>
-								<div id="divOlyLoc">
-									<br><label><input type="radio" id="submitSub24" name="subregion" value="Olympic Peninsula">Olympic Peninsula</label>
-								</div>
-							</div>
-							<div class="endFloat"></div>
-						</div>		
-					</p>
-					
-					<span><div id="submitStatus"></div></span>
-					
-					<button id="submitForm">Add Trip Report</button>
-					<button id="resetForm">Reset Fields</button>	
-				</fieldset>
+					</div>
+					<div class="form-group col-sm-5">
+						<label>Date:</label>
+						<input type="number" id="submitMonth" placeholder="Month" class="form-control" min="1" max="12"> 
+						<input type="number" id="submitDay" placeholder="Day" class="form-control" min="1" max="31"> 
+						<input type="number" id="submitYear" placeholder="Year" class="form-control" min="2008"> 
+					</div>
+				</div>
+				
+				<!--Page Link-->
+				<div class="form-group row">
+					<div class="container">
+						<div class="form-group col-sm-12">
+							<label>Page Link:</label>
+							<input type="text" class="form-control" id="submitPage"> 
+						</div>
+					</div>
+				</div>
+				
+				<!--Thumbnail Image Link-->
+				<div class="form-group row">
+					<div class="container">
+						<div class="form-group col-sm-12">
+							<label>Thumbnail Image Link:</label>
+							<input type="text" class="form-control" id="submitImage"> 
+						</div>
+					</div>
+				</div>
+				
+				<!--Slide Image Link-->
+				<div class="form-group row">
+					<div class="container">
+						<div class="form-group col-sm-12">
+							<label>Slide Image Link:</label>
+							<input type="text" class="form-control" id="submitImageSlide"> 
+						</div>
+					</div>
+				</div>
+				
+				<!--Distance and Elevation-->
+				<div class="form-group col-sm-12 row">
+					<div class="form-group col-sm-3">
+						<label>Distance: </label>
+						<input type="number" id="submitDistance" class="form-control" min="0" max="100">
+						<span>miles</span>
+					</div>
+					<div class="form-group col-sm-3">
+						<label>Elevation Gain:</label>
+						<input type="number" id="submitElevation" class="form-control" min="0" max="28000">
+						<span>feet</span>
+					</div>
+				</div>
+				
+				<!--Search Terms-->
+				<div class="form-group row">
+					<div class="container">
+						<div class="form-group col-sm-12">
+							<label>Search Terms:</label>
+							<textarea type="text" class="form-control" id="submitTerms"></textarea>
+							<br><span>(array with items separated by commas i.e. [lookout, green mountain, green, green mountain lookout])</span>
+						</div>
+					</div>
+				</div>
+				
+				<!--Locations-->
+				<div class="form-group col-sm-12 row">
+					<span class="col-sm-2"><strong>Location:</strong></span>
+				</div>
+				<div  class="form-group col-sm-12 row">
+					<div class="locationBox col-sm-3">
+						<label><input type="radio" name="region" id="submitLoc1" value="North Cascades"> North Cascades</label>
+						<div id="divNCLoc">
+							<br><label><input type="radio" id="submitSub1" name="subregion" value="Highway 542">Highway 542</label>
+							<br><label><input type="radio" id="submitSub2" name="subregion" value="Highway 20">Highway 20</label>
+							<br><label><input type="radio" id="submitSub3" name="subregion" value="Cascade River Road">Cascade River Road</label>
+							<br><label><input type="radio" id="submitSub4" name="subregion" value="North Cascades">North Cascades</label>
+						</div>
+					</div>	
+					<div class="locationBox col-sm-3">
+						<label><input type="radio" name="region" id="submitLoc2" value="I-90"> I-90</label>
+						<div id="divI90Loc">
+							<br><label><input type="radio" id="submitSub5" name="subregion" value="Issaquah">Issaquah</label>
+							<br><label><input type="radio" id="submitSub6" name="subregion" value="North Bend">North Bend</label>
+							<br><label><input type="radio" id="submitSub7" name="subregion" value="Snoqualmie Pass">Snoqualmie Pass</label>
+							<br><label><input type="radio" id="submitSub8" name="subregion" value="I-90">I-90</label>
+						</div>
+					</div>
+					<div class="locationBox col-sm-3">
+						<label><input type="radio" name="region" id="submitLoc3" value="South Cascades"> South Cascades</label>
+						<div id="divSCLoc">
+							<br><label><input type="radio" id="submitSub9" name="subregion" value="Mount Rainier">Mount Rainier</label>
+							<br><label><input type="radio" id="submitSub10" name="subregion" value="Tatoosh Range">Tatoosh Range</label>
+							<br><label><input type="radio" id="submitSub11" name="subregion" value="South Cascades">South Cascades</label>
+						</div>
+					</div>
+				</div>
+				<div  class="form-group col-sm-12 row">
+					<div class="locationBox col-sm-3">
+						<label><input type="radio" name="region" id="submitLoc4" value="Central Cascades"> Central Cascades</label>
+						<div id="divCCLoc">
+							<br><label><input type="radio" id="submitSub12" name="subregion" value="Highway 2">Highway 2</label>
+							<br><label><input type="radio" id="submitSub13" name="subregion" value="Mountain Loop Highway">Mountain Loop Highway</label>
+							<br><label><input type="radio" id="submitSub14" name="subregion" value="Leavenworth">Leavenworth</label>
+							<br><label><input type="radio" id="submitSub15" name="subregion" value="Enchantments">Enchantments</label>
+							<br><label><input type="radio" id="submitSub16" name="subregion" value="Central Washington">Central Washington</label>
+							<br><label><input type="radio" id="submitSub17" name="subregion" value="Central Cascades">Central Cascades</label>
+						</div>
+					</div>
+					<div class="locationBox col-sm-3">
+						<label><input type="radio" name="region" id="submitLoc5" value="Outside Washington State"> Outside Washington State</label>
+						<div id="divOWSLoc">
+							<br><label><input type="radio" id="submitSub18" name="subregion" value="Canada">Canada</label>
+							<br><label><input type="radio" id="submitSub19" name="subregion" value="Oregon">Oregon</label>
+							<br><label><input type="radio" id="submitSub20" name="subregion" value="California">California</label>
+							<br><label><input type="radio" id="submitSub21" name="subregion" value="West">West</label>
+							<br><label><input type="radio" id="submitSub22" name="subregion" value="South">South</label>
+							<br><label><input type="radio" id="submitSub23" name="subregion" value="Outside Washington State">Outside Washington State</label>
+						</div>
+					</div>
+					<div class="locationBox col-sm-3">
+						<label><input type="radio" name="region" id="submitLoc6" name="searchOlyLoc">Olympic Peninsula</label>
+						<div id="divOlyLoc">
+							<br><label><input type="radio" id="submitSub24" name="subregion" value="Olympic Peninsula">Olympic Peninsula</label>
+						</div>
+					</div>
+				</div>		
+				<div class="row"></div>
+				<button class="btn btn-success" id="submitForm"><span class='glyphicon glyphicon-plus'></span> Add Trip Report</button>
+				<button class="btn btn-default" id="resetForm">Reset Fields</button>	
+			</div>
+			
+			<div class="row"></div>
+			<!--Status Panel-->
+			<div class="col-sm-7 row">
+				<div id="statusPanel" class="panel panel-success">
+					<div class="panel-heading">
+						<span>Submission Status</span>
+					</div>
+					<div class="panel-body">
+						<span id="submitStatus"></span>
+					</div>
+				</div>
+			</div>
+			
+			<!--Error Panel-->
+			<div class="col-sm-7 row">
+				<div id="errorPanel" class="panel panel-danger">
+					<div class="panel-heading">
+						<span>Error</span>
+					</div>
+					<div class="panel-body">
+						<span id="nameError">Name cannot be blank.</span>
+						<span id="monthError">Month not valid.</span>
+						<span id="dayError">Day not valid.</span>
+						<span id="yearError">Year not valid.</span>
+						<span id="distElevError">Distance or Elevation not positive.</span>
+					</div>
+				</div>
 			</div>
 
 		</div>
 	
-		<script src='jsAlpineAlicia.js'></script>
+		<script src='js/jsAlpineAlicia.js'></script>
 		<script src='js/jsAddTR.js'></script>
 	</body>
 </html>

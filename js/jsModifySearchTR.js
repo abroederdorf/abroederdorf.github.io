@@ -53,6 +53,7 @@ function validateModSearchInput()
 		{
 			if ((day == 0) || (month == 0) || (year == 0))
 			{
+				document.getElementById("errorPanel").style.display = "block";
 				document.getElementById("dateErrorUnfilled").style.display = "block";
 				numErrors++;
 			}
@@ -60,6 +61,7 @@ function validateModSearchInput()
 		
 		if (((month == 4) || (month == 6) || (month == 9) || (month == 11)) && (day == 31))
 		{
+			document.getElementById("errorPanel").style.display = "block";
 			document.getElementById("dateErrorDay").style.display = "block";
 			numErrors++;
 		}
@@ -71,6 +73,7 @@ function validateModSearchInput()
 			{
 				if (day > 29)
 				{
+					document.getElementById("errorPanel").style.display = "block";
 					document.getElementById("dateErrorDay").style.display = "block";
 					numErrors++;
 				}
@@ -79,6 +82,7 @@ function validateModSearchInput()
 			{
 				if (day > 28)
 				{
+					document.getElementById("errorPanel").style.display = "block";
 					document.getElementById("dateErrorDay").style.display = "block";
 					numErrors++;
 				}
@@ -98,6 +102,7 @@ function validateModSearchInput()
 		//console.log("To Date: " + toDate + ", From Date: " + fromDate);
 	if (new Date(fromDate).getTime() > new Date(toDate).getTime())
 	{
+		document.getElementById("errorPanel").style.display = "block";
 		document.getElementById("dateErrorLessThan").style.display = "block";
 		numErrors++;
 	}
@@ -115,6 +120,30 @@ function validateModSearchInput()
 //Output: Form is shown with values populated
 function updateTR(key)
 {
+	//Clear values from update form
+	document.getElementById("submitName").value = "";
+	document.getElementById("submitType").value = " ";
+	document.getElementById("submitImage").value = "";
+	document.getElementById("submitPage").value = "";
+	document.getElementById("submitDistance").value = "";
+	document.getElementById("submitElevation").value = "";
+	document.getElementById("submitMonth").value = "";
+	document.getElementById("submitDay").value = "";
+	document.getElementById("submitYear").value = "";
+	document.getElementById("submitTerms").value = "";
+	document.getElementById("showKey").textContent = "";
+	//Locations
+	for (var i = 1; i < 8; i++)
+	{
+		str = "submitLoc" + i;
+		document.getElementById(str).checked = false;
+	}
+	for (var i = 1; i < 26; i++)
+	{
+		str = "submitSub" + i;
+		document.getElementById(str).checked = false;
+	}
+	
 	var name, type, month, day, year, pageLink, imageLink, region, subregion, searchTerms, strDistance, distance, strElevation, elevation, imageSlide;
 
 	//Get key from form submitted
@@ -153,8 +182,6 @@ function updateTR(key)
 		document.getElementById("showKey").textContent = keyID;
 		document.getElementById("submitImageSlide").value = imageSlide;
 		
-		
-		
 		for (var i = 1; i < 8; i++)
 		{
 			str = "submitLoc" + i;
@@ -177,7 +204,7 @@ function updateTR(key)
 		}
 		
 		document.getElementById("modifyForm").style.display = "block";
-		hideErrorMessages();
+		hideErrorMessagesMod();
 		
 	});
 
@@ -195,8 +222,12 @@ function removeTR(key)
 	//Callback function to display message as to success of removal
 	var oncomplete = function(error){
 		if (error){
+			document.getElementById('statusPanel').className = "panel panel-danger";
+			document.getElementById('statusPanel').style.display = "block";
 			document.getElementById('operationStatus').textContent = "Removal failed.";
 		}else{
+			document.getElementById('statusPanel').className = "panel panel-success";
+			document.getElementById('statusPanel').style.display = "block";
 			document.getElementById('operationStatus').textContent = "Removal successful.";
 		}
 	};
@@ -269,8 +300,9 @@ function displayDataModSearch(resultObjArray)
 			cell = document.createElement("td");
 			var newInput = document.createElement("button");
 			newInput.setAttribute("type", "button");
-			newInput.textContent = "Update";
+			newInput.innerHTML = '<span class="glyphicon glyphicon-pencil"></span> Update';
 			newInput.style.textAlign = "center";
+			newInput.className = "btn btn-default";
 			newInput.value = resultObjArray[i].key;
 			newInput.addEventListener('click', function(){updateTR(this);});
 			cell.appendChild(newInput);
@@ -284,8 +316,9 @@ function displayDataModSearch(resultObjArray)
 			//Remove button
 			var newInput = document.createElement("button");
 			newInput.setAttribute("type", "button");
-			newInput.textContent = "Remove";
+			newInput.innerHTML = '<span class="glyphicon glyphicon-remove"></span> Remove';
 			newInput.style.textAlign = "center";
+			newInput.className = "btn btn-warning";
 			newInput.value = i;
 			newInput.addEventListener('click', function(){toggleDiv(this);});
 			divOuter.appendChild(newInput);
@@ -303,6 +336,7 @@ function displayDataModSearch(resultObjArray)
 			newInput.setAttribute("type", "button");
 			newInput.textContent = "Yes";
 			newInput.style.textAlign = "center";
+			newInput.className = "btn btn-success buttonYes";
 			newInput.value = resultObjArray[i].key;
 			newInput.addEventListener('click', function(){removeTR(this);});
 			divInner.appendChild(newInput);
@@ -311,6 +345,7 @@ function displayDataModSearch(resultObjArray)
 			newInput.setAttribute("type", "button");
 			newInput.textContent = "No";
 			newInput.style.textAlign = "center";
+			newInput.className = "btn btn-danger";
 			newInput.value = i;
 			newInput.addEventListener('click', function(){toggleDiv(this);});
 			divInner.appendChild(newInput);
@@ -329,6 +364,9 @@ function submitModSearchForm()
 {
 	var results = [];
 	var tempResults = [];
+	
+	//Hide update form section
+	document.getElementById("modifyForm").style.display = "none";
 	
 	if (validateModSearchInput())
 	{
@@ -483,14 +521,16 @@ function submitModSearchForm()
 			document.getElementById("resultsTableDiv").style.display="block";
 			if (results.length <= 0)
 			{
+				document.getElementById('resultsPanel').className = "panel panel-default";
 				document.getElementById("resultsStatus").textContent = "No results, try another search.";
-				document.getElementById("resultsTable").style.display="none";
+				document.getElementById("resultsTab").style.display="none";
 				displayDataModSearch(results); 
 			}
 			else
 			{
+				document.getElementById('resultsPanel').className = "panel panel-success";
 				document.getElementById("resultsStatus").textContent = results.length + " Trip Reports Returned";
-				document.getElementById("resultsTable").style.display="block";
+				document.getElementById("resultsTab").style.display="block";
 					//console.log(results);
 				displayDataModSearch(results); 
 			}
@@ -509,15 +549,19 @@ function submitModSearchForm()
 //Output: Nothing, but divs' style.display are set to none
 function hideErrorMessagesMod()
 {
+	document.getElementById("errorPanel").style.display = "none";
 	document.getElementById("dateErrorUnfilled").style.display = "none";
 	document.getElementById("dateErrorDay").style.display = "none";
 	document.getElementById("dateErrorLessThan").style.display = "none";
+	
+	document.getElementById("errorUpdatePanel").style.display = "none";
 	document.getElementById("nameError").style.display = "none";
 	document.getElementById("monthError").style.display = "none";
 	document.getElementById("dayError").style.display = "none";
 	document.getElementById("yearError").style.display = "none";
 	document.getElementById("distElevError").style.display = "none";
 	
+	document.getElementById("statusPanel").style.display = "none";
 }
 
 //resetModSearchForm()
