@@ -97,7 +97,7 @@ function createYearDiv(year){
 	
 	//Create table
 	var table = document.createElement('table');
-	table.className = "table table-hover";
+	table.className = "table table-hover table-bordered";
 	divContainer.appendChild(table);
 	
 	//Create table head with row
