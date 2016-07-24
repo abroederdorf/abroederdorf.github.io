@@ -434,7 +434,7 @@ function drawOutdoorDiffTotal() {
 	  pieHole: 0.3,
 	  width: 375,
 	  height: 200,
-	  backgroundColor: '#CFECEC'
+	  backgroundColor: 'transparent'
 	};
 
 	var chart = new google.visualization.PieChart(document.getElementById('outdoorDiffPieTotal'));
@@ -470,7 +470,7 @@ function drawOutdoorDiffCurrent() {
 	  pieHole: 0.3,
 	  width: 375,
 	  height: 200,
-	  backgroundColor: '#CFECEC'
+	  backgroundColor: 'transparent'
 	};
 
 	var chart = new google.visualization.PieChart(document.getElementById('outdoorDiffPieCurrent'));
@@ -507,7 +507,7 @@ function drawOutdoorLocTotal() {
 	  pieHole: 0.3,
 	  width: 375,
 	  height: 200,
-	  backgroundColor: '#CFECEC'
+	  backgroundColor: 'transparent'
 	};
 
 	var chart = new google.visualization.PieChart(document.getElementById('outdoorLocPieTotal'));
@@ -544,7 +544,7 @@ function drawOutdoorLocCurrent() {
 	  pieHole: 0.3,
 	  width: 375,
 	  height: 200,
-	  backgroundColor: '#CFECEC'
+	  backgroundColor: 'transparent'
 	};
 
 	var chart = new google.visualization.PieChart(document.getElementById('outdoorLocPieCurrent'));
@@ -581,7 +581,7 @@ function drawStepsMonthly() {
 		  title: 'Total Steps',
 		  gridlines: { count: 6 }
 		},
-		chartArea: {left:50, width: 600},
+		chartArea: {left:100, width: 600},
 		colors: ['#800000', '#008000']
 	};
 
