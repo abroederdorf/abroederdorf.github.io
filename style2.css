@@ -155,6 +155,15 @@ a{
 	margin: auto;
 }
 
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+   border: 3px solid #000000;
+}
+
 #searchName, #searchName2, #submitName, #submitPage, #submitImage, #submitImageSlide{
 	width: 715px;
 }
