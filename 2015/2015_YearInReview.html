@@ -1,27 +1,31 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>2015 Year in Review</title>
-		<link rel="stylesheet" type="text/css" href="/style.css">
+		<link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+		<link href="/lightbox/css/lightbox.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/style2.css">
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	</head>
 	<body>
 		<div id="pageDiv">
-			<span id="pagetitle">Alpine Alicia</span>
-			<br>
-			<span id="pageSubtitle">Trip reports from my hikes, climbs, and other adventures.</span>
 			<div id="navBar"></div>
-			<script src='/jsNavBar.js'></script>
+			<script src='/jsNavBarBS.js'></script>
 			<h1>2015 Year in Review</h1>
-
+			
 			<p>2015 was a different year for us as I started attending school in addition to my full time job, which meant my free time was greatly reduced. I took 6 classes over the four quarters and with short breaks in between quarters, I still managed to do a few things but nothing in comparison to the past few years. Luckily we spent our honeymoon camping across Utah and hiking in several of the beautiful National Parks.</p>
 			
 			<!-- Overall stats-->
 			<div id="overallStats">
 				<h4 class="statsTitle">Overall Stats</h4>
-				<div class="chartCentered" id="overallDays"></div>
 				<center>
-					<table>
+					<div class="chartCentered" id="overallDays"></div>
+				</center>
+				<center>
+					<table  class="table table-hover table-bordered">
 						<tbody>
 							<tr>
 								<th rowspan="3">Year</th>
@@ -153,7 +157,7 @@
 				</center>
 				<br>
 				<center>
-					<table>
+					<table  class="table table-hover table-bordered">
 						<tbody>
 							<tr>
 								<th  rowspan="3" >Year</th>
@@ -290,7 +294,7 @@
 						</tbody>
 					</table>
 				</center>
-				<p class="tab2">
+				<p>
 				Peach blanks: Did not keep stats for this in prior years
 				<br>
 				*: Does not include gym climbing pitches since unknown
@@ -304,7 +308,7 @@
 			<div id="skiStats">
 				<h4 class="statsTitle">Skiing Stats</h4>
 				<center>
-					<table>
+					<table  class="table table-hover table-bordered">
 						<tbody>
 							<tr>
 								<th colspan="2">Season</th>
@@ -400,7 +404,7 @@
 				<div class="chartCentered" id="skiDaysChart"></div>
 				<br>
 				<center>
-					<table>
+					<table  class="table table-hover table-bordered">
 						<tbody>
 							<tr>
 								<th rowspan="3">Year</th>
@@ -549,7 +553,7 @@
 						</tbody>
 					</table>
 				</center>
-				<p class="tab2">Note: Peach blank indicates that the data is unavailable.  
+				<p>Note: Peach blank indicates that the data is unavailable.  
 				<br>
 				* indicates that the data is incomplete for the year, it only accounts for what was recorded.
 				</p>
@@ -559,10 +563,10 @@
 			
 			<!--Gym Climbing Stats-->
 			<div id="gymStats">
-				<h4 class="statsTitle">Gym Climbing Stats</h3>
-				<strong class="tab1">Gym Climbing Route Difficulty Values</strong>
+				<h4 class="statsTitle">Gym Climbing Stats</h4>
+				<strong>Gym Climbing Route Difficulty Values</strong>
 				<center>
-					<table>
+					<table  class="table table-hover table-bordered">
 						<tbody>
 							<tr>
 								<th>Rating</th>
@@ -635,7 +639,7 @@
 					</table>
 				</center>
 				<br>
-				<strong class="tab1">Gym Climbing Stats</strong>:
+				<strong>Gym Climbing Stats</strong>:
 				<br>
 				<!--Monthly Avg Difficulty Line Chart-->
 				<div class="chartCentered" id="gymClimbingAvgDiff"></div>
@@ -644,7 +648,7 @@
 				<div class="chartCentered" id="gymClimbingNumPitch"></div>
 				<br>
 				<center>
-					<table>
+					<table  class="table table-hover table-bordered">
 						<tbody>
 							<tr>
 								<th rowspan="2">Year</th>
@@ -742,7 +746,7 @@
 						</tbody>
 					</table>
 				</center>
-				<p class="tab2">Peach blanks: Did not keep stats for this in prior years</p>
+				<p>Peach blanks: Did not keep stats for this in prior years</p>
 			</div>
 			
 			<p>We flew down to Austin, TX for the wedding of one of my college roommates at the beginning of April, so we took an extra day and did some rock climbing at Reimer’s Ranch. The routes we found were fairly short so we got a bunch in without dying too much from the heat. Between my spring and summer quarter we escaped for a weekend to the North Cascades and climbed Liberty Bell finally, a fun route and it felt great to be out in the mountains. I took another Saturday off in July to climb the Tooth with Aaron and Luke. I got the honors of leading it all but Aaron had to help carry my pack out as the heat took its toll on me.</p>
@@ -754,10 +758,10 @@
 				<!--Difficulty of Climbs Bar Chart-->
 				<div class="chartCentered" id="outdoorDiffClimbs"></div>
 				<br>
-				<strong class="tab1">Outdoor Rock Climbing, Difficulty Stats (#Pitches):</strong>
+				<strong>Outdoor Rock Climbing, Difficulty Stats (#Pitches):</strong>
 				<br>
 				<center>
-					<table>
+					<table  class="table table-hover table-bordered">
 						<tbody>
 							<tr>
 								<th>Year</th>
@@ -891,22 +895,19 @@
 					</table>
 				</center>
 				<center>
-					<div>
-						<div id="outdoorDiffPieTotal" class="pieCharts">
-						</div>
-						<div id="outdoorDiffPieCurrent" class="pieCharts">
-						</div>
-					</div>
+					<div id="outdoorDiffPieTotal" class="chartCentered"></div>
+					<br>
+					<div id="outdoorDiffPieCurrent" class="chartCentered"></div>
 				</center>
-				<div class="endFloat"></div>
+				<br>
 				<!--Location of Climbs Bar Chart-->
 				<div class="chartCentered" id="outdoorLocations"></div>
-				<p class="tab2">Location Legend: See location titles in table below</p>
+				<p>Location Legend: See location titles in table below</p>
 				<br>
-				<strong class="tab1">Outdoor Rock Climbing, Location Stats (#Routes):</strong>
+				<strong>Outdoor Rock Climbing, Location Stats (#Routes):</strong>
 				<br>
 				<center>
-					<table>
+					<table  class="table table-hover table-bordered">
 						<tbody>
 							<tr>
 								<th>Year</th>
@@ -993,7 +994,7 @@
 				</center>
 				<br>
 				<center>
-					<table>
+					<table  class="table table-hover table-bordered">
 						<tbody>
 							<tr>
 								<th>Year</th>
@@ -1078,23 +1079,20 @@
 						</tbody>
 					</table>
 				</center>
-				<p class="tab2">
+				<p>
 				Note: Out of State does not include those pitches climbed at Smith or Squamish
 				</p>
-				<div>
-					<div id="outdoorLocPieTotal" class="pieCharts">
-					</div>
-					<div id="outdoorLocPieCurrent" class="pieCharts">
-					</div>
-				</div>
-				<div class="endFloat"></div>
+				<center>
+				<div id="outdoorLocPieTotal" class="chartCentered"></div>
+				<div id="outdoorLocPieCurrent" class="chartCentered"></div>
+				</center>
 				<!--Type of Climbing Bar Chart-->
 				<div class="chartCentered" id="outdoorType"></div>
 				<br>
-				<strong class="tab1">Outdoor Rock Climbing, Type of Climbing Stats (#Routes):</strong>
+				<strong>Outdoor Rock Climbing, Type of Climbing Stats (#Routes):</strong>
 				<br>
 				<center>
-					<table>
+					<table  class="table table-hover table-bordered">
 						<tbody>
 							<tr>
 								<th>Year</th>
@@ -1182,7 +1180,7 @@
 			<div id="hikingStats">
 				<h4 class="statsTitle">Hiking Stats</h4>
 				<center>
-					<table>
+					<table  class="table table-hover table-bordered">
 						<tbody>
 							<tr>
 								<th rowspan="2">Year</th>
@@ -1275,9 +1273,9 @@
 				</center>
 				<br>
 				<p>
-					<strong class="tab1">New Summits in 2015</strong>:
+					<strong>New Summits in 2015</strong>:
 					<br>
-					<ul class="tab1">
+					<ul>
 							<li>McClellan Butte</li>
 							<li>Green Mountain</li>
 							<li>Dirty Harry's Peak</li>
@@ -1296,8 +1294,9 @@
 				<br>
 				<!-- Monthly Elevation Line Chart-->
 				<div class="chartCentered" id="runningElevation"></div>
+				<br>
 				<center>
-					<table>
+					<table  class="table table-hover table-bordered">
 						<tbody>
 							<tr>
 								<th rowspan="3">Year</th>
@@ -1395,7 +1394,7 @@
 				<div class="chartCentered" id="monthlySteps"></div>
 				<br>
 				<center>
-					<table>
+					<table class="table table-hover table-bordered">
 						<tbody>
 							<tr>
 								<th>Year</th>
@@ -1464,12 +1463,14 @@
 						</tbody>
 					</table>
 				</center>
-				<p class="tab2">Peach blanks: Did not keep stats for this in prior years</p>
+				<p>Peach blanks: Did not keep stats for this in prior years</p>
 			</div>
-			
 		</div>
 		
 		<script src='js2015.js'></script>
-		<script src='/jsAlpineAlicia.js'></script>
+		<script src='/js/jsAlpineAlicia.js'></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/lightbox/js/lightbox-plus-jquery.js"></script>
 	</body>
 </html>
