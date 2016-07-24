@@ -398,7 +398,7 @@ function drawOverallDays() {
 	  pieHole: 0.3,
 	  width: 700,
 	  height: 300,
-	  backgroundColor: '#CFECEC'
+	  backgroundColor: 'transparent'
 	};
 
 	var chart = new google.visualization.PieChart(document.getElementById('overallDays'));
