@@ -11,6 +11,10 @@ a{
 	color:#118412;
 }
 
+td, th{
+	text-align: center;
+}
+
 .headerCell{
 	font-weight: bold;
 	background-color: #BCC6CC;
@@ -161,7 +165,7 @@ a{
 .table-bordered > thead > tr > td,
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
-   border: 3px solid #000000;
+   border: 1px solid #000000;
 }
 
 #searchName, #searchName2, #submitName, #submitPage, #submitImage, #submitImageSlide{
