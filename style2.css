@@ -140,6 +140,21 @@ a{
 	margin-top: 5px;
 }
 
+.noData{
+	background-color: #E18B6B;
+}
+
+.pieCharts{
+	float: left;
+	margin: 10px;
+	padding: 10px;
+	width: 425px;
+}
+
+.chartCentered{
+	margin-left: 150px;
+}
+
 #searchName, #searchName2, #submitName, #submitPage, #submitImage, #submitImageSlide{
 	width: 715px;
 }
