@@ -53,6 +53,7 @@ td, th{
 
 .statsPanel{
 	max-width: 600px;
+	margin: auto;
 }
 
 .tab1{
