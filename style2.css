@@ -3,11 +3,6 @@ body{
 	background-color: #D0E2E9;
 }
 
-head{
-	padding-left: 25px;
-	padding-right: 25px;
-}
-
 p {
 	text-align: justify;
 }
@@ -215,4 +210,9 @@ td, th{
 
 #RSSDiv{
 	margin-top: 20px;
+}
+
+#navBar{
+	padding-left: 10px;
+	padding-right: 10px;
 }
