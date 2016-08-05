@@ -3,6 +3,11 @@ body{
 	background-color: #D0E2E9;
 }
 
+head{
+	padding-left: 2.5%;
+	padding-right: 2.5%;
+}
+
 p {
 	text-align: justify;
 }
@@ -16,11 +21,6 @@ td, th{
 	vertical-align: middle;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
 
 .headerCell{
 	font-weight: bold;
