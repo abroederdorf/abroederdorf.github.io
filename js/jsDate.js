@@ -127,26 +127,6 @@ function createYearDiv(year){
 	table.appendChild(body);
 }
 
-//createMonthRow(month, year)
-//Create month row
-//Input: integer representing month and year
-//Output: New div added to document
-function createMonthRow(month, year){
-
-	var strBody = "body" + year;
-	var body = document.getElementById(strBody);
-	var monthNames = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-	
-	//Create month row
-	var row = document.createElement('tr');
-	body.appendChild(row);
-	var cell = document.createElement('td');
-	cell.className = "monthRow dateCell";
-	cell.colSpan = 3;
-	cell.textContent = monthNames[month];
-	row.appendChild(cell);
-}
-
 //Name: displayDateData
 //Description: Add rows to table for all of the data in the animal database
 //Input: Animal object array
@@ -175,13 +155,6 @@ function displayDateData(array)
 			yearArray.push(array[i].year);
 		}
 		
-		//Add month rows
-		/*if (i == 0 || array[i].month != month)
-		{
-			month = array[i].month;
-			createMonthRow(array[i].month, array[i].year);
-		}*/
-		
 		//Create trip report row
 		//Get body to append row to
 		strBody = "body" + array[i].year;
@@ -189,21 +162,12 @@ function displayDateData(array)
 		
 		//Create row
 		var row = document.createElement('tr');
-		/*if (array[i].type == 'Hike')
-			row.className = 'actHike';
-		else if (array[i].type == 'Climb')
-			row.className = 'actClimb';
-		else if (array[i].type == 'Crag')
-			row.className = 'actCrag';
-		else if (array[i].type == 'Ski')
-			row.className = 'actSki';*/
 		body.appendChild(row);
 		
 		//Add cells
 		var cell = document.createElement('td');
 		cell.className = "text-center cellName";
 		cell.innerHTML = '<a href="' + array[i].pageLink + '">' + array[i].name + '</a>';
-		//cell.textContent = array[i].name;
 		row.appendChild(cell);
 		cell = document.createElement('td');
 		cell.className = "cellRegion locDateCell";
