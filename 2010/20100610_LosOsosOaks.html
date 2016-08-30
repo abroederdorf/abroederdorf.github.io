@@ -2,14 +2,16 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Los Osos Oaks 6/10/10</title>
-		<link rel="stylesheet" type="text/css" href="/style.css">
+		<link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+		<link href="/lightbox/css/lightbox.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/style2.css">
 	</head>
 	<body>
 		<div id="pageDiv">
-			<span id="pageTitle">Alpine Alicia</span>
-			<br>
-			<span id="pageSubtitle">Trip reports from my hikes, climbs, and other adventures.</span>
+			<div id="pageDiv">
 			<div id="navBar"></div>
 			<script src='/jsNavBarBS.js'></script>
 			<h1>Los Osos Oaks 6/10/10</h1>
@@ -25,28 +27,40 @@
 			</center>
 			<br>
 			<center>
-				<a href="http://4.bp.blogspot.com/_m2J-nNkdufE/TBhqsQD4pbI/AAAAAAAACAg/u9aYeAfTsIM/s1600/Los+Osos+Oaks.jpg"><img class="picture" src="https://4.bp.blogspot.com/_m2J-nNkdufE/TBhqsQD4pbI/AAAAAAAACAg/u9aYeAfTsIM/s400/Los+Osos+Oaks.jpg" height="346px" width="400px"></a>
+				<a class="example-image-link" href="https://4.bp.blogspot.com/_m2J-nNkdufE/TBhqsQD4pbI/AAAAAAAACAg/u9aYeAfTsIM/s800/Los+Osos+Oaks.jpg"" data-lightbox="allPics" data-title="Los Osos Oaks"><img class="img-thumbnail" src="https://4.bp.blogspot.com/_m2J-nNkdufE/TBhqsQD4pbI/AAAAAAAACAg/u9aYeAfTsIM/s400/Los+Osos+Oaks.jpg" alt="Los Osos Oaks"/></a>
 			</center>
 			<br>
 			<center>
-				<a href="http://3.bp.blogspot.com/_m2J-nNkdufE/TBhqr9S1ZqI/AAAAAAAACAY/7ESA3MCszZY/s1600/Los+Osos+Oaks+6-10-10+-+El,+Di.bmp"><img class="picture" src="https://3.bp.blogspot.com/_m2J-nNkdufE/TBhqr9S1ZqI/AAAAAAAACAY/7ESA3MCszZY/s400/Los+Osos+Oaks+6-10-10+-+El,+Di.bmp" height="138px" width="400px"></a>
+				<a class="example-image-link" href="https://3.bp.blogspot.com/_m2J-nNkdufE/TBhqr9S1ZqI/AAAAAAAACAY/7ESA3MCszZY/s800/Los+Osos+Oaks+6-10-10+-+El,+Di.bmp" data-lightbox="allPics" data-title="Elevation vs Distance"><img class="img-thumbnail" src="https://3.bp.blogspot.com/_m2J-nNkdufE/TBhqr9S1ZqI/AAAAAAAACAY/7ESA3MCszZY/s400/Los+Osos+Oaks+6-10-10+-+El,+Di.bmp" alt="Elevation vs Distance"/></a>
 			</center>
 			<br>
 			<center>
-				<a href="http://3.bp.blogspot.com/_m2J-nNkdufE/TBhqrg_upTI/AAAAAAAACAQ/CFDHIEtIFFo/s1600/Los+Osos+Oaks+6-10-10+-+Sp,+Di.bmp"><img class="picture" src="https://3.bp.blogspot.com/_m2J-nNkdufE/TBhqrg_upTI/AAAAAAAACAQ/CFDHIEtIFFo/s400/Los+Osos+Oaks+6-10-10+-+Sp,+Di.bmp" height="138px" width="400px"></a>
+				<a class="example-image-link" href="https://3.bp.blogspot.com/_m2J-nNkdufE/TBhqrg_upTI/AAAAAAAACAQ/CFDHIEtIFFo/s800/Los+Osos+Oaks+6-10-10+-+Sp,+Di.bmp" data-lightbox="allPics" data-title="Speed vs Distance"><img class="img-thumbnail" src="https://3.bp.blogspot.com/_m2J-nNkdufE/TBhqrg_upTI/AAAAAAAACAQ/CFDHIEtIFFo/s400/Los+Osos+Oaks+6-10-10+-+Sp,+Di.bmp" alt="Speed vs Distance"/></a>
 			</center>
-			<h3 class="statsTitle">Stats</h3>
-			<ul class="tab1">
-				<li>Total Time: 00:53:51 (h:m:s)</li>
-				<li>Distance: 1.13 mi</li>
-				<li>Elevation Gain: 90 ft</li>
-				<li>Average Overall Speed: 1.3 mph</li>
-				<li>Average Moving Speed: 2.2 mph</li>
-				<li>Maximum Moving Speed: 5.2 mph</li>
-				<li>Maximum Elevation: 169 ft</li>
-			</ul>
+			<br>
+			<div class="row">
+				<div class="panel panel-success statsPanel">
+					<div class="panel-heading">
+						<h3 class="panel-title statsTitle">Stats</h3>
+					</div>
+					<div class="panel-body">
+						<ul class="tab1">
+							<li>Total Time: 00:53:51 (h:m:s)</li>
+							<li>Distance: 1.13 mi</li>
+							<li>Elevation Gain: 90 ft</li>
+							<li>Average Overall Speed: 1.3 mph</li>
+							<li>Average Moving Speed: 2.2 mph</li>
+							<li>Maximum Moving Speed: 5.2 mph</li>
+							<li>Maximum Elevation: 169 ft</li>
+						</ul>
+					</div>
+				</div>
+			</div>
 		</div>
 		
-		<script src='/jsAlpineAlicia.js'></script>
+		<script src='/js/jsAlpineAlicia.js'></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/lightbox/js/lightbox-plus-jquery.js"></script>
 	</body>
 </html>
