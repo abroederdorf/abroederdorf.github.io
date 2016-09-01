@@ -1,5 +1,5 @@
 body{
-	padding: 2.5%;
+	padding-top: 50px;
 	background-color: #D0E2E9;
 }
 
@@ -16,6 +16,17 @@ td, th{
 	vertical-align: middle;
 }
 
+@media (max-width: 48em){
+	.btn{
+		font-size: 0.75rem;
+		font-size: 3.5vw;
+	}
+}
+
+.modal{
+	max-width: 50%;
+	margin: auto;
+}
 
 .headerCell{
 	font-weight: bold;
@@ -172,7 +183,7 @@ td, th{
 }
 
 #searchName, #searchName2, #submitName, #submitPage, #submitImage, #submitImageSlide{
-	width: 715px;
+	max-width: 715px;
 }
 
 #searchResultsMessage{
@@ -210,9 +221,4 @@ td, th{
 
 #RSSDiv{
 	margin-top: 20px;
-}
-
-#navBar{
-	padding-left: 10px;
-	padding-right: 10px;
 }
