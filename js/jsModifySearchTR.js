@@ -53,7 +53,7 @@ function validateModSearchInput()
 		{
 			if ((day == 0) || (month == 0) || (year == 0))
 			{
-				document.getElementById("errorPanel").style.display = "block";
+				$('#modal1').modal('show');
 				document.getElementById("dateErrorUnfilled").style.display = "block";
 				numErrors++;
 			}
@@ -61,7 +61,7 @@ function validateModSearchInput()
 		
 		if (((month == 4) || (month == 6) || (month == 9) || (month == 11)) && (day == 31))
 		{
-			document.getElementById("errorPanel").style.display = "block";
+			$('#modal1').modal('show');
 			document.getElementById("dateErrorDay").style.display = "block";
 			numErrors++;
 		}
@@ -73,7 +73,7 @@ function validateModSearchInput()
 			{
 				if (day > 29)
 				{
-					document.getElementById("errorPanel").style.display = "block";
+					$('#modal1').modal('show');
 					document.getElementById("dateErrorDay").style.display = "block";
 					numErrors++;
 				}
@@ -82,7 +82,7 @@ function validateModSearchInput()
 			{
 				if (day > 28)
 				{
-					document.getElementById("errorPanel").style.display = "block";
+					$('#modal1').modal('show');
 					document.getElementById("dateErrorDay").style.display = "block";
 					numErrors++;
 				}
@@ -102,7 +102,7 @@ function validateModSearchInput()
 		//console.log("To Date: " + toDate + ", From Date: " + fromDate);
 	if (new Date(fromDate).getTime() > new Date(toDate).getTime())
 	{
-		document.getElementById("errorPanel").style.display = "block";
+		$('#modal1').modal('show');
 		document.getElementById("dateErrorLessThan").style.display = "block";
 		numErrors++;
 	}
@@ -549,12 +549,12 @@ function submitModSearchForm()
 //Output: Nothing, but divs' style.display are set to none
 function hideErrorMessagesMod()
 {
-	document.getElementById("errorPanel").style.display = "none";
+	$('#modal1').modal('hide');
 	document.getElementById("dateErrorUnfilled").style.display = "none";
 	document.getElementById("dateErrorDay").style.display = "none";
 	document.getElementById("dateErrorLessThan").style.display = "none";
 	
-	document.getElementById("errorUpdatePanel").style.display = "none";
+	$('#modal2').modal('hide');
 	document.getElementById("nameError").style.display = "none";
 	document.getElementById("monthError").style.display = "none";
 	document.getElementById("dayError").style.display = "none";

@@ -30,7 +30,7 @@ function validateInputUpdate()
 	var str = document.getElementById('submitName').value;
 	if (str == "")
 	{
-		document.getElementById("errorUpdatePanel").style.display = "block";
+		$('#modal2').modal('show');
 		document.getElementById("nameError").style.display = "block";
 		numErrors++;
 	}
@@ -40,7 +40,7 @@ function validateInputUpdate()
 	var month = Number(number1);
 	if (month < 1 || month > 12)
 	{
-		document.getElementById("errorUpdatePanel").style.display = "block";
+		$('#modal2').modal('show');
 		document.getElementById("monthError").style.display = "block";
 		numErrors++;
 	}
@@ -49,7 +49,7 @@ function validateInputUpdate()
 	var year = Number(number2);
 	if (year < 2008)
 	{
-		document.getElementById("errorUpdatePanel").style.display = "block";
+		$('#modal2').modal('show');
 		document.getElementById("yearError").style.display = "block";
 		numErrors++;
 	}
@@ -60,7 +60,7 @@ function validateInputUpdate()
 	{
 		if (day < 1 || day > 30)
 		{
-			document.getElementById("errorUpdatePanel").style.display = "block";
+			$('#modal2').modal('show');
 			document.getElementById("dayError").style.display = "block";
 				console.log("ValidateInputUpdate Day Error in Error Update Panel");
 			numErrors++;
@@ -74,7 +74,7 @@ function validateInputUpdate()
 		{
 			if (day < 1 || day > 29)
 			{
-				document.getElementById("errorUpdatePanel").style.display = "block";
+				$('#modal2').modal('show');
 				document.getElementById("dayError").style.display = "block";
 				numErrors++;
 			}
@@ -83,7 +83,7 @@ function validateInputUpdate()
 		{
 			if (day < 1 || day > 28)
 			{
-				document.getElementById("errorUpdatePanel").style.display = "block";
+				$('#modal2').modal('show');
 				document.getElementById("dayError").style.display = "block";
 				numErrors++;
 			}
@@ -93,7 +93,7 @@ function validateInputUpdate()
 	{
 		if (day < 1 || day > 31)
 		{
-			document.getElementById("errorUpdatePanel").style.display = "block";
+			$('#modal2').modal('show');
 			document.getElementById("dayError").style.display = "block";
 			numErrors++;
 		}
@@ -108,7 +108,7 @@ function validateInputUpdate()
 	elev = Number(number);
 	if ((dist < 0) || (elev < 0))
 	{
-		document.getElementById("errorUpdatePanel").style.display = "block";
+		$('#modal2').modal('show');
 		document.getElementById("distElevError").style.display = "block";
 		numErrors++;
 	}
@@ -208,5 +208,7 @@ function initializePageMod()
 document.getElementById("resetSearchForm").addEventListener('click', resetModSearchForm);
 document.getElementById("submitSearchForm").addEventListener('click', submitModSearchForm);
 document.getElementById("submitModifyForm").addEventListener('click', submitUpdateForm);
+document.getElementById("modalCloseBtn").addEventListener('click', hideErrorMessagesMod);
+document.getElementById("modalCloseBtn2").addEventListener('click', hideErrorMessagesMod);
 
 document.addEventListener('DOMContentLoaded', initializePageMod);

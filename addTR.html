@@ -21,6 +21,34 @@
 			<div class="form-inline">
 				<h2>Add Trip Report</h2>
 				
+				<!-- Modal 1: Error Messages-->
+				<div id="modal1" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+					  <div class="modal-body">
+						<div class="panel panel-danger">
+							<div class="panel-heading">
+								<h3 class="panel-title">Error</h3>
+							</div>
+							<div class="panel-body" id="ErrorPanelBody">
+								<span id="nameError">- Name cannot be blank.</span>
+								<span id="monthError">- Month not valid.</span>
+								<span id="dayError">- Day not valid.</span>
+								<span id="yearError">- Year not valid.</span>
+								<span id="distElevError">- Distance or Elevation not positive.</span>
+								<br>
+								<button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseBtn">Close</button>
+							</div>
+						</div>
+					  </div>
+					</div>
+
+				  </div>
+				</div>
+
+				
 				<!--Name-->
 				<div class="form-group row">
 					<div class="container">
@@ -185,26 +213,13 @@
 					</div>
 				</div>
 			</div>
-			
-			<!--Error Panel-->
-			<div class="col-sm-7 row">
-				<div id="errorPanel" class="panel panel-danger">
-					<div class="panel-heading">
-						<span>Error</span>
-					</div>
-					<div class="panel-body">
-						<span id="nameError">Name cannot be blank.</span>
-						<span id="monthError">Month not valid.</span>
-						<span id="dayError">Day not valid.</span>
-						<span id="yearError">Year not valid.</span>
-						<span id="distElevError">Distance or Elevation not positive.</span>
-					</div>
-				</div>
-			</div>
+
 
 		</div>
 	
 		<script src='js/jsAlpineAlicia.js'></script>
 		<script src='js/jsAddTR.js'></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
 	</body>
 </html>

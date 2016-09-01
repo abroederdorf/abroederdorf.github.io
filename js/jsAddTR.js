@@ -29,7 +29,7 @@ function validateInputAdd()
 	var str = document.getElementById('submitName').value;
 	if (str == "")
 	{
-		document.getElementById('errorPanel').style.display = "block";
+		$('#modal1').modal('show');
 		document.getElementById("nameError").style.display = "block";
 		numErrors++;
 	}
@@ -39,7 +39,7 @@ function validateInputAdd()
 	var month = Number(number1);
 	if (month < 1 || month > 12)
 	{
-		document.getElementById('errorPanel').style.display = "block";
+		$('#modal1').modal('show');
 		document.getElementById("monthError").style.display = "block";
 		numErrors++;
 	}
@@ -48,7 +48,7 @@ function validateInputAdd()
 	var year = Number(number2);
 	if (year < 2008)
 	{
-		document.getElementById('errorPanel').style.display = "block";
+		$('#modal1').modal('show');
 		document.getElementById("yearError").style.display = "block";
 		numErrors++;
 	}
@@ -59,7 +59,7 @@ function validateInputAdd()
 	{
 		if (day < 1 || day > 30)
 		{
-			document.getElementById('errorPanel').style.display = "block";
+			$('#modal1').modal('show');
 			document.getElementById("dayError").style.display = "block";
 			numErrors++;
 		}
@@ -72,7 +72,7 @@ function validateInputAdd()
 		{
 			if (day < 1 || day > 29)
 			{
-				document.getElementById('errorPanel').style.display = "block";
+				$('#modal1').modal('show');
 				document.getElementById("dayError").style.display = "block";
 				numErrors++;
 			}
@@ -81,7 +81,7 @@ function validateInputAdd()
 		{
 			if (day < 1 || day > 28)
 			{
-				document.getElementById('errorPanel').style.display = "block";
+				$('#modal1').modal('show');
 				document.getElementById("dayError").style.display = "block";
 				numErrors++;
 			}
@@ -91,7 +91,7 @@ function validateInputAdd()
 	{
 		if (day < 1 || day > 31)
 		{
-			document.getElementById('errorPanel').style.display = "block";
+			$('#modal1').modal('show');
 			document.getElementById("dayError").style.display = "block";
 			numErrors++;
 		}
@@ -106,7 +106,7 @@ function validateInputAdd()
 	elev = Number(number);
 	if ((dist < 0) || (elev < 0))
 	{
-		document.getElementById('errorPanel').style.display = "block";
+		$('#modal1').modal('show');
 		document.getElementById("distElevError").style.display = "block";
 		numErrors++;
 	}
@@ -191,7 +191,7 @@ function submitFormAdd()
 //Output: Nothing, but divs' style.display are set to none
 function hideErrorMessagesAdd()
 {
-	document.getElementById('errorPanel').style.display = "none";
+	$('#modal1').modal('hide');
 	document.getElementById("nameError").style.display = "none";
 	document.getElementById("monthError").style.display = "none";
 	document.getElementById("dayError").style.display = "none";
@@ -240,12 +240,13 @@ function initializePage()
 {
 	resetFormAdd();
 	document.getElementById('statusPanel').style.display = "none";
-	document.getElementById('errorPanel').style.display = "none";
+	$('#modal1').modal('hide');
 	
 }
 
 //Event Listeners
 document.getElementById("resetForm").addEventListener('click', resetFormAdd);
 document.getElementById("submitForm").addEventListener('click', submitFormAdd);
+document.getElementById("modalCloseBtn").addEventListener('click', hideErrorMessagesAdd);
 
 document.addEventListener('DOMContentLoaded', initializePage);

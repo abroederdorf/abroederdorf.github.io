@@ -14,28 +14,39 @@
 			<div id="navBar"></div>
 			<script src='jsNavBarBS.js'></script>
 			
-			
 			<!--Search Form-->
 			<h1>Search</h1>
 			<div class="form-inline" id="searchForm">
-			
-				<!--Error Panel-->
-				<div class="col-sm-7 row">
-					<div id="errorPanel" class="panel panel-danger">
+				
+			<!-- Modal 1: Error Messages-->
+			<div id="modal1" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-body">
+					<div class="panel panel-danger">
 						<div class="panel-heading">
-							<span>Error</span>
+							<h3 class="panel-title">Error</h3>
 						</div>
-						<div class="panel-body">
-							<span id="dateErrorUnfilled">Please specify all fields of the date - day, month, and year.</span>
-							<span id="dateErrorDay">The day is not valid for the specified month and year.</span>
-							<span id="dateErrorLessThan">The from date should occur before the to date.</span>
-							<span id="distErrorLessThan">The minimum distance should be less than the maximum distance.</span>
-							<span id="distErrorPositive">The distance values should be greater than 0.</span>
-							<span id="elevErrorLessThan">The minimum elevation gain should be less than the maximum elevation gain.</span>
-							<span id="elevErrorPositive">The elevation gain values should be greater than 0.</span>
+						<div class="panel-body" id="ErrorPanelBody">
+							<span id="dateErrorUnfilled">- Please specify all fields of the date - day, month, and year.</span>
+							<span id="dateErrorDay">- The day is not valid for the specified month and year.</span>
+							<span id="dateErrorLessThan">- The from date should occur before the to date.</span>
+							<span id="distErrorLessThan">- The minimum distance should be less than the maximum distance.</span>
+							<span id="distErrorPositive">- The distance values should be greater than 0.</span>
+							<span id="elevErrorLessThan">- The minimum elevation gain should be less than the maximum elevation gain.</span>
+							<span id="elevErrorPositive">- The elevation gain values should be greater than 0.</span>
+							<br>
+							<button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseBtn">Close</button>
 						</div>
 					</div>
+				  </div>
 				</div>
+
+			  </div>
+			</div>
+				
 				
 				<!--Search Terms-->		
 				<div class="form-group row">

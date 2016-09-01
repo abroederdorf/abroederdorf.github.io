@@ -128,8 +128,8 @@ function createYearDiv(year){
 }
 
 //Name: displayDateData
-//Description: Add rows to table for all of the data in the animal database
-//Input: Animal object array
+//Description: Add rows to table for all of the data in the trip report database
+//Input: Trip report object array
 //Output: Rows added to document table and division shown with results
 function displayDateData(array)
 {
@@ -160,29 +160,32 @@ function displayDateData(array)
 		strBody = "body" + array[i].year;
 		var body = document.getElementById(strBody);
 		
-		//Create row
-		var row = document.createElement('tr');
-		body.appendChild(row);
-		
-		//Add cells
-		var cell = document.createElement('td');
-		cell.className = "text-center cellName";
-		cell.innerHTML = '<a href="' + array[i].pageLink + '">' + array[i].name + '</a>';
-		row.appendChild(cell);
-		cell = document.createElement('td');
-		cell.className = "cellRegion locDateCell";
-		cell.textContent = array[i].subregion;
-		row.appendChild(cell);
-		cell = document.createElement('td');
-		cell.className = "cellDate locDateCell";
-		var numberYear = array[i].year;
-		var yearDigits = Number(numberYear);
-		yearDigits -= 2000;
-		if (yearDigits < 10)
-			yearDigits = '0' + yearDigits;
-		console.log("yearDigits: " + yearDigits);
-		cell.textContent = array[i].month + '.' + array[i].day + '.' + yearDigits;
-		row.appendChild(cell);
+		//Create row if object has page link
+		if (array[i].pageLink != "")
+		{
+			var row = document.createElement('tr');
+			body.appendChild(row);
+			
+			//Add cells
+			var cell = document.createElement('td');
+			cell.className = "text-center cellName";
+			cell.innerHTML = '<a href="' + array[i].pageLink + '">' + array[i].name + '</a>';
+			row.appendChild(cell);
+			cell = document.createElement('td');
+			cell.className = "cellRegion locDateCell";
+			cell.textContent = array[i].subregion;
+			row.appendChild(cell);
+			cell = document.createElement('td');
+			cell.className = "cellDate locDateCell";
+			var numberYear = array[i].year;
+			var yearDigits = Number(numberYear);
+			yearDigits -= 2000;
+			if (yearDigits < 10)
+				yearDigits = '0' + yearDigits;
+			console.log("yearDigits: " + yearDigits);
+			cell.textContent = array[i].month + '.' + array[i].day + '.' + yearDigits;
+			row.appendChild(cell);
+		}
 	}
 	//Hide all divs
 	hideAllBoxes();

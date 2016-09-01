@@ -836,7 +836,29 @@ function nameFilter(tempResults)
 	//Test: Console print results array
 		/*console.log("Results array:");
 		console.log(results);*/
+		
+	//Call next function
+	pageLinkFilter(results);
+}
+
+//pageLinkFilter(tempResults)
+//Iterates through data array and removes those objects with a blank pageLink field
+//Resulting array is passed to displayDataSearch() to display results
+//Input: None
+//Output: Outputs array with only those elements that that have a page link
+//Output array passed to displayDataSearch() to display results
+function pageLinkFilter(tempResults)
+{
+	var results = [];
 	
+	//Filter out those objects without a valid page link
+	var j = 0;
+	for (var i = 0; i < tempResults.length; i++)
+	{
+		if (tempResults[i].pageLink != "")
+			results.push(tempResults[i]);
+	}
+
 	//Print results
 	if (results.length <= 0)
 	{

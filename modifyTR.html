@@ -19,18 +19,56 @@
 			<div class="form-inline" id="searchForm">
 				<h4>Search</h4>
 				
-				<!--Error Panel-->
-				<div class="col-sm-7 row">
-					<div id="errorPanel" class="panel panel-danger">
-						<div class="panel-heading">
-							<span>Error</span>
+				<!-- Modal 1: Search Error Messages-->
+				<div id="modal1" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+					  <div class="modal-body">
+						<div class="panel panel-danger">
+							<div class="panel-heading">
+								<h3 class="panel-title">Error</h3>
+							</div>
+							<div class="panel-body" id="ErrorPanelBody">
+								<span id="dateErrorUnfilled">- Please specify all fields of the date - day, month, and year.</span>
+								<span id="dateErrorDay">- The day is not valid for the specified month and year.</span>
+								<span id="dateErrorLessThan">- The from date should occur before the to date.</span>
+								<br>
+								<button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseBtn">Close</button>
+							</div>
 						</div>
-						<div class="panel-body">
-							<span id="dateErrorUnfilled">Please specify all fields of the date - day, month, and year.</span>
-							<span id="dateErrorDay">The day is not valid for the specified month and year.</span>
-							<span id="dateErrorLessThan">The from date should occur before the to date.</span>
-						</div>
+					  </div>
 					</div>
+
+				  </div>
+				</div>
+				
+				<!-- Modal 2: Update Error Messages-->
+				<div id="modal2" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+					  <div class="modal-body">
+						<div class="panel panel-danger">
+							<div class="panel-heading">
+								<h3 class="panel-title">Error</h3>
+							</div>
+							<div class="panel-body" id="ErrorPanelBody2">
+								<span id="nameError">- Name cannot be blank.</span>
+							<span id="monthError">- Month not valid.</span>
+							<span id="dayError">- Day not valid.</span>
+							<span id="yearError">- Year not valid.</span>
+							<span id="distElevError">- Distance or Elevation not positive.</span>
+								<br>
+								<button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseBtn2">Close</button>
+							</div>
+						</div>
+					  </div>
+					</div>
+
+				  </div>
 				</div>
 					
 				<!--Name & Route-->
@@ -264,22 +302,6 @@
 				</div>
 			</div>	
 			
-			<!--Error Panel-->
-			<div class="col-sm-7 row">
-				<div id="errorUpdatePanel" autofocus required  class="panel panel-danger">
-					<div class="panel-heading">
-						<span>Error</span>
-					</div>
-					<div class="panel-body">
-						<span id="nameError">Name cannot be blank.</span>
-						<span id="monthError">Month not valid.</span>
-						<span id="dayError">Day not valid.</span>
-						<span id="yearError">Year not valid.</span>
-						<span id="distElevError">Distance or Elevation not positive.</span>
-					</div>
-				</div>
-			</div>
-			
 			<!-- Results Table-->
 			<br>
 			<div class="row"></div>
@@ -299,7 +321,7 @@
 				<div class="row"></div>
 				<!--Table-->
 				<div id="resultsTab">
-					<table class="table table-hover">
+					<table class="table table-hover table-bordered">
 						<thead>
 							<tr>
 								<td class="text-center headerCell">Name</td>

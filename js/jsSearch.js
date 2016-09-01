@@ -63,7 +63,7 @@ function validateInputSearch()
 		{
 			if ((day == 0) || (month == 0) || (year == 0))
 			{
-				document.getElementById("errorPanel").style.display = "block";
+				$('#modal1').modal('show');
 				document.getElementById("dateErrorUnfilled").style.display = "block";
 				numErrors++;
 			}
@@ -71,7 +71,7 @@ function validateInputSearch()
 		
 		if (((month == 4) || (month == 6) || (month == 9) || (month == 11)) && (day == 31))
 		{
-			document.getElementById("errorPanel").style.display = "block";
+			$('#modal1').modal('show');
 			document.getElementById("dateErrorDay").style.display = "block";
 			numErrors++;
 		}
@@ -83,7 +83,7 @@ function validateInputSearch()
 			{
 				if (day > 29)
 				{
-					document.getElementById("errorPanel").style.display = "block";
+					$('#modal1').modal('show');
 					document.getElementById("dateErrorDay").style.display = "block";
 					numErrors++;
 				}
@@ -92,7 +92,7 @@ function validateInputSearch()
 			{
 				if (day > 28)
 				{
-					document.getElementById("errorPanel").style.display = "block";
+					$('#modal1').modal('show');
 					document.getElementById("dateErrorDay").style.display = "block";
 					numErrors++;
 				}
@@ -112,7 +112,7 @@ function validateInputSearch()
 		//console.log("To Date: " + toDate + ", From Date: " + fromDate);
 	if (new Date(fromDate).getTime() > new Date(toDate).getTime())
 	{
-		document.getElementById("errorPanel").style.display = "block";
+		$('#modal1').modal('show');
 		document.getElementById("dateErrorLessThan").style.display = "block";
 		numErrors++;
 	}
@@ -127,13 +127,13 @@ function validateInputSearch()
 		maxDist = Number(number2);
 		if (minDist > maxDist)
 		{
-			document.getElementById("errorPanel").style.display = "block";
+			$('#modal1').modal('show');
 			document.getElementById("distErrorLessThan").style.display = "block";
 			numErrors++;
 		}
 		if ((minDist < 0) || (maxDist < 0))
 		{
-			document.getElementById("errorPanel").style.display = "block";
+			$('#modal1').modal('show');
 			document.getElementById("distErrorPositive").style.display = "block";
 			numErrors++;
 		}
@@ -143,7 +143,7 @@ function validateInputSearch()
 		minDist = Number(number1);
 		if (minDist < 0)
 		{
-			document.getElementById("errorPanel").style.display = "block";
+			$('#modal1').modal('show');
 			document.getElementById("distErrorPositive").style.display = "block";
 			numErrors++;
 		}
@@ -153,7 +153,7 @@ function validateInputSearch()
 		maxDist = Number(number2);
 		if (maxDist < 0)
 		{
-			document.getElementById("errorPanel").style.display = "block";
+			$('#modal1').modal('show');
 			document.getElementById("distErrorPositive").style.display = "block";
 			numErrors++;
 		}
@@ -169,13 +169,13 @@ function validateInputSearch()
 		maxElev = Number(number2);
 		if (minElev > maxElev)
 		{
-			document.getElementById("errorPanel").style.display = "block";
+			$('#modal1').modal('show');
 			document.getElementById("elevErrorLessThan").style.display = "block";
 			numErrors++;
 		}
 		if ((minElev < 0) || (maxElev < 0))
 		{
-			document.getElementById("errorPanel").style.display = "block";
+			$('#modal1').modal('show');
 			document.getElementById("elevErrorPositive").style.display = "block";
 			numErrors++;
 		}
@@ -185,7 +185,7 @@ function validateInputSearch()
 		minElev = Number(number1);
 		if (minElev < 0)
 		{
-			document.getElementById("errorPanel").style.display = "block";
+			$('#modal1').modal('show');
 			document.getElementById("elevErrorPositive").style.display = "block";
 			numErrors++;
 		}
@@ -195,7 +195,7 @@ function validateInputSearch()
 		maxElev = Number(number2);
 		if (maxElev < 0)
 		{
-			document.getElementById("errorPanel").style.display = "block";
+			$('#modal1').modal('show');
 			document.getElementById("elevErrorPositive").style.display = "block";
 			numErrors++;
 		}
@@ -228,14 +228,14 @@ function displayDataSearch(resultObjArray)
 	//Add rows with a name key, i.e. valid trip report records
 	for (var i = 0; i < resultObjArray.length; i++)
 	{
-		if (resultObjArray[i].name)
+		if (resultObjArray[i].pageLink)
 		{
 			var divRow = document.createElement('div');
 			divRow.className = "resultRow container col-xs-12";
 			
 			//Create picture div
 			var picDiv = document.createElement('div');
-			picDiv.className = "col-xs-2";
+			picDiv.className = "col-sm-2 hidden-xs";
 			var pic = document.createElement('img');
 			if (resultObjArray[i].imageLink != '')
 				pic.src = resultObjArray[i].imageLink;
@@ -379,7 +379,7 @@ function hideErrorMessagesSearch()
 	document.getElementById("distErrorPositive").style.display = "none";
 	document.getElementById("elevErrorLessThan").style.display = "none";
 	document.getElementById("elevErrorPositive").style.display = "none";
-	document.getElementById("errorPanel").style.display = "none";
+	$('#modal1').modal('hide');
 }
 
 //resetFormSearch()
@@ -516,6 +516,7 @@ document.getElementById("searchOWSLoc").addEventListener('click', function() {to
 document.getElementById("searchOWSLoc").addEventListener('click', checkToggleOWS);
 document.getElementById("modifySearchButton").addEventListener('click', searchFormToggle);
 document.getElementById("searchCurrentDate").addEventListener('click', zeroToDate);
+document.getElementById("modalCloseBtn").addEventListener('click', hideErrorMessagesSearch);
 
 //Initialize Page
 document.addEventListener('DOMContentLoaded', initializePageSearch);
