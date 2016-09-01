@@ -696,13 +696,22 @@ function fromDateFilter(tempResults)
 	//Get query parameters
 	var QmonthFrom, QdayFrom, QyearFrom, QdateFrom;
 	
-	//From Date
-	QmonthFrom = document.getElementById('searchMonthFrom').value;
-	QdayFrom = document.getElementById('searchDayFrom').value;
-	QyearFrom = document.getElementById('searchYearFrom').value;
+	//Get From Date
+	var dateF = $('#dateFromPicker').datepicker('getDate');
+	if (dateF != null)
+	{
+		QyearFrom = dateF.getFullYear();
+		QmonthFrom = dateF.getMonth() + 1;
+		QdayFrom = dateF.getDate();
+	}
+	else
+	{
+		QyearFrom = "1970";
+		QmonthFrom = "1";
+		QdayFrom = "1";
+	}
 	QdateFrom = createDate(QmonthFrom, QdayFrom, QyearFrom);
-	
-	
+		
 	//Search from date 
 	if (QdateFrom != "00/00/0 00:00")
 	{
@@ -741,20 +750,20 @@ function toDateFilter(tempResults)
 	//Get query parameters
 	var QmonthTo, QdayTo, QyearTo, QdateTo;
 	
-	//To Date
-	if (document.getElementById("searchCurrentDate").checked)
+	//Get To Date
+	var dateT = $('#dateToPicker').datepicker('getDate');
+	if (dateT != null)
 	{
-		//Reference: http://stackoverflow.com/questions/1531093/how-to-get-current-date-in-javascript
-		var today = new Date();
-		QdayTo = today.getDate();
-		QmonthTo = today.getMonth()+1; //Jan = 0
-		QyearTo = today.getFullYear();
+		QyearTo = dateT.getFullYear();
+		QmonthTo = dateT.getMonth() + 1;
+		QdayTo = dateT.getDate();
 	}
 	else
 	{
-		QmonthTo = document.getElementById('searchMonthTo').value;
-		QdayTo = document.getElementById('searchDayTo').value;
-		QyearTo = document.getElementById('searchYearTo').value;
+		var today = new Date();
+		QyearTo = today.getFullYear();
+		QmonthTo = today.getMonth() + 1;
+		QdayTo = today.getDate();
 	}
 	QdateTo = createDate(QmonthTo, QdayTo, QyearTo);
 	

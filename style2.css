@@ -182,8 +182,21 @@ td, th{
    border: 1px solid #000000;
 }
 
+
 #searchName, #searchName2, #submitName, #submitPage, #submitImage, #submitImageSlide{
-	max-width: 715px;
+	min-width: 640px;
+}
+
+.ActivityLabel{
+	padding: 6px 12px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 #searchResultsMessage{

@@ -30,83 +30,40 @@ function validateInputSearch()
 	var searchNameV = str.toLowerCase(); 
 		//console.log("Name: " + searchNameV);
 		
-	//Check that dates
-	var formDay, formMonth, formYear, designation, day, month, year, fromDate, toDate;
-	for (var i = 0; i < 2; i++)
+	//Get From Date
+	var dateF = $('#dateFromPicker').datepicker('getDate');
+	if (dateF != null)
 	{
-		formDay = 'searchDay';
-		formMonth = 'searchMonth';
-		formYear = 'searchYear';
-		
-		if (i == 0)
-			designation = 'From'; 
-		else
-			designation = 'To';
-		
-		if (i == 1 && document.getElementById("searchCurrentDate").checked)
-		{
-			//Reference: http://stackoverflow.com/questions/1531093/how-to-get-current-date-in-javascript
-			var today = new Date();
-			day = today.getDate();
-			month = today.getMonth()+1; //Jan = 0
-			year = today.getFullYear();
-		}
-		else
-		{
-			day = document.getElementById(formDay + designation).value;
-			month = document.getElementById(formMonth + designation).value;
-			year = document.getElementById(formYear + designation).value;
-		}
-		
-		//Check that all date fields are specified
-		if ((day != 0) || (month != 0) || (year != 0))
-		{
-			if ((day == 0) || (month == 0) || (year == 0))
-			{
-				$('#modal1').modal('show');
-				document.getElementById("dateErrorUnfilled").style.display = "block";
-				numErrors++;
-			}
-		}
-		
-		if (((month == 4) || (month == 6) || (month == 9) || (month == 11)) && (day == 31))
-		{
-			$('#modal1').modal('show');
-			document.getElementById("dateErrorDay").style.display = "block";
-			numErrors++;
-		}
-		if (month == 2)
-		{
-			var yearMod = year % 4;
-				//console.log("Year mod: " + yearMod);
-			if (yearMod == 0) 
-			{
-				if (day > 29)
-				{
-					$('#modal1').modal('show');
-					document.getElementById("dateErrorDay").style.display = "block";
-					numErrors++;
-				}
-			}
-			else
-			{
-				if (day > 28)
-				{
-					$('#modal1').modal('show');
-					document.getElementById("dateErrorDay").style.display = "block";
-					numErrors++;
-				}
-			}
-		}
-		
-		//Create date strings for use in comparison
-		var tempDate = createDate(month, day, year);		
-		
-		if (i == 0)
-			fromDate = tempDate;
-		else
-			toDate = tempDate;
+		var yearF = dateF.getFullYear();
+		var monthF = dateF.getMonth() + 1;
+		var dayF = dateF.getDate();
 	}
+	else
+	{
+		var yearF = "1970";
+		var monthF = "1";
+		var dayF = "1";
+	}
+	var fromDate = createDate(monthF, dayF, yearF);
+	console.log(fromDate);
+	
+	//Get To Date
+	var dateT = $('#dateToPicker').datepicker('getDate');
+	if (dateT != null)
+	{
+		var yearT = dateT.getFullYear();
+		var monthT = dateT.getMonth() + 1;
+		var dayT = dateT.getDate();
+	}
+	else
+	{
+		var today = new Date();
+		var yearT = today.getFullYear();
+		var monthT = today.getMonth() + 1;
+		var dayT = today.getDate();
+	}
+	var toDate = createDate(monthT, dayT, yearT);
+	console.log(toDate);
 	
 	//Check that the From date is less than the To date 
 		//console.log("To Date: " + toDate + ", From Date: " + fromDate);
@@ -372,8 +329,6 @@ function submitFormSearch()
 //Output: Nothing, but divs' style.display are set to none
 function hideErrorMessagesSearch()
 {
-	document.getElementById("dateErrorUnfilled").style.display = "none";
-	document.getElementById("dateErrorDay").style.display = "none";
 	document.getElementById("dateErrorLessThan").style.display = "none";
 	document.getElementById("distErrorLessThan").style.display = "none";
 	document.getElementById("distErrorPositive").style.display = "none";
@@ -396,11 +351,8 @@ function resetFormSearch()
 	document.getElementById("searchMaxElev").value = "";
 	
 	//Date
-	document.getElementById("searchMonthFrom").value = 0;
-	document.getElementById("searchDayFrom").value = 0;
-	document.getElementById("searchYearFrom").value = 0;
-	zeroToDate();
-	document.getElementById("searchCurrentDate").checked = false;
+	$("#dateFromPicker").datepicker("clearDates");
+	$("#dateToPicker").datepicker("clearDates");
 	
 	//Activity Types
 	document.getElementById("searchHike").checked = false;
@@ -478,17 +430,6 @@ function resultSortInitialize()
 	document.getElementById('sortType2').checked = true;
 }
 
-//zeroToDate()
-//Set to date to 0/0/0 if current date selected
-//Input: None
-//Output: To date fields all set to 0
-function zeroToDate()
-{
-	document.getElementById("searchMonthTo").value = 0;
-	document.getElementById("searchDayTo").value = 0;
-	document.getElementById("searchYearTo").value = 0;
-}
-
 //Initialize Page
 function initializePageSearch()
 {
@@ -515,7 +456,6 @@ document.getElementById("searchSCLoc").addEventListener('click', checkToggleSC);
 document.getElementById("searchOWSLoc").addEventListener('click', function() {toggle("divOWSLoc");});
 document.getElementById("searchOWSLoc").addEventListener('click', checkToggleOWS);
 document.getElementById("modifySearchButton").addEventListener('click', searchFormToggle);
-document.getElementById("searchCurrentDate").addEventListener('click', zeroToDate);
 document.getElementById("modalCloseBtn").addEventListener('click', hideErrorMessagesSearch);
 
 //Initialize Page

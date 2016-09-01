@@ -7,305 +7,253 @@
 		<title>Search Trip Reports</title>
 		<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="style2.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 		<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>    
 	</head>
 	<body>
-		<div id="pageDiv">
+		<div id="pageDiv" class="container">
 			<div id="navBar"></div>
 			<script src='jsNavBarBS.js'></script>
 			
-			<!--Search Form-->
-			<h1>Search</h1>
-			<div class="form-inline" id="searchForm">
-				
 			<!-- Modal 1: Error Messages-->
 			<div id="modal1" class="modal fade" role="dialog">
-			  <div class="modal-dialog">
-
-				<!-- Modal content-->
 				<div class="modal-content">
-				  <div class="modal-body">
-					<div class="panel panel-danger">
-						<div class="panel-heading">
-							<h3 class="panel-title">Error</h3>
-						</div>
-						<div class="panel-body" id="ErrorPanelBody">
-							<span id="dateErrorUnfilled">- Please specify all fields of the date - day, month, and year.</span>
-							<span id="dateErrorDay">- The day is not valid for the specified month and year.</span>
-							<span id="dateErrorLessThan">- The from date should occur before the to date.</span>
-							<span id="distErrorLessThan">- The minimum distance should be less than the maximum distance.</span>
-							<span id="distErrorPositive">- The distance values should be greater than 0.</span>
-							<span id="elevErrorLessThan">- The minimum elevation gain should be less than the maximum elevation gain.</span>
-							<span id="elevErrorPositive">- The elevation gain values should be greater than 0.</span>
-							<br>
-							<button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseBtn">Close</button>
+					<div class="modal-dialog">
+
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="panel panel-danger">
+								<div class="panel-heading">
+									<h3 class="panel-title">Error</h3>
+								</div>
+								<div class="panel-body" id="ErrorPanelBody">
+									<span id="dateErrorUnfilled">- Please specify all fields of the date - day, month, and year.</span>
+									<span id="dateErrorDay">- The day is not valid for the specified month and year.</span>
+									<span id="dateErrorLessThan">- The from date should occur before the to date.</span>
+									<span id="distErrorLessThan">- The minimum distance should be less than the maximum distance.</span>
+									<span id="distErrorPositive">- The distance values should be greater than 0.</span>
+									<span id="elevErrorLessThan">- The minimum elevation gain should be less than the maximum elevation gain.</span>
+									<span id="elevErrorPositive">- The elevation gain values should be greater than 0.</span>
+									<br>
+									<button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseBtn">Close</button>
+								</div>
+							</div>
 						</div>
 					</div>
-				  </div>
 				</div>
-
-			  </div>
 			</div>
+			
+			
+			<!--Search Form-->
+			<div id="searchForm">
+				<div class="row">
+					<h1>Search</h1>
+				</div>	
 				
-				
-				<!--Search Terms-->		
-				<div class="form-group row">
-					<div class="container">
-						<div class="form-group col-sm-12">
-							<label>Name:</label>
-							<input type="text" autofocus required placeholder="Search Terms" class="form-control" name="searchName" id="searchName"> 
+				<!--Search Terms-->	
+				<div class="form-inline">
+					<div class="row">
+						<div class="col-sm-12 col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label class="control-label input-group-addon" for="searchName">Name:</label>
+									<input type="text" autofocus required placeholder="Search Terms" class="form-control" name="searchName" id="searchName"> 
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 				
 				<!--Date-->
-				<div class="form-group col-sm-12 row">
-					<div class="form-group col-sm-4">
-						<span><strong>Date: </strong></span>
-						<label>From</label>
-						<select class="form-control" id="searchMonthFrom" name="searchMonthFrom">
-							<option value="0"> </option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
-						</select>
-						<select class="form-control" id="searchDayFrom" name="searchDayFrom">
-							<option value="0"> </option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
-							<option value="13">13</option>
-							<option value="14">14</option>
-							<option value="15">15</option>
-							<option value="16">16</option>
-							<option value="17">17</option>
-							<option value="18">18</option>
-							<option value="19">19</option>
-							<option value="20">20</option>
-							<option value="21">21</option>
-							<option value="22">22</option>
-							<option value="23">23</option>
-							<option value="24">24</option>
-							<option value="25">25</option>
-							<option value="26">26</option>
-							<option value="27">27</option>
-							<option value="28">28</option>
-							<option value="29">29</option>
-							<option value="30">30</option>
-							<option value="31">31</option>
-						</select>
-						<select class="form-control" id="searchYearFrom" name="searchYearFrom">
-							<option value="0"> </option>
-							<option value="2009">2009</option>
-							<option value="2010">2010</option>
-							<option value="2011">2011</option>
-							<option value="2012">2012</option>
-							<option value="2013">2013</option>
-							<option value="2014">2014</option>
-							<option value="2015">2015</option>
-							<option value="2016">2016</option>
-						</select>
-					</div>
-					<div class="form-group col-sm-6">
-						<label>To</label>
-						<select class="form-control" id="searchMonthTo" name="searchMonthTo">
-							<option value="0"> </option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
-						</select>
-						<select class="form-control" id="searchDayTo" name="searchDayTo">
-							<option value="0"> </option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
-							<option value="13">13</option>
-							<option value="14">14</option>
-							<option value="15">15</option>
-							<option value="16">16</option>
-							<option value="17">17</option>
-							<option value="18">18</option>
-							<option value="19">19</option>
-							<option value="20">20</option>
-							<option value="21">21</option>
-							<option value="22">22</option>
-							<option value="23">23</option>
-							<option value="24">24</option>
-							<option value="25">25</option>
-							<option value="26">26</option>
-							<option value="27">27</option>
-							<option value="28">28</option>
-							<option value="29">29</option>
-							<option value="30">30</option>
-							<option value="31">31</option>
-						</select>
-						<select class="form-control" id="searchYearTo" name="searchYearTo">
-							<option value="0"> </option>
-							<option value="2009">2009</option>
-							<option value="2010">2010</option>
-							<option value="2011">2011</option>
-							<option value="2012">2012</option>
-							<option value="2013">2013</option>
-							<option value="2014">2014</option>
-							<option value="2015">2015</option>
-							<option value="2016">2016</option>
-						</select>
-						<label><input type="checkbox" id="searchCurrentDate" name="searchCurrentDate">Current Date</label><span class="statsTitle"></span>
+				<div class="form-inline">
+					<div class="row">
+						<div class="col-sm-4 col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label class="control-label input-group-addon" for="date">From Date:</label>
+									<div class="input-group date datepicker" data-provide="datepicker" id="dateFromPicker" data-date-start-date="10/01/2009" data-date-end-date="0d">
+										<input type="text" class="form-control" placeholder="MM/DD/YYY" id="searchDateFrom" name="searchDateFrom">
+										<span class="input-group-btn">
+										<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-calendar"></span></button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4 col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label class="control-label input-group-addon" for="date">To Date:</label>
+									<div class="input-group date" data-provide="datepicker" id="dateToPicker" data-date-start-date="10/01/2009" data-date-end-date="0d">
+										<input type="text" class="form-control" placeholder="MM/DD/YYY" id="searchDateTo" name="searchDateTo">
+										<span class="input-group-btn">
+										<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-calendar"></span></button>
+									</div>
+								</div>
+								
+							</div>
+						</div>
 					</div>
 				</div>
-				
+
 				<!--Activity-->
-				<div class="form-group col-sm-12 row">
-					<span class="col-sm-2"><strong>Activity Type: <span class="tab1"></span></strong>
-					<label><input type="checkbox" id="searchHike" name="searchHike"> Hike</label></span>
-					<label class="col-sm-1"><input type="checkbox" id="searchClimb" name="searchClimb"> Climb</label>
-					<label class="col-sm-1"><input type="checkbox" id="searchCrag" name="searchCrag"> Crag</label>
-					<label class="col-sm-1"><input type="checkbox" id="searchBCSki" name="searchBCSki"> BC Ski</label>
+				<div class="form-inline">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<span class="ActivityLabel">Activity Type:</span>
+								<label class="checkbox-inline"><input type="checkbox" id="searchHike" name="searchHike"> Hike</label>
+								<label class="checkbox-inline"><input type="checkbox" id="searchClimb" name="searchClimb"> Climb</label>
+								<label class="checkbox-inline"><input type="checkbox" id="searchCrag" name="searchCrag"> Crag</label>
+								<label class="checkbox-inline"><input type="checkbox" id="searchBCSki" name="searchBCSki"> BC Ski</label>
+							</div>
+						</div>
+					</div>
 				</div>
 
 				<!--Locations-->
-				<div class="form-group col-sm-12 row">
-					<span class="col-sm-2"><strong>Location:</strong></span>
-				</div>
-				<div  class="form-group col-sm-12 row">
-					<div class="locationBox col-sm-3">
-						<label><input type="checkbox" id="searchNCLoc"> North Cascades</label>
-						<div id="divNCLoc">
-							<br><label><input type="checkbox" id="search542Sub" name="search542Sub"> Highway 542</label>
-							<br><label><input type="checkbox" id="search20Sub" name="search20Sub"> Highway 20</label>
-							<br><label><input type="checkbox" id="searchCasRiverSub" name="searchCasRiverSub"> Cascade River Road</label>
-							<br><label><input type="checkbox" id="searchNCSub" name="searchNCSub"> North Cascades</label>
-						</div>
-					</div>	
-					<div class="locationBox col-sm-3">
-						<label><input type="checkbox" id="searchI90Loc"> I-90</label>
-						<div id="divI90Loc">
-							<br><label><input type="checkbox" id="searchIssaSub" name="searchIssaSub"> Issaquah</label>
-							<br><label><input type="checkbox" id="searchNBendSub" name="searchNBendSub"> North Bend</label>
-							<br><label><input type="checkbox" id="searchSnoqSub" name="searchSnoqSub"> Snoqualmie Pass</label>
-							<br><label><input type="checkbox" id="searchI90Sub" name="searchI90Sub"> I-90</label>
-						</div>
-					</div>
-					<div class="locationBox col-sm-3">
-						<label><input type="checkbox" id="searchSCLoc"> South Cascades</label>
-						<div id="divSCLoc">
-							<br><label><input type="checkbox" id="searchMtRainSub" name="searchMtRainSub"> Mount Rainier</label>
-							<br><label><input type="checkbox" id="searchTatooshSub" name="searchTatooshSub"> Tatoosh Range</label>
-							<br><label><input type="checkbox" id="searchSCSub" name="searchSCSub"> South Cascades</label>
+				<div class="form-inline">
+					<div class="row">
+						<div class="col-sm-12 col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+									<span class="ActivityLabel">Location:</span>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div  class="form-group col-sm-12 row">
-					<div class="locationBox col-sm-3">
-						<label><input type="checkbox" id="searchCCLoc"> Central Cascades</label>
-						<div id="divCCLoc">
-							<br><label><input type="checkbox" id="search2Sub" name="search2Sub"> Highway 2</label>
-							<br><label><input type="checkbox" id="searchLoopSub" name="searchLoopSub"> Mountain Loop Highway</label>
-							<br><label><input type="checkbox" id="searchLworthSub" name="searchLworthSub"> Leavenworth</label>
-							<br><label><input type="checkbox" id="searchEnchantSub" name="searchEnchantSub"> Enchantments</label>
-							<br><label><input type="checkbox" id="searchCWSub" name="searchCWSub"> Central Washington</label>
-							<br><label><input type="checkbox" id="searchCCSub" name="searchCCSub"> Central Cascades</label>
+				
+				<div  class="row">
+					<div class="form-group">
+						<div class="locationBox col-sm-offset-2 col-sm-3">
+							<label><input type="checkbox" id="searchNCLoc"> North Cascades</label>
+							<div id="divNCLoc">
+								<br><label><input type="checkbox" id="search542Sub" name="search542Sub"> Highway 542</label>
+								<br><label><input type="checkbox" id="search20Sub" name="search20Sub"> Highway 20</label>
+								<br><label><input type="checkbox" id="searchCasRiverSub" name="searchCasRiverSub"> Cascade River Road</label>
+								<br><label><input type="checkbox" id="searchNCSub" name="searchNCSub"> North Cascades</label>
+							</div>	
+						</div>	
+						<div class="locationBox col-sm-3">
+							<label><input type="checkbox" id="searchI90Loc"> I-90</label>
+							<div id="divI90Loc">
+								<br><label><input type="checkbox" id="searchIssaSub" name="searchIssaSub"> Issaquah</label>
+								<br><label><input type="checkbox" id="searchNBendSub" name="searchNBendSub"> North Bend</label>
+								<br><label><input type="checkbox" id="searchSnoqSub" name="searchSnoqSub"> Snoqualmie Pass</label>
+								<br><label><input type="checkbox" id="searchI90Sub" name="searchI90Sub"> I-90</label>
+							</div>
+						</div>
+						<div class="locationBox col-sm-3">
+							<label><input type="checkbox" id="searchSCLoc"> South Cascades</label>
+							<div id="divSCLoc">
+								<br><label><input type="checkbox" id="searchMtRainSub" name="searchMtRainSub"> Mount Rainier</label>
+								<br><label><input type="checkbox" id="searchTatooshSub" name="searchTatooshSub"> Tatoosh Range</label>
+								<br><label><input type="checkbox" id="searchSCSub" name="searchSCSub"> South Cascades</label>
+							</div>
 						</div>
 					</div>
-					<div class="locationBox col-sm-3">
-						<label><input type="checkbox" id="searchOWSLoc"> Outside Washington State</label>
-						<div id="divOWSLoc">
-							<br><label><input type="checkbox" id="searchCanSub" name="searchCanSub"> Canada</label>
-							<br><label><input type="checkbox" id="searchOrSub" name="searchOrSub"> Oregon</label>
-							<br><label><input type="checkbox" id="searchCaliSub" name="searchCaliSub"> California</label>
-							<br><label><input type="checkbox" id="searchWestSub" name="searchWestSub"> West</label>
-							<br><label><input type="checkbox" id="searchSouthSub" name="searchSouthSub"> South</label>
-							<br><label><input type="checkbox" id="searchOWSSub" name="searchOWSSub"> Outside Washington State</label>
+				</div>
+					
+					<div  class="row">
+						<div class="form-group">
+							<div class="locationBox col-sm-offset-2 col-sm-3">
+								<label><input type="checkbox" id="searchCCLoc"> Central Cascades</label>
+								<div id="divCCLoc">
+									<br><label><input type="checkbox" id="search2Sub" name="search2Sub"> Highway 2</label>
+									<br><label><input type="checkbox" id="searchLoopSub" name="searchLoopSub"> Mountain Loop Highway</label>
+									<br><label><input type="checkbox" id="searchLworthSub" name="searchLworthSub"> Leavenworth</label>
+									<br><label><input type="checkbox" id="searchEnchantSub" name="searchEnchantSub"> Enchantments</label>
+									<br><label><input type="checkbox" id="searchCWSub" name="searchCWSub"> Central Washington</label>
+									<br><label><input type="checkbox" id="searchCCSub" name="searchCCSub"> Central Cascades</label>
+								</div>
+							</div>
+							<div class="locationBox col-sm-3">
+								<label><input type="checkbox" id="searchOWSLoc"> Outside Washington State</label>
+								<div id="divOWSLoc">
+									<br><label><input type="checkbox" id="searchCanSub" name="searchCanSub"> Canada</label>
+									<br><label><input type="checkbox" id="searchOrSub" name="searchOrSub"> Oregon</label>
+									<br><label><input type="checkbox" id="searchCaliSub" name="searchCaliSub"> California</label>
+									<br><label><input type="checkbox" id="searchWestSub" name="searchWestSub"> West</label>
+									<br><label><input type="checkbox" id="searchSouthSub" name="searchSouthSub"> South</label>
+									<br><label><input type="checkbox" id="searchOWSSub" name="searchOWSSub"> Outside Washington State</label>
+								</div>
+							</div>
+							<div class="locationBox col-sm-3">
+								<label><input type="checkbox" id="searchOlyLoc" name="searchOlyLoc"> Olympic Peninsula</label>
+							</div>
 						</div>
 					</div>
-					<div class="locationBox col-sm-3">
-						<label><input type="checkbox" id="searchOlyLoc" name="searchOlyLoc"> Olympic Peninsula</label>
-					</div>
-				</div>		
+					
 				
 				<!--Distance & Elevation-->
-				<div class="form-group col-sm-12 row">
-					<div class="form-group col-sm-4">
-						<span><strong>Total Distance: </strong></span><span class="tab1"></span>
-						<label>Minimum</label>
-						<input type="number" id="searchMinDist" class="form-control" min="0" max="100"> 
-						<span>miles</span>
-					</div>
-					<div class="form-group col-sm-4">
-						<label>Maximum</label>
-						<input type="number" id="searchMaxDist" class="form-control" min="0" max="100">
-						<span>miles</span>
+				<div class="form-inline">
+					<div class="row">
+						<div class="col-sm-4 col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label class="control-label input-group-addon" for="searchMinDist">Min Distance:</label>
+									<input type="number" autofocus required class="form-control" name="searchMinDist" id="searchMinDist"> 
+									<span class="input-group-addon">miles</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4 col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label class="control-label input-group-addon col-sm-offset-1" for="searchMaxDist">Max Distance:</label>
+									<input type="number" autofocus required class="form-control" name="searchMaxDist" id="searchMaxDist"> 
+									<span class="input-group-addon">miles</span>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				
-				<div class="form-group col-sm-12 row">
-					<div class="form-group col-sm-4">
-						<span><strong>Elevation Gain: </strong></span><span class="tab1"></span>
-						<label>Minimum</label>
-						<input type="number" id="searchMinElev" class="form-control" min="0" max="28000"> 
-						<span>feet</span>
-					</div>
-					<div class="form-group col-sm-4">
-						<label>Maximum</label>
-						<input type="number" id="searchMaxElev" class="form-control" min="0" max="28000">
-						<span>feet</span>
+				<div class="form-inline">
+					<div class="row">
+						<div class="col-sm-4 col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label class="control-label input-group-addon" for="searchMinElev">Min Elevation Gain:</label>
+									<input type="number" autofocus required class="form-control" min="0" name="searchMinElev" id="searchMinElev"> 
+									<span class="input-group-addon">feet</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4 col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label class="control-label input-group-addon col-sm-offset-1" for="searchMaxElev">Max Elevation Gain:</label>
+									<input type="number" autofocus required class="form-control" min="0"name="searchMaxElev" id="searchMaxElev"> 
+									<span class="input-group-addon">feet</span>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 
 				
 				<!--Buttons-->
-				<div class="form-group col-sm-12 row buttonGroup">
-					<div class="col-sm-1">
-						<button id="submitForm" class="btn btn-success"><span class='glyphicon glyphicon-search'></span> Search</button>
-					</div>
-					<div class="col-sm-1">
-						<button class="btn btn-info" data-toggle="modal" data-target="#modal1">&nbsp&nbsp&nbsp&nbspHints&nbsp&nbsp&nbsp&nbsp</button>
-					</div>
-					<div class="col-sm-1">
-						<button id="resetForm" class="btn btn-default">Reset Fields</button>
-					</div>
-					
+				<div class="row">
+					<div class="col-sm-6">
+					  <div class="btn-group">
+						<div class="btn-group">
+						  <button id="submitForm" type="button" class="btn btn-success"><span class='glyphicon glyphicon-search'></span> Search</button>
+						</div>
+						<div class="btn-group">
+						  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal3">Hints</button>
+						</div>
+						<div class="btn-group">
+						  <button type="button" id="resetForm" class="btn btn-default">Reset Fields</button>
+						</div>
+					  </div>
+				  </div>
 				</div>
+			</div>	
 				
 				<!--Search Hints-->
-				<!-- Modal 1-->
-				<div id="modal1" class="modal fade" role="dialog">
+				<!-- Modal 3-->
+				<div id="modal3" class="modal fade" role="dialog">
 				  <div class="modal-dialog">
 					<!-- Modal content-->
 					<div class="modal-content">
@@ -333,7 +281,7 @@
 				  </div>
 				</div>
 	
-			</div>  <!--end of form-->
+			
 			
 					
 			<div id="modifySearchDiv">
@@ -389,5 +337,16 @@
 		<script src='js/jsSearch.js'></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+		
+		<script>
+		$('#dateFromPicker').datepicker({
+			autoclose: true
+		});
+		
+		$('#dateToPicker').datepicker({
+			autoclose: true
+		});
+		</script>
 	</body>
 </html>
