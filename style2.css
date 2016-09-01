@@ -183,8 +183,8 @@ td, th{
 }
 
 
-#searchName2, #submitName, #submitPage, #submitImage, #submitImageSlide{
-	min-width: 640px;
+#showKey {
+	background-color: #f1f1f1;
 }
 
 .searchNameWidth{

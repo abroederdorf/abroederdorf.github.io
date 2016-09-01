@@ -7,107 +7,129 @@
 		<title>Modify Database</title>
 		<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="style2.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 		<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>   
 	</head>
 	<body>
-		<div id="pageDiv">
+		<div id="pageDiv" class="container">
 			<div id="navBar"></div>
 			<script src='jsNavBarDBBS.js'></script>
 			
-			<!--Search Form-->
-			<h2>Modify Database</h2>
-			<div class="form-inline" id="searchForm">
-				<h4>Search</h4>
-				
-				<!-- Modal 1: Search Error Messages-->
-				<div id="modal1" class="modal fade" role="dialog">
-				  <div class="modal-dialog">
 
-					<!-- Modal content-->
-					<div class="modal-content">
-					  <div class="modal-body">
-						<div class="panel panel-danger">
-							<div class="panel-heading">
-								<h3 class="panel-title">Error</h3>
-							</div>
-							<div class="panel-body" id="ErrorPanelBody">
-								<span id="dateErrorUnfilled">- Please specify all fields of the date - day, month, and year.</span>
-								<span id="dateErrorDay">- The day is not valid for the specified month and year.</span>
-								<span id="dateErrorLessThan">- The from date should occur before the to date.</span>
-								<br>
-								<button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseBtn">Close</button>
-							</div>
+			<!-- Modal 1: Search Error Messages-->
+			<div id="modal1" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-body">
+					<div class="panel panel-danger">
+						<div class="panel-heading">
+							<h3 class="panel-title">Error</h3>
 						</div>
-					  </div>
+						<div class="panel-body" id="ErrorPanelBody">
+							<span id="dateErrorLessThan">- The from date should occur before the to date.</span>
+							<br>
+							<button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseBtn">Close</button>
+						</div>
 					</div>
-
 				  </div>
 				</div>
-				
-				<!-- Modal 2: Update Error Messages-->
-				<div id="modal2" class="modal fade" role="dialog">
-				  <div class="modal-dialog">
-
-					<!-- Modal content-->
-					<div class="modal-content">
-					  <div class="modal-body">
-						<div class="panel panel-danger">
-							<div class="panel-heading">
-								<h3 class="panel-title">Error</h3>
-							</div>
-							<div class="panel-body" id="ErrorPanelBody2">
-								<span id="nameError">- Name cannot be blank.</span>
-							<span id="monthError">- Month not valid.</span>
-							<span id="dayError">- Day not valid.</span>
-							<span id="yearError">- Year not valid.</span>
+			  </div>
+			</div>
+			
+			<!-- Modal 2: Update Error Messages-->
+			<div id="modal2" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-body">
+					<div class="panel panel-danger">
+						<div class="panel-heading">
+							<h3 class="panel-title">Error</h3>
+						</div>
+						<div class="panel-body" id="ErrorPanelBody2">
+							<span id="nameError">- Name cannot be blank.</span>
+							<span id="dateEmptyError">- Name cannot be blank.</span>
 							<span id="distElevError">- Distance or Elevation not positive.</span>
-								<br>
-								<button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseBtn2">Close</button>
-							</div>
+							<br>
+							<button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseBtn2">Close</button>
 						</div>
-					  </div>
 					</div>
-
 				  </div>
 				</div>
-					
-				<!--Name & Route-->
-				<div class="form-group row">
-					<div class="container">
-						<div class="form-group col-sm-12">
-							<label>Name:</label>
-							<input type="text" autofocus required placeholder="Search Terms" class="form-control" name="searchName2" id="searchName2"> 
+			  </div>
+			</div>
+				
+				
+			<!--Search Form-->
+			<div class="form" id="searchForm">
+				<div class="row">
+					<h2>Modify Database</h2>
+				</div>
+				<div class="row">		
+					<h3>Search</h3>
+				</div>
+				
+				<!--Name-->	
+				<div class="form-inline">
+					<div class="row">
+						<div class="col-sm-12 col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label class="control-label input-group-addon" for="searchName2">Name:</label>
+									<input type="text" autofocus required placeholder="Search Terms" class="form-control searchNameWidth hidden-xs" name="searchName2" id="searchName2"> 
+									<input type="text" autofocus required placeholder="Search Terms" class="form-control visible-xs" name="searchName2" id="searchName2"> 
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>	
+				</div>
 				
 				<!--Date-->
-				<div class="form-group col-sm-12 row">
-					<div class="form-group col-sm-6">
-						<span><strong>Date: </strong></span>
-						<label>From</label>
-						<input type="number" placeholder="Month" id="searchMonthFrom" class="form-control" min="1" max="12"> 
-						<input type="number" placeholder="Day" id="searchDayFrom" class="form-control" min="1" max="31"> 
-						<input type="number" placeholder="Year" id="searchYearFrom" class="form-control" min="2008"> 
-					</div>
-					<div class="form-group col-sm-5">
-						<label>To</label>
-						<input type="number" placeholder="Month" id="searchMonthTo" class="form-control" min="1" max="12"> 
-						<input type="number" placeholder="Day" id="searchDayTo" class="form-control" min="1" max="31"> 
-						<input type="number" placeholder="Year" id="searchYearTo" class="form-control" min="2008"> 
+				<div class="form-inline">
+					<div class="row">
+						<div class="col-sm-4 col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label class="control-label input-group-addon" for="searchDateFrom">From Date:</label>
+									<div class="input-group date" data-provide="datepicker" id="dateFromPicker" data-date-start-date="10/01/2009" data-date-end-date="0d">
+										<input type="text" class="form-control" placeholder="MM/DD/YYY" id="searchDateFrom" name="searchDateFrom">
+										<span class="input-group-btn">
+										<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-calendar"></span></button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4 col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label class="control-label input-group-addon" for="date">To Date:</label>
+									<div class="input-group date" data-provide="datepicker" id="dateToPicker" data-date-start-date="10/01/2009" data-date-end-date="0d">
+										<input type="text" class="form-control" placeholder="MM/DD/YYY" id="searchDateTo" name="searchDateTo">
+										<span class="input-group-btn">
+										<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-calendar"></span></button>
+									</div>
+								</div>
+								
+							</div>
+						</div>
 					</div>
 				</div>
 					
-				<!--Buttons-->
-				<div class="form-group col-sm-12 row buttonGroup">
-					<div class="col-sm-1">
-						<button id="submitSearchForm" class="btn btn-success"><span class='glyphicon glyphicon-search'></span> Search</button>
-					</div>
-					<div class="col-sm-1">
-						<button id="resetSearchForm" class="btn btn-default">Reset Fields</button>
-					</div>
-				</div>	
 
+				<!--Buttons-->
+				<div class="row">
+					<div class="col-sm-6">
+					  <div class="btn-group">
+						<div class="btn-group">
+						  <button id="submitSearchForm" type="button" class="btn btn-success"><span class='glyphicon glyphicon-search'></span> Search</button>
+						</div>
+						<div class="btn-group">
+						  <button type="button" id="resetSearchForm" class="btn btn-default">Reset Fields</button>
+						</div>
+					  </div>
+				  </div>
+				</div>
 			</div>
 			
 			<!--Status Panel-->
@@ -127,105 +149,165 @@
 			<div class="form-inline" id="modifyForm">
 				<h4>Modify Trip Report</h4>
 				<!--Name-->
-				<div class="form-group row">
-					<div class="container">
-						<div class="form-group col-sm-12">
-							<label>Name:</label>
-							<input type="text" class="form-control" id="submitName"> 
+				<div class="form-inline">
+					<div class="row">
+						<div class="col-sm-12 col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label class="control-label input-group-addon" for="submitName">Name:</label>
+									<input type="text" autofocus required placeholder="Name of Adventure" class="form-control searchNameWidth hidden-xs" name="submitName" id="submitName"> 
+									<input type="text" autofocus required placeholder="Name of Adventure" class="form-control visible-xs" name="submitName" id="submitName"> 
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>	
+				</div>
+				
 				
 				<!--Activity and Date-->
-				<div class="form-group col-sm-12 row">
-					<div class="form-group col-sm-3">
-						<label>Activity Type:</label>
-						<select class="form-control" id="submitType" name="submitType">
-							<option value=" "> </option>
-							<option value="Hike">Hike</option>
-							<option value="Climb">Climb</option>
-							<option value="Crag">Crag</option>
-							<option value="Ski">Ski</option>
-						</select>
-					</div>
-					<div class="form-group col-sm-5">
-						<span><strong>Date: </strong></span>
-						<label>From</label>
-						<input type="number" id="submitMonth" class="form-control" min="1" max="12"> 
-						<input type="number" id="submitDay" class="form-control" min="1" max="31"> 
-						<input type="number" id="submitYear" class="form-control" min="2008"> 
+				<div class="form-inline">
+					<div class="row">
+						<div class="col-sm-2 col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label class="control-label input-group-addon" for="date">Activity:</label>
+									<select class="form-control input-group" id="submitType" name="submitType">
+										<option value=" "> </option>
+										<option value="Hike">Hike</option>
+										<option value="Climb">Climb</option>
+										<option value="Crag">Crag</option>
+										<option value="Ski">Ski</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4 col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label class="control-label input-group-addon" for="date">Date:</label>
+									<div class="input-group date" data-provide="datepicker" id="submitDatePicker" data-date-end-date="0d">
+										<input type="text" class="form-control" placeholder="MM/DD/YYY" id="submitDate" name="submitDate">
+										<span class="input-group-btn">
+										<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-calendar"></span></button>
+									</div>
+								</div>
+								
+							</div>
+						</div>
 					</div>
 				</div>
 				
 				<!--Page Link-->
-				<div class="form-group row">
-					<div class="container">
-						<div class="form-group col-sm-12">
-							<label>Page Link:</label>
-							<input type="text" class="form-control" id="submitPage"> 
+				<div class="form-inline">
+					<div class="row">
+						<div class="col-sm-12 col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label class="control-label input-group-addon" for="submitName">Page Link:</label>
+									<input type="text" autofocus required placeholder="Page link" class="form-control searchNameWidth hidden-xs" name="submitPage" id="submitPage"> 
+									<input type="text" autofocus required placeholder="Page link" class="form-control visible-xs" name="submitPage" id="submitPage"> 
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 				
 				<!--Thumbnail Image Link-->
-				<div class="form-group row">
-					<div class="container">
-						<div class="form-group col-sm-12">
-							<label>Thumbnail Image Link:</label>
-							<input type="text" class="form-control" id="submitImage"> 
+				<div class="form-inline">
+					<div class="row">
+						<div class="col-sm-12 col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label class="control-label input-group-addon" for="submitImage">Thumbnail Image Link:</label>
+									<input type="text" autofocus required placeholder="Thumbnail image link for results" class="form-control searchNameWidth hidden-xs" name="submitImage" id="submitImage"> 
+									<input type="text" autofocus required placeholder="Thumbnail image link for results" class="form-control visible-xs" name="submitImage" id="submitImage"> 
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 				
 				<!--Slide Image Link-->
-				<div class="form-group row">
-					<div class="container">
-						<div class="form-group col-sm-12">
-							<label>Slide Image Link:</label>
-							<input type="text" class="form-control" id="submitImageSlide"> 
+				<div class="form-inline">
+					<div class="row">
+						<div class="col-sm-12 col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label class="control-label input-group-addon" for="submitImageSlide">Slide Image Link:</label>
+									<input type="text" autofocus required placeholder="Front page slide image link" class="form-control searchNameWidth hidden-xs" name="submitImageSlide" id="submitImageSlide"> 
+									<input type="text" autofocus required placeholder="Front page slide image link" class="form-control visible-xs" name="submitImageSlide" id="submitImageSlide"> 
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 				
 				<!--Distance and Elevation-->
-				<div class="form-group col-sm-12 row">
-					<div class="form-group col-sm-3">
-						<label>Distance: </label>
-						<input type="number" id="submitDistance" class="form-control" min="0" max="100">
-						<span>miles</span>
-					</div>
-					<div class="form-group col-sm-3">
-						<label>Elevation Gain:</label>
-						<input type="number" id="submitElevation" class="form-control" min="0" max="28000">
-						<span>feet</span>
+				<div class="form-inline">
+					<div class="row">
+						<div class="col-sm-4 col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label class="control-label input-group-addon" for="submitDistance">Distance:</label>
+									<input type="number" autofocus required class="form-control" name="submitDistance" id="submitDistance"> 
+									<span class="input-group-addon">miles</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4 col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label class="control-label input-group-addon col-sm-offset-1" for="submitElevation">Elevation Gain:</label>
+									<input type="number" autofocus required class="form-control" name="submitElevation" id="submitElevation"> 
+									<span class="input-group-addon">feet</span>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			
 				<!--Search Terms-->
-				<div class="form-group row">
-					<div class="container">
-						<div class="form-group col-sm-12">
-							<label>Search Terms:</label>
-							<textarea type="text" class="form-control" id="submitTerms"></textarea>
-							<br><span>(array with items separated by commas i.e. [lookout, green mountain, green, green mountain lookout])</span>
+				<div class="form-inline">
+					<div class="row">
+						<div class="col-sm-12 col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label class="control-label input-group-addon" for="submitTerms">Search Terms:</label>
+									<textarea type="text" class="form-control searchNameWidth hidden-xs" placeholder="[Search, terms]" id="submitTerms"></textarea>
+									<textarea type="text" class="form-control visible-xs" placeholder="[Search, terms]" id="submitTerms"></textarea>
+								</div>
+								<br><span>(array with items separated by commas i.e. [lookout, green mountain, green, green mountain lookout])</span>
+							</div>
 						</div>
 					</div>
 				</div>
 				
 				<!--Key ID-->
-				<div class="form-group row">
-					<div class="container">
-						<div class="form-group col-sm-12">
-							<label>Key:</label>
-							<span class="form-control static" id="showKey"> </span>
+				<div class="form-inline">
+					<div class="row">
+						<div class="col-sm-12 col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label class="control-label input-group-addon" for="submitImageSlide">Key:</label>
+									<span class="form-control inactive static" id="showKey"> </span> 
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 				
 				
 				<!--Locations-->
-				<div class="form-group col-sm-12 row">
-					<span class="col-sm-2"><strong>Location:</strong></span>
+				<div class="form-inline">
+					<div class="row">
+						<div class="col-sm-12 col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+									<span class="ActivityLabel">Location:</span>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div  class="form-group col-sm-12 row">
 					<div class="locationBox col-sm-3">
@@ -294,13 +376,21 @@
 					</div>
 				</div>
 					
-				<!--Hidden Input for Key-->
+				<!--Hidden Input for Key & Buttons-->
 				<input type="hidden" id="hiddenKey">
-				<div class="form-group col-sm-12 row buttonGroup">
-						<button class="btn btn-success" id="submitModifyForm">Modify Trip Report</button>
-						<button class="btn btn-default" onclick="toggle('modifyForm')">Close</button>
+				<div class="row">
+					<div class="col-sm-6">
+					  <div class="btn-group">
+						<div class="btn-group">
+						  <button class="btn btn-success" id="submitModifyForm">Modify Trip Report</button>
+						</div>
+						<div class="btn-group">
+						  <button class="btn btn-default" onclick="toggle('modifyForm')">Close</button>
+						</div>
+					  </div>
+				  </div>
 				</div>
-			</div>	
+			</div>
 			
 			<!-- Results Table-->
 			<br>
@@ -338,11 +428,24 @@
 			</div>
 			
 		</div>
+		<div id="pageFooter"></div>
+			<script src='/jsPageFooter.js'></script>
 	
 		<script src='js/jsAlpineAlicia.js'></script>
 		<script src='js/jsModifySearchTR.js'></script>
 		<script src='js/jsModifyTR.js'></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+		
+		<script>
+		$('#dateFromPicker').datepicker({
+			autoclose: true
+		});
+		
+		$('#dateToPicker').datepicker({
+			autoclose: true
+		});
+		</script>
 	</body>
 </html>

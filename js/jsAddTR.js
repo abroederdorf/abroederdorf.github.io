@@ -34,70 +34,15 @@ function validateInputAdd()
 		numErrors++;
 	}
 		
-	//Check the dates
-	var number1 = document.getElementById("submitMonth").value;
-	var month = Number(number1);
-	if (month < 1 || month > 12)
+	//Check Date is not empty
+	var dateT = $('#submitDatePicker').datepicker('getDate');
+	if (dateT == null)
 	{
 		$('#modal1').modal('show');
-		document.getElementById("monthError").style.display = "block";
+		document.getElementById("dateError").style.display = "block";
 		numErrors++;
 	}
-	
-	var number2 = document.getElementById("submitYear").value;
-	var year = Number(number2);
-	if (year < 2008)
-	{
-		$('#modal1').modal('show');
-		document.getElementById("yearError").style.display = "block";
-		numErrors++;
-	}
-	
-	var number3 = document.getElementById("submitDay").value;
-	var day = Number(number3);
-	if ((month == 4) || (month == 6) || (month == 9) || (month == 11))
-	{
-		if (day < 1 || day > 30)
-		{
-			$('#modal1').modal('show');
-			document.getElementById("dayError").style.display = "block";
-			numErrors++;
-		}
-	}
-	else if (month == 2)
-	{
-		var yearMod = year % 4;
-			//console.log("Year mod: " + yearMod);
-		if (yearMod == 0) 
-		{
-			if (day < 1 || day > 29)
-			{
-				$('#modal1').modal('show');
-				document.getElementById("dayError").style.display = "block";
-				numErrors++;
-			}
-		}
-		else
-		{
-			if (day < 1 || day > 28)
-			{
-				$('#modal1').modal('show');
-				document.getElementById("dayError").style.display = "block";
-				numErrors++;
-			}
-		}
-	}
-	else
-	{
-		if (day < 1 || day > 31)
-		{
-			$('#modal1').modal('show');
-			document.getElementById("dayError").style.display = "block";
-			numErrors++;
-		}
-	}	
 		
-	
 	//Check Distance Inputs
 	var dist, elev;
 	number = document.getElementById("submitDistance").value;
@@ -127,12 +72,13 @@ function submitFormAdd()
 	{
 		//Get data
 		console.log("No errors, get data");
-		var name, type, month, day, year, distance, elevation, region, subregion, imageLink, pageLink, searchTerms, imageSlide, loc, str;
+		var name, type, date, month, day, year, distance, elevation, region, subregion, imageLink, pageLink, searchTerms, imageSlide, loc, str;
 		name = document.getElementById('submitName').value;
 		type = document.getElementById('submitType').value;
-		month = document.getElementById('submitMonth').value;
-		day = document.getElementById('submitDay').value;
-		year = document.getElementById('submitYear').value;
+		date = $('#submitDatePicker').datepicker('getDate');
+		year = date.getFullYear();
+		month = date.getMonth() + 1;
+		day = date.getDate();
 		distance = document.getElementById('submitDistance').value;
 		elevation = document.getElementById('submitElevation').value;
 		imageLink = document.getElementById('submitImage').value;
@@ -193,9 +139,6 @@ function hideErrorMessagesAdd()
 {
 	$('#modal1').modal('hide');
 	document.getElementById("nameError").style.display = "none";
-	document.getElementById("monthError").style.display = "none";
-	document.getElementById("dayError").style.display = "none";
-	document.getElementById("yearError").style.display = "none";
 	document.getElementById("distElevError").style.display = "none";
 }
 
@@ -207,9 +150,8 @@ function resetFormAdd()
 {
 	//Text Fields
 	document.getElementById("submitName").value = "";
-	document.getElementById("submitMonth").value = "";
-	document.getElementById("submitDay").value = "";
-	document.getElementById("submitYear").value = "";
+	$("#submitDatePicker").datepicker("clearDates");
+	document.getElementById("submitType").value = " ";
 	document.getElementById("submitDistance").value = "";
 	document.getElementById("submitElevation").value = "";
 	document.getElementById("submitImage").value = "";

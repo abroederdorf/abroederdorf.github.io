@@ -105,8 +105,10 @@
 				  </div>
 				  <div class="panel-body">
 					<center>
-						<iframe src='https://connect.garmin.com/activity/embed/1057726836' width='465' height='500' frameborder='0'></iframe>
+						<iframe class="hidden-xs" src='https://connect.garmin.com/activity/embed/1057726836' width='465' height='500' frameborder='0'></iframe>
+						<a target="_window" href="https://connect.garmin.com/modern/activity/1057726836" class="btn btn-warning visible-xs" role="button"><span class="glyphicon glyphicon-stats"></span> Stats for this adventure</a>
 					</center>
+					<br>
 					<center>
 						<a target="_window" href="https://goo.gl/photos/seoxY8gfWbnYtHyB7" class="btn btn-info" role="button"><span class="glyphicon glyphicon-picture"></span> Entire photo album for this adventure</a>
 					</center>
@@ -114,6 +116,8 @@
 				</div>
 			</center>
 		</div>
+		<div id="pageFooter"></div>
+			<script src='/jsPageFooter.js'></script>
 		
 		<script src='/js/jsAlpineAlicia.js'></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

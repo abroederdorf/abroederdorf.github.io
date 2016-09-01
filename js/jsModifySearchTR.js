@@ -27,76 +27,42 @@ function trSearchObj(key, name, month, day, year, subregion, region, type, searc
 //corresponding input field and returns false
 function validateModSearchInput()
 {
-//Check the dates
-	var formDay, formMonth, formYear, designation, day, month, year, fromDate, toDate;
 	var numErrors = 0;
-	
-	hideErrorMessagesMod();
-	
-	for (var i = 0; i < 2; i++)
+
+	//Get From Date
+	var dateF = $('#dateFromPicker').datepicker('getDate');
+	if (dateF != null)
 	{
-		formDay = 'searchDay';
-		formMonth = 'searchMonth';
-		formYear = 'searchYear';
-		
-		if (i == 0)
-			designation = 'From'; 
-		else
-			designation = 'To';
-		
-		day = document.getElementById(formDay + designation).value;
-		month = document.getElementById(formMonth + designation).value;
-		year = document.getElementById(formYear + designation).value;
-		
-		//Check that all date fields are specified
-		if ((day != 0) || (month != 0) || (year != 0))
-		{
-			if ((day == 0) || (month == 0) || (year == 0))
-			{
-				$('#modal1').modal('show');
-				document.getElementById("dateErrorUnfilled").style.display = "block";
-				numErrors++;
-			}
-		}
-		
-		if (((month == 4) || (month == 6) || (month == 9) || (month == 11)) && (day == 31))
-		{
-			$('#modal1').modal('show');
-			document.getElementById("dateErrorDay").style.display = "block";
-			numErrors++;
-		}
-		if (month == 2)
-		{
-			var yearMod = year % 4;
-				//console.log("Year mod: " + yearMod);
-			if (yearMod == 0) 
-			{
-				if (day > 29)
-				{
-					$('#modal1').modal('show');
-					document.getElementById("dateErrorDay").style.display = "block";
-					numErrors++;
-				}
-			}
-			else
-			{
-				if (day > 28)
-				{
-					$('#modal1').modal('show');
-					document.getElementById("dateErrorDay").style.display = "block";
-					numErrors++;
-				}
-			}
-		}
-		
-		//Create date strings for use in comparison
-		var tempDate = createDate(month, day, year);		
-		
-		if (i == 0)
-			fromDate = tempDate;
-		else
-			toDate = tempDate;
+		var yearF = dateF.getFullYear();
+		var monthF = dateF.getMonth() + 1;
+		var dayF = dateF.getDate();
 	}
+	else
+	{
+		var yearF = "1970";
+		var monthF = "1";
+		var dayF = "1";
+	}
+	var fromDate = createDate(monthF, dayF, yearF);
+	console.log(fromDate);
+	
+	//Get To Date
+	var dateT = $('#dateToPicker').datepicker('getDate');
+	if (dateT != null)
+	{
+		var yearT = dateT.getFullYear();
+		var monthT = dateT.getMonth() + 1;
+		var dayT = dateT.getDate();
+	}
+	else
+	{
+		var today = new Date();
+		var yearT = today.getFullYear();
+		var monthT = today.getMonth() + 1;
+		var dayT = today.getDate();
+	}
+	var toDate = createDate(monthT, dayT, yearT);
+	console.log(toDate);
 	
 	//Check that the From date is less than the To date 
 		//console.log("To Date: " + toDate + ", From Date: " + fromDate);
@@ -106,6 +72,7 @@ function validateModSearchInput()
 		document.getElementById("dateErrorLessThan").style.display = "block";
 		numErrors++;
 	}
+	
 	
 	if (numErrors == 0)
 		return true;
@@ -127,9 +94,7 @@ function updateTR(key)
 	document.getElementById("submitPage").value = "";
 	document.getElementById("submitDistance").value = "";
 	document.getElementById("submitElevation").value = "";
-	document.getElementById("submitMonth").value = "";
-	document.getElementById("submitDay").value = "";
-	document.getElementById("submitYear").value = "";
+	$("#submitDatePicker").datepicker("clearDates");
 	document.getElementById("submitTerms").value = "";
 	document.getElementById("showKey").textContent = "";
 	//Locations
@@ -144,7 +109,7 @@ function updateTR(key)
 		document.getElementById(str).checked = false;
 	}
 	
-	var name, type, month, day, year, pageLink, imageLink, region, subregion, searchTerms, strDistance, distance, strElevation, elevation, imageSlide;
+	var name, type, date, month, day, year, pageLink, imageLink, region, subregion, searchTerms, strDistance, distance, strElevation, elevation, imageSlide;
 
 	//Get key from form submitted
 	var keyID = key.value;
@@ -174,9 +139,7 @@ function updateTR(key)
 		document.getElementById("submitPage").value = pageLink;
 		document.getElementById("submitDistance").value = distance;
 		document.getElementById("submitElevation").value = elevation;
-		document.getElementById("submitMonth").value = month;
-		document.getElementById("submitDay").value = day;
-		document.getElementById("submitYear").value = year;
+		$("#submitDatePicker").datepicker('setDate', new Date(year, month - 1, day));
 		document.getElementById("submitTerms").value = searchTerms;
 		document.getElementById("hiddenKey").value = keyID;
 		document.getElementById("showKey").textContent = keyID;
@@ -378,17 +341,37 @@ function submitModSearchForm()
 		Qname = document.getElementById('searchName2').value;
 
 		//From Date
-		QmonthFrom = document.getElementById('searchMonthFrom').value;
-		QdayFrom = document.getElementById('searchDayFrom').value;
-		QyearFrom = document.getElementById('searchYearFrom').value;
+		var dateF = $('#dateFromPicker').datepicker('getDate');
+		if (dateF != null)
+		{
+			QyearFrom = dateF.getFullYear();
+			QmonthFrom = dateF.getMonth() + 1;
+			QdayFrom = dateF.getDate();
+		}
+		else
+		{
+			QyearFrom = "";
+			QmonthFrom = "";
+			QdayFrom = "";
+		}
 		QdateFrom = createDate(QmonthFrom, QdayFrom, QyearFrom);
 		
 		//To Date
-		QmonthTo = document.getElementById('searchMonthTo').value;
-		QdayTo = document.getElementById('searchDayTo').value;
-		QyearTo = document.getElementById('searchYearTo').value;
-		QdateTo = createDate(QmonthTo, QdayTo, QyearTo);	
-		
+		var dateT = $('#dateToPicker').datepicker('getDate');
+		if (dateT != null)
+		{
+			QyearTo = dateT.getFullYear();
+			QmonthTo = dateT.getMonth() + 1;
+			QdayTo = dateT.getDate();
+		}
+		else
+		{
+			QyearTo = "";
+			QmonthTo = "";
+			QdayTo = "";
+		}
+		QdateTo = createDate(QmonthTo, QdayTo, QyearTo);
+		//console.log(QdateTo);		
 		
 		//Get data
 		var name, type, month, day, year, region, subregion, searchTerms, TR, date, keys;
@@ -424,6 +407,7 @@ function submitModSearchForm()
 			});	
 			
 			//Search from date 
+			//console.log("From date: " + QdateFrom);
 			if (QdateFrom != "0/0/ 00:00")
 			{
 				for (var i = 0; i < tempResults.length; i++)
@@ -452,6 +436,7 @@ function submitModSearchForm()
 			results = [];
 			
 			//Search to date 
+			//console.log("To date: " + QdateTo);
 			if (QdateTo != "0/0/ 00:00")
 			{
 				for (var i = 0; i < tempResults.length; i++)
@@ -470,6 +455,7 @@ function submitModSearchForm()
 					results[i] = tempResults[i];
 				}
 			}
+			//console.log(results);
 		
 			//Assign results to temp results and clear results to get only those that make it through this filter
 			tempResults = [];
@@ -550,15 +536,10 @@ function submitModSearchForm()
 function hideErrorMessagesMod()
 {
 	$('#modal1').modal('hide');
-	document.getElementById("dateErrorUnfilled").style.display = "none";
-	document.getElementById("dateErrorDay").style.display = "none";
 	document.getElementById("dateErrorLessThan").style.display = "none";
 	
 	$('#modal2').modal('hide');
 	document.getElementById("nameError").style.display = "none";
-	document.getElementById("monthError").style.display = "none";
-	document.getElementById("dayError").style.display = "none";
-	document.getElementById("yearError").style.display = "none";
 	document.getElementById("distElevError").style.display = "none";
 	
 	document.getElementById("statusPanel").style.display = "none";
@@ -572,12 +553,8 @@ function resetModSearchForm()
 {
 	//Text Fields
 	document.getElementById("searchName2").value = "";
-	document.getElementById("searchMonthFrom").value = "";
-	document.getElementById("searchDayFrom").value = "";
-	document.getElementById("searchYearFrom").value = "";
-	document.getElementById("searchMonthTo").value = "";
-	document.getElementById("searchDayTo").value = "";
-	document.getElementById("searchYearTo").value = "";
+	$("#dateFromPicker").datepicker("clearDates");
+	$("#dateToPicker").datepicker("clearDates");
 	
 	//Hide error messages
 	hideErrorMessagesMod();

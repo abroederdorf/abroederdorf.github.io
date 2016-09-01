@@ -35,70 +35,14 @@ function validateInputUpdate()
 		numErrors++;
 	}
 		
-	//Check the dates
-	var number1 = document.getElementById("submitMonth").value;
-	var month = Number(number1);
-	if (month < 1 || month > 12)
+	//Check Date is not empty
+	var dateT = $('#submitDatePicker').datepicker('getDate');
+	if (dateT == null)
 	{
 		$('#modal2').modal('show');
-		document.getElementById("monthError").style.display = "block";
+		document.getElementById("dateEmptyError").style.display = "block";
 		numErrors++;
 	}
-	
-	var number2 = document.getElementById("submitYear").value;
-	var year = Number(number2);
-	if (year < 2008)
-	{
-		$('#modal2').modal('show');
-		document.getElementById("yearError").style.display = "block";
-		numErrors++;
-	}
-	
-	var number3 = document.getElementById("submitDay").value;
-	var day = Number(number3);
-	if ((month == 4) || (month == 6) || (month == 9) || (month == 11))
-	{
-		if (day < 1 || day > 30)
-		{
-			$('#modal2').modal('show');
-			document.getElementById("dayError").style.display = "block";
-				console.log("ValidateInputUpdate Day Error in Error Update Panel");
-			numErrors++;
-		}
-	}
-	else if (month == 2)
-	{
-		var yearMod = year % 4;
-			//console.log("Year mod: " + yearMod);
-		if (yearMod == 0) 
-		{
-			if (day < 1 || day > 29)
-			{
-				$('#modal2').modal('show');
-				document.getElementById("dayError").style.display = "block";
-				numErrors++;
-			}
-		}
-		else
-		{
-			if (day < 1 || day > 28)
-			{
-				$('#modal2').modal('show');
-				document.getElementById("dayError").style.display = "block";
-				numErrors++;
-			}
-		}
-	}
-	else
-	{
-		if (day < 1 || day > 31)
-		{
-			$('#modal2').modal('show');
-			document.getElementById("dayError").style.display = "block";
-			numErrors++;
-		}
-	}	
-		
 	
 	//Check Distance Inputs
 	var dist, elev;
@@ -129,12 +73,13 @@ function submitUpdateForm()
 	{
 		//Get data
 		//console.log("No errors, get data");
-		var name, type, month, day, year, distance, elevation, region, subregion, imageLink, pageLink, imageSlide, searchTerms, keyId, str;
+		var name, type, date, month, day, year, distance, elevation, region, subregion, imageLink, pageLink, imageSlide, searchTerms, keyId, str;
 		name = document.getElementById('submitName').value;
 		type = document.getElementById('submitType').value;
-		month = document.getElementById('submitMonth').value;
-		day = document.getElementById('submitDay').value;
-		year = document.getElementById('submitYear').value;
+		date = $('#submitDatePicker').datepicker('getDate');
+		year = date.getFullYear();
+		month = date.getMonth() + 1;
+		day = date.getDate();
 		distance = document.getElementById('submitDistance').value;
 		elevation = document.getElementById('submitElevation').value;
 		imageLink = document.getElementById('submitImage').value;
