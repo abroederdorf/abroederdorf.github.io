@@ -183,7 +183,11 @@ td, th{
 }
 
 
-#searchName, #searchName2, #submitName, #submitPage, #submitImage, #submitImageSlide{
+#searchName2, #submitName, #submitPage, #submitImage, #submitImageSlide{
+	min-width: 640px;
+}
+
+.searchNameWidth{
 	min-width: 640px;
 }
 
