@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Mountain Weather</title>
+		<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="style2.css">
+		<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>   
+	</head>
+	<body>
+		<div id="pageDiv" class="container">
+			<div id="navBar"></div>
+			<script src='jsNavBarBS.js'></script>
+			<h1>Weather</h1>
+			<center>
+				<iframe width='100%' frameBorder='0' style='height: 85vh; margin: 25px 0;' src='https://maps.darksky.net/@precipitation_rate,47.525,-120.421,7?embed=true&timeControl=true&fieldControl=true&defaultField=precipitation_rate&defaultUnits=_inph'></iframe>
+			</center>
+			<p class="pageDescription">Weather reports for various mountain areas.</p>
+			<div id="showButtons" class="showAllBut">
+				<span><button type=button class="btn btn-default" id="showAll">Show All</button></span>
+				<span><button type=button class="btn btn-default" id="hideAll">Hide All</button></span>
+			</div>
+			<br>
+			<div id="crag">
+				<div class="resultRow container col-xs-12">
+					<button onclick="toggle('cragInner')" class="btn btn-default">+</button><strong>&nbsp&nbsp Cragging Areas </strong>
+					<div id="cragInner" class="innerContainer">
+						<div class="col-xs-12 col-sm-4">
+							<ul>
+								<li><a href="http://forecast.weather.gov/MapClick.php?lat=47.543163654317325&lon=-120.71846008300781&site=otx&unit=0&lg=en&FcstType=text#.WOrVi4jyvb0">Leavenworth - Icicle Creek</a></li>
+								<li><a href="http://forecast.weather.gov/MapClick.php?lon=-120.70841492158591&lat=47.58821829285097#.WOrWU4jyvb0">Leavenworth - Tumwater Canyon</a></li>
+								<li><a href="http://forecast.weather.gov/MapClick.php?lat=46.99430443309905&lon=-119.97688293457031&site=pdt&unit=0&lg=en&FcstType=text#.WOrVjIjyvb0">Vantage</a></li>
+							</ul>
+						</div>
+						<div class="col-xs-12 col-sm-2">
+							<ul>
+								<li><a href="http://forecast.weather.gov/MapClick.php?lat=47.821453962500016&lon=-121.56844139099121&site=sew&unit=0&lg=en&FcstType=text#.WOrVj4jyvb0">Index</a></li>
+								<li><a href="http://forecast.weather.gov/MapClick.php?lat=47.43807362350206&lon=-121.65555953979492&site=sew&unit=0&lg=en&FcstType=text#.WOrVjIjyvb0">Exit 38</a></li>
+							</ul>
+						</div>
+						<div class="col-xs-12 col-sm-3">
+							<ul>
+								<li><a href="http://forecast.weather.gov/MapClick.php?lat=48.4537&lon=-122.6254#.WOrXTYjyvb0">Mount Erie</a></li>
+								<li><a href="http://forecast.weather.gov/MapClick.php?CityName=Mazama&state=WA&site=OTX&textField1=48.5922&textField2=-120.403&e=0#.WOrVkYjyvb0">Mazama</a></li>
+							</ul>
+						</div>
+						<div class="col-xs-12 col-sm-3">
+							<ul>
+								<li><a href="https://www.wunderground.com/cgi-bin/findweather/hdfForecast?query=squamish%2C+bc">Squamish</a></li>
+								<li><a href="http://forecast.weather.gov/MapClick.php?lat=44.369514446465836&lon=-121.1433219909668&site=pdt&unit=0&lg=en&FcstType=text#.WOrVj4jyvb0">Smith</a></li>
+								<li><a href="http://forecast.weather.gov/MapClick.php?lat=46.70314393319737&lon=-120.89286804199219&site=pdt&unit=0&lg=en&FcstType=text#.WOrVkIjyvb0">Tieton</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div id="avy">
+				<div class="resultRow container col-xs-12">
+					<button onclick="toggle('avyInner')" class="btn btn-default">+</button><strong>&nbsp&nbsp Avalanche Reports </strong>
+					<div id="avyInner" class="innerContainer">
+						<br>
+						<h5><a href="http://www.nwac.us/">NWAC</a></h5>
+						<div class="col-xs-12 col-sm-3">
+							<ul>
+								<li><a href="http://www.nwac.us/avalanche-forecast/current/cascade-west-snoqualmie-pass/">Snoqualmie Pass</a></li>
+								<li><a href="http://www.nwac.us/avalanche-forecast/current/cascade-west-stevens-pass/">Stevens Pass</a></li>
+								<li><a href="http://www.nwac.us/avalanche-forecast/current/olympics/">Olympics</a></li>
+							</ul>
+						</div>
+						<div class="col-xs-12 col-sm-3">
+							<ul>
+								<li><a href="http://www.nwac.us/avalanche-forecast/current/cascade-west-central/">Central Cascades - West</a></li>
+								<li><a href="http://www.nwac.us/avalanche-forecast/current/cascade-east-central/">Central Cascades - East</a></li>
+							</ul>
+						</div>
+						<div class="col-xs-12 col-sm-3">
+							<ul>
+								<li><a href="http://www.nwac.us/avalanche-forecast/current/cascade-west-north-baker/">North Cascades - West</a></li>
+								<li><a href="http://www.nwac.us/avalanche-forecast/current/cascade-east-north/">North Cascades - East</a></li>
+							</ul>
+						</div>
+						<div class="col-xs-12 col-sm-3">
+							<ul>
+								<li><a href="http://www.nwac.us/avalanche-forecast/current/cascade-west-south/">South Cascades - West</a></li>
+								<li><a href="http://www.nwac.us/avalanche-forecast/current/cascade-east-south/">South Cascades - East</a></li>
+								<li><a href="http://www.nwac.us/avalanche-forecast/current/mt-hood/">Mount Hood</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div id="cc">
+				<div class="resultRow container col-xs-12">
+					<button onclick="toggle('ccInner')" class="btn btn-default">+</button><strong>&nbsp&nbsp Central and South Cascades </strong>
+					<div id="ccInner" class="innerContainer">
+						<table class="table table-hover" id="i90Tbl">
+							<tr>
+								<td colspan=4><h3 class="containerH3">I-90</h3></td>
+							</tr>
+							<tr>
+								<td>Commonwealth Basin</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lat=47.438538059325126&lon=-121.4015007019043#.WOrcG4grLb0">Base - 3087'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.39261886166483&lat=47.43493807871175#.WOrcgYgrLb0">Upper Basin - 5364'</a></td>
+							</tr>
+							<tr>
+								<td>Bandera</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.54567286252338&lat=47.40130306300219#.WOrwaYgrJnI">Base - 1713'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.53806621247941&lat=47.41533412076197#.WOrwLogrJnI">Upper Mountain - 4760'</a></td>
+							</tr>
+							<tr>
+								<td>Teneriffe</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.70202046335342&lat=47.49550112679702#.WOrzgYgrJnI">Base - 1273'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.67275530244531&lat=47.51785032255435#.WOrzoYgrJnI">Upper Mountain - 3924'</a></td>
+							</tr>
+							<tr>
+								<td>McClellan</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.6006118423623&lat=47.42057658816398#.WOr0aogrJnI">Base - 1798'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lat=47.40996762926793&lon=-121.6183090209961#.WOrz1IgrJnI">Upper Mountain - 4429'</a></td>
+							</tr>
+							<tr>
+								<td>Tiger Mountain</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.98306044788077&lat=47.5300253357845#.WOr034grJnI">Base - 600'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.97528459907255&lat=47.50384230575119#.WOr1CIgrJnI">Upper Mountain - 2799'</a></td>
+							</tr>
+							<tr>
+								<td colspan=4><h3 class="containerH3">Highway 2</h3></td>
+							</tr>
+							<tr>
+								<td>Mount Baring</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.45456951448126&lat=47.790728588382535#.WOr3TogrJnI">Base - 3035'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.35364229668478&lat=47.77634660310943#.WOr3Z4grJnI">Upper Mountain - 4846'</a></td>
+							</tr>
+							<tr>
+								<td>Mount Index</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.56651521403757&lat=47.803682619968015#.WOr3u4grJnI">Base - 988'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lat=47.77625204393236&lon=-121.57093048095703&site=sew&unit=0&lg=en&FcstType=text#.WOr26ogrJnI">Upper Mountain - 5272'</a></td>
+							</tr>
+							<tr>
+								<td>Arrowhead</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-120.94872934204426&lat=47.777059073408964#.WOr50IgrJnI">Base - 4009'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-120.98528237153718&lat=47.748947434804336#.WOr59IgrJnI">Upper Mountain - 5069'</a></td>
+							</tr>
+							<tr>
+								<td colspan=4><h3 class="containerH3">Leavenworth/Enchantments</h3></td>
+							</tr>
+							<tr>
+								<td>Ingalls</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-120.93738007447548&lat=47.436442277657704#.WOr654grJnI">Base - 4770'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lat=47.47150252462612&lon=-120.9470272064209&site=otx&unit=0&lg=en&FcstType=text#.WOr6YogrJnI">Upper Mountain - 7211'</a></td>
+							</tr>
+							<tr>
+								<td>Mount Stuart</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-120.93738007447548&lat=47.436442277657704#.WOr654grJnI">Base - 4770'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-120.83119989473042&lat=47.47848432021351#.WOr7RogrJnI">Upper Mountain - 8238'</a></td>
+							</tr>
+							<tr>
+								<td>Colchuck Lake</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-120.74958884736716&lat=47.541547605564716#.WOr8bogrJnI">Base - 3166' </a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-120.83350410823263&lat=47.49417842267607#.WOr7s4grJnJ">Lake - 4695'</a></td>
+							</tr>
+							<tr>
+								<td>Enchantments Core</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-120.74958884736716&lat=47.541547605564716#.WOr8bogrJnI">Base - 3166'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-120.83119989473042&lat=47.47848432021351#.WOr7RogrJnI">Upper Mountain - 8283'</a></td>
+							</tr>
+							<tr>
+								<td>Snow Lake</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-120.71221629102303&lat=47.543485383485034#.WOr8yIgrJnI">Base - 2060'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-120.74494894712868&lat=47.48492455811663#.WOr8oIgrJnI">Lake - 5003'</a></td>
+							</tr>
+							
+							<tr>
+								<td colspan=4><h3 class="containerH3">Mountain Loop Highway</h3></td>
+							</tr>
+							<tr>
+								<td>Gothic Basin/Vesper Peak</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.47969039131844&lat=48.03123086798766#.WOsBPYgrJnI">Base - 2438'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.51759703813252&lat=48.012502097903365#.WOsA6ogrJnI">Upper Mountain - 5709'</a></td>
+							</tr>
+							<tr>
+								<td>Devils Basin/Mount Dickerman</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.55079334266485&lat=48.086031063068845#.WOsCAYgrJnI">Base - 2087'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.470874586711&lat=48.06865253132466#.WOsCNYgrJnI">Upper Mountain - 4780'</a></td>
+							</tr>
+							<tr>
+								<td>Pilchuck</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.81481349490375&lat=48.070629559266365#.WOsBzYgrJnI">Base - 3114'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.65891415059951&lat=47.99862935610858#.WOsBqYgrJnI">Upper Mountain - 4259'</a></td>
+							</tr>
+							
+							<tr>
+								<td colspan=4><h3 class="containerH3">Tatoosh</h3></td>
+							</tr>
+							<tr>
+								<td>Tatoosh Range</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.80750523143573&lat=46.749117715106934#.WOsCyIgrJnI">Base - 2920'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lat=46.754446182324905&lon=-121.75649642944336&site=pdt&unit=0&lg=en&FcstType=text#.WOsC8ogrJnJ">Mid Mountain - 4557'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.66550000899124&lat=46.7061363210467#.WOsDcYgrJnI">Upper Mountain - 5663'</a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div id="nc">
+				<div class="resultRow container col-xs-12">
+					<button onclick="toggle('ncInner')" class="btn btn-default">+</button><strong>&nbsp&nbsp North Cascades </strong>
+					<div id="ncInner" class="innerContainer">
+						<table class="table table-hover">
+							<tr>
+								<td colspan=4><h3 class="containerH3">Mount Baker</h3></td>
+							</tr>
+							<tr>
+								<td>Table Mountain</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.67864167563634&lat=48.86356597753192#.WOsF64grJnI">Base - 4265'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.70954328017838&lat=48.85087974994664#.WOsF1ogrJnI">Upper Mountain - 5367'</a></td>
+							</tr>
+							<tr>
+								<td>Shuksan</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.65860966624591&lat=48.859110635131884#.WOsIfYgrJnJ">Base - 2808'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lat=48.83110812393021&lon=-121.60292387008667&site=sew&unit=0&lg=en&FcstType=text#.WOsFZogrJnI">Upper Mountain - 8238'</a></td>
+							</tr>
+							<tr>
+								<td>Yellow Aster Butte</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.66642550083286&lat=48.940275752013974#.WOsG64grJnI">Base - 4350'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.639191668412&lat=48.92726334340705#.WOsGxogrJnI">Upper Mountain - 6411'</a></td>
+							</tr>
+							
+							<tr>
+								<td colspan=4><h3 class="containerH3">Highway 20</h3></td>
+							</tr>
+							<tr>
+								<td>Liberty Bell Group</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-120.66855787923465&lat=48.52248145956153#.WOsJU4grJnI">Base - 5397'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lat=48.51330668036266&lon=-120.65664052963257&site=sew&unit=0&lg=en&FcstType=text#.WOsJDIgrJnJ">Upper Mountain - 6827'</a></td>
+							</tr>
+							<tr>
+								<td>Black Peak</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-120.7613602340859&lat=48.54259622638742#.WOsJ4ogrJnI">Base - 4882'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lat=48.522630567754&lon=-120.81570625305176&site=sew&unit=0&lg=en&FcstType=text#.WOsIoIgrJnI">Upper Mountain - 7372'</a></td>
+							</tr>
+							<tr>
+								<td>Silver Peak</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-120.63300450898825&lat=48.56500634678943#.WOsKSYgrJnI">Base - 3816'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-120.59079999027729&lat=48.54439108305144#.WOsKDYgrJnI">Upper Mountain - 7986'</a></td>
+							</tr>
+							<tr>
+								<td>Sourdough Mountain</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.11164781556779&lat=48.71775035985385#.WOsKvIgrJnI">Base - 1440'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.11957328448169&lat=48.746018808165616#.WOsKqIgrJnI">Upper Mountain - 5354'</a></td>
+							</tr>
+							
+							<tr>
+								<td colspan=4><h3 class="containerH3">Cascade Pass</h3></td>
+							</tr>
+							<tr>
+								<td>Sahale</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.07772465661422&lat=48.47632174319642#.WOsLw4grJnI">Base - 3159'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.03858677811378&lat=48.49103257086318#.WOsLbIgrJnI">Upper Mountain - 8009'</a></td>
+							</tr>
+							<tr>
+								<td>Hidden Lake Lookout</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.25058130682322&lat=48.51114324415866#.WOsMuYgrJnI">Base - 1759'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.1510009323281&lat=48.517726404617406#.WOsMnIgrJnI">Upper Mountain - 6097'</a></td>
+							</tr>
+						</table>
+					</div>
+					
+				</div>
+			</div>
+			<br>
+			<div id="es">
+				<div class="resultRow container col-xs-12">
+					<button onclick="toggle('esInner')" class="btn btn-default">+</button><strong>&nbsp&nbsp East Side of Cascades </strong>
+					<div id="esInner" class="innerContainer">
+						<table class="table table-hover">
+							<tr>
+								<td colspan=4><h3 class="containerH3">Sawtooth Wilderness</h3></td>
+							</tr>
+							<tr>
+								<td>Star Peak/Oval Peak/Courtney Peak</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-120.405503&lat=48.356696#.WOsPHYgrJnJ">Base - 2887'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-120.42498311725421&lat=48.28709304423896#.WOsNXIgrJnI">Upper Mountain - 7552'</a></td>
+							</tr>
+							<tr>
+								<td>Mount Bigelow/Martin Peak</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-120.21358264619528&lat=48.21565391039965#.WOsN9IgrJnI">Base - 3025'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-120.35344016537272&lat=48.21789702194093#.WOsNt4grJnI">Upper Mountain - 7201'</a></td>
+							</tr>
+							<tr>
+								<td>Abernathy Peak</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-120.56257231904685&lat=48.45361855364433#.WOsP1IgrJnI">Base - 3415'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-120.48820919000524&lat=48.507081335786836#.WOsPeYgrJnI">Upper Mountain - 8159'</a></td>
+							</tr>
+						</table>
+					</div>
+					
+				</div>
+			</div>
+			<br>
+			<div id="oly">
+				<div class="resultRow container col-xs-12">
+					<button onclick="toggle('olyInner')" class="btn btn-default">+</button><strong>&nbsp&nbsp Olympics </strong>
+					<div id="olyInner" class="innerContainer">
+						<table class="table table-hover">
+							<tr>
+								<td colspan=4><h3 class="containerH3">Olympics</h3></td>
+							</tr>
+							<tr>
+								<td>Mount Ellinor</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-123.23344055724979&lat=47.509775877787945#.WOsQ6IgrJnI">Base - 2746'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-123.23832012788473&lat=47.56046117759678#.WOsQpIgrJnI">Upper Mountain - 5394'</a></td>
+							</tr>
+							<tr>
+								<td>The Brothers</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-123.15774875327301&lat=47.598513710039754#.WOsRY4grJnI">Base - 797'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-123.13535913129292&lat=47.656182542082774#.WOsRS4grJnI">Upper Mountain - 5092'</a></td>
+							</tr>
+							<tr>
+								<td>Hurricane Ridge</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-123.51789410346859&lat=47.975877762981014#.WOsRu4grJnJ">Ridge - 5000'</a></td>
+							</tr>
+							<tr>
+								<td>Second Beach</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lat=47.89229099780455&lon=-124.62912082672119&site=sew&unit=0&lg=en&FcstType=text#.WOsQQ4grJnI">Beach - 0'</a></td>
+							</tr>
+							<tr>
+								<td>Hoh Rain Forest</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lat=47.860743036589774&lon=-123.93367767333984#.WOsQRYgrJnI">River - 1475'</a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div id="vol">
+				<div class="resultRow container col-xs-12">
+					<button onclick="toggle('volInner')" class="btn btn-default">+</button><strong>&nbsp&nbsp Volcanoes </strong>
+					<div id="volInner" class="innerContainer">
+						<table class="table table-hover">
+							<tr>
+								<td colspan=4><h3 class="containerH3">Volcanoes</h3></td>
+							</tr>
+							<tr>
+								<td>Mount St Helens</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-122.18381274374367&lat=46.14639258642063#.WOsUBYgrJnI">Base - 2956'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-122.20015391625844&lat=46.1918077686326#.WOsT6YgrJnI">Upper Mountain - 6598'</a></td>
+							</tr>
+							<tr>
+								<td>Mount Rainier</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lat=46.78889482261118&lon=-121.73615455627441#.WOsUHIgrJnI">Paradise - 5151'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lat=46.83553581454299&lon=-121.73267841339111&site=sew&unit=0&lg=en&FcstType=text#.WOsUHYgrJnI">Camp Muir - 9485'</a></td>
+								<td><a href="http://www.atmos.washington.edu/data/rainier_report.html">Rainier Report</a></td>
+							</tr>
+							<tr>
+								<td>Mount Baker</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lat=48.804715349809726&lon=-121.89468383789062#.WOsUG4grJnI">Base - 2999'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.82578033233236&lat=48.77153403725001#.WOsUPYgrJnI">Upper Mountain - 10,072'</a></td>
+							</tr>
+							<tr>
+								<td>Mount Adams</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.48854814912498&lat=46.12679150907735#.WOsUpIgrJnI">Base - 5328'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lat=46.19314087623798&lon=-121.5062141418457&site=pqr&unit=0&lg=en&FcstType=text#.WOsUjogrJnI">Upper Mountain - 9829'</a></td>
+							</tr>
+							<tr>
+								<td>Mount Hood</td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lat=45.331512968961256&lon=-121.70886039733887#.WOsTrYgrJnI">Base - 6339'</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lat=45.36999635126154&lon=-121.70087814331055&site=pqr&unit=0&lg=en&FcstType=text#.WOsTrogrJnI">Upper Mountain - 9167'</a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div id="ski">
+				<div class="resultRow container col-xs-12">
+					<button onclick="toggle('skiInner')" class="btn btn-default">+</button><strong>&nbsp&nbsp Ski Resorts </strong>
+					<div id="skiInner" class="innerContainer">
+						<table class="table table-hover">
+							<tr>
+								<td colspan=4><h3 class="containerH3">Ski Resorts</h3></td>
+							</tr>
+							<tr>
+								<td>Stevens Pass</td>
+								<td><a href="https://www.stevenspass.com/site/mountain/reports/snow-and-weather-report/@@snow-and-weather-report">Snow Report</a></td>
+								<td><a href="http://www.snow-forecast.com/resorts/Stevens-Pass/6day/bot">Snow Forecast</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lat=47.75&lon=-121.09#.WOsWNIgrJnI">NOAA Forecast</a></td>
+							</tr>
+							<tr>
+								<td>Mount Baker</td>
+								<td><a href="http://www.mtbaker.us/snow-report">Snow Report</a></td>
+								<td><a href="http://www.snow-forecast.com/resorts/Mount-Baker/6day/bot">Snow Forecast</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lon=-121.67937157932438&lat=48.88212749803776#.WOsWvYgrJnJ">NOAA Forecast</a></td>
+							</tr>
+							<tr>
+								<td>Crystal Mountain</td>
+								<td><a href="https://crystalmountainresort.com/the-mountain/current-conditions/">Snow Report</a></td>
+								<td><a href="http://www.snow-forecast.com/resorts/Crystal-Mountain/6day/bot">Snow Forecast</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lat=46.92912043955674&lon=-121.50098133017309&site=sew&unit=0&lg=en&FcstType=text#.VJybVAABo">NOAA Forecast</a></td>
+							</tr>
+							<tr>
+								<td>Snoqualmie Summit</td>
+								<td><a href="http://www.summitatsnoqualmie.com/conditions">Snow Report</a></td>
+								<td><a href="http://www.snow-forecast.com/resorts/The-Summit-at-Snoqualmie/6day/bot">Snow Forecast</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lat=47.419957428685116&lon=-121.4205551147461#.WOsXFIgrJnI">NOAA Forecast</a></td>
+							</tr>
+							<tr>
+								<td>Alpental</td>
+								<td><a href="http://www.summitatsnoqualmie.com/conditions">Snow Report</a></td>
+								<td><a href="http://www.snow-forecast.com/resorts/Alpental-At-The-Summit/6day/bot">Snow Forecast</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lat=47.44294999517948&lon=-121.43497467041016#.WOsXMIgrJnI">NOAA Forecast</a></td>
+							</tr>
+							<tr>
+								<td>Mission Ridge</td>
+								<td><a href="https://www.missionridge.com/snow-report">Snow Report</a></td>
+								<td><a href="http://www.snow-forecast.com/resorts/Mission-Ridge/6day/bot">Snow Forecast</a></td>
+								<td><a href="http://forecast.weather.gov/MapClick.php?lat=47.286681888764214&lon=-120.41839599609375&site=otx&smap=1&marine=0&unit=0&lg=en#.WOsXbYgrJnJ">NOAA Forecast</a></td>
+							</tr>
+							<tr>
+								<td>Whistler</td>
+								<td><a href="https://www.whistlerblackcomb.com/mountain-info/snow-report">Snow Report</a></td>
+								<td><a href="http://www.snow-forecast.com/resorts/Whistler-Blackcomb/6day/bot">Snow Forecast</a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div id="pageFooter"></div>
+			<script src='/jsPageFooter.js'></script>
+		
+		<script src='js/jsAlpineAlicia.js'></script>
+		<script src='js/jsWeather.js'></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+	</body>
+</html>
