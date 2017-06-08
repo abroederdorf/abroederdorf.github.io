@@ -70,7 +70,7 @@ function buildRecentReports()
 		var item, par, aLink, img, str, yrStr, yrDigits;
 		var reportsDiv = document.getElementById('mostRecentReports');
 		
-		for (var i = 0; i < 4; i++)
+		for (var i = 0; i < 7; i++)
 		{
 			var newDiv = document.createElement("div");
 			newDiv.className = "recentReports";

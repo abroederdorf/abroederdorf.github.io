@@ -62,7 +62,7 @@ function createSlides()
 		var item, par, aLink, img, str, yrStr, yrDigits;
 		var innerCar = document.getElementById('myInnerCar');
 		
-		for (var i = 0; i < 4; i++)
+		for (var i = 0; i < 7; i++)
 		{
 			//Create item div
 			item = document.createElement('div');
