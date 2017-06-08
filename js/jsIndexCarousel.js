@@ -58,7 +58,7 @@ function createSlides()
 			results[j+1] = temp;
 		}
 		
-		//Create slide items with information from database for 4 most recent reports
+		//Create slide items with information from database for 7 most recent reports
 		var item, par, aLink, img, str, yrStr, yrDigits;
 		var innerCar = document.getElementById('myInnerCar');
 		

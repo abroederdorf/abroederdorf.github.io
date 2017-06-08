@@ -27,7 +27,7 @@ function trSlideObj(name, month, day, year, date, pageLink, imageLink){
 //Name: buildRecentReports
 //Description: Add recent report divs to homepage
 //Input: None
-//Output: 4 divs are created and returned
+//Output: 7 divs are created and returned
 function buildRecentReports()
 {	
 	var results = [];
@@ -66,7 +66,7 @@ function buildRecentReports()
 			results[j+1] = temp;
 		}
 		
-		//Create slide items with information from database for 4 most recent reports
+		//Create slide items with information from database for 7 most recent reports
 		var item, par, aLink, img, str, yrStr, yrDigits;
 		var reportsDiv = document.getElementById('mostRecentReports');
 		
