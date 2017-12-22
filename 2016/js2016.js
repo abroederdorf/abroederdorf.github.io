@@ -82,13 +82,13 @@ function drawGymDifficulty() {
 	data.addColumn('number', '2013');
 	data.addColumn('number', '2014');
 	data.addColumn('number', '2015');
-  data.addColumn('number', '2016');
+	data.addColumn('number', '2016');
 
 	data.addRows([
 	['Jan', 10.856, 11.057, 11.10, 9.33],    ['Feb', 11.488, 13.233, 11.26, 9.5],   ['Mar', 7.857, 11.253, 10.69, 9.55],  
-  ['Apr', 9.857, 11.893, 10.19, 0],   ['May', 0, 0, 11.666, 0],  ['Jun', 6.5, 0, 9.487, 0],
+	['Apr', 9.857, 11.893, 10.19, 0],   ['May', 0, 0, 11.666, 0],  ['Jun', 6.5, 0, 9.487, 0],
 	['Jul', 5.2, 0, 9.65, 0],    ['Aug', 7.955, 9.429, 9.25, 0],   ['Sep', 9.76, 10.372, 0, 0],  
-  ['Oct', 11.2, 9.611, 9.222, 0],   ['Nov', 11.8, 11.257, 0, 0],  ['Dec', 9.278, 10.653, 9.937, 7.3]
+	['Oct', 11.2, 9.611, 9.222, 0],   ['Nov', 11.8, 11.257, 0, 0],  ['Dec', 9.278, 10.653, 9.937, 7.3]
 	]);
 
 	var options = {
@@ -115,7 +115,7 @@ function drawGymDifficulty() {
 		  }
 		},
 		chartArea: {left:50, width: 600},
-		colors: ['#0000FF', '#800000', '#008000', '#FFA500']
+		colors: [ '#B93B8F', '#8467D7', '#A9A9A9', '#FFA500', '#0000FF', '#800000', '#D2B48C', '#008000', '#2F4F4F']
 	};
 
 	var chart = new google.visualization.LineChart(document.getElementById('gymClimbingAvgDiff'));
@@ -129,13 +129,13 @@ function drawGymPitches() {
 	data.addColumn('number', '2013');
 	data.addColumn('number', '2014');
 	data.addColumn('number', '2015');
-  data.addColumn('number', '2016');
+	data.addColumn('number', '2016');
 
 	data.addRows([
 	['Jan', 64, 51, 49, 16],    ['Feb', 46, 74, 41, 8],   ['Mar', 7, 37, 46, 10],  
-  ['Apr', 17, 28, 19, 0],   ['May', 0, 0, 9, 0],  ['Jun', 21, 0, 48, 0],
+	['Apr', 17, 28, 19, 0],   ['May', 0, 0, 9, 0],  ['Jun', 21, 0, 48, 0],
 	['Jul', 10, 0, 10, 0],    ['Aug', 16, 11, 10, 0],   ['Sep', 25, 46, 0, 0],  
-  ['Oct', 27, 58, 9, 0],   ['Nov', 10, 58, 0, 0],   ['Dec', 16, 76, 8, 21]
+	['Oct', 27, 58, 9, 0],   ['Nov', 10, 58, 0, 0],   ['Dec', 16, 76, 8, 21]
 	]);
 
 	var options = {
@@ -159,7 +159,7 @@ function drawGymPitches() {
 		  gridlines: { count: 6 }
 		},
 		chartArea: {left:50, width: 600},
-		colors: ['#0000FF', '#800000', '#008000', '#FFA500']
+		colors: [ '#B93B8F', '#8467D7', '#A9A9A9', '#FFA500', '#0000FF', '#800000', '#D2B48C', '#008000', '#2F4F4F']
 	};
 
 	var chart = new google.visualization.LineChart(document.getElementById('gymClimbingNumPitch'));
@@ -176,13 +176,13 @@ function drawOutdoorDifficulty() {
 	data.addColumn('number', '2013');
 	data.addColumn('number', '2014');
 	data.addColumn('number', '2015');
-  data.addColumn('number', '2016');
+	data.addColumn('number', '2016');
 
 	data.addRows([
 	['5-', 0, 2, 12, 10, 2, 3, 0],    ['5.4', 2, 12, 3, 2, 4, 2, 0],   ['5.5', 1, 16, 10, 2, 9, 2, 0],  
-  ['5.6', 5, 14, 19, 16, 42, 16, 1],   ['5.7', 4, 24, 24, 13, 28, 3, 0],  ['5.8', 1, 14, 26, 2, 28, 3, 0],
+	['5.6', 5, 14, 19, 16, 42, 16, 1],   ['5.7', 4, 24, 24, 13, 28, 3, 0],  ['5.8', 1, 14, 26, 2, 28, 3, 0],
 	['5.9', 5, 5, 14, 3, 8, 4, 0],    ['5.10a', 0, 3, 6, 1, 12, 1, 0],   ['5.10b', 0, 4, 4, 1, 3, 0, 0],  
-  ['5.10c', 0, 0, 3, 1, 0, 0, 0],   ['5.10d', 0, 0, 1, 0, 0, 0, 0],  ['5.11a', 0, 1, 0, 0, 0, 0, 0]
+	['5.10c', 0, 0, 3, 1, 0, 0, 0],   ['5.10d', 0, 0, 1, 0, 0, 0, 0],  ['5.11a', 0, 1, 0, 0, 0, 0, 0]
 	]);
 
 	var options = {
@@ -204,7 +204,7 @@ function drawOutdoorDifficulty() {
 		  gridlines: { count: 6 }
 		},
 		chartArea: {left:50, width: 600},
-		colors: [ '#B93B8F', '#8467D7','#FFA500', '#0000FF', '#800000', '#008000', '#B93B8F']
+		colors: [ '#B93B8F', '#8467D7', '#A9A9A9', '#FFA500', '#0000FF', '#800000', '#D2B48C', '#008000', '#2F4F4F']
 	};
 
 	var chart = new google.visualization.LineChart(document.getElementById('outdoorDiffClimbs'));
@@ -221,13 +221,13 @@ function drawOutdoorLocation() {
 	data.addColumn('number', '2013');
 	data.addColumn('number', '2014');
 	data.addColumn('number', '2015');
-  data.addColumn('number', '2016');
+	data.addColumn('number', '2016');
 
 	data.addRows([
 	['1', 4, 9, 2, 0, 1, 0, 1], ['2', 0, 5, 0, 0, 0, 0, 0], ['3', 8, 17, 27, 22, 44, 17, 0],  
-  ['4', 0, 9, 0, 0, 4, 0, 0], ['5', 0, 3, 3, 7, 0, 0, 0],  ['6', 0, 19, 28, 0, 7, 0, 0],   
-  ['7', 0, 7, 6, 3, 5, 3, 0], ['8', 0, 3, 3, 5, 0, 2, 0], ['9', 0, 1, 0, 3, 0, 0, 0],  
-  ['10', 0, 0, 0, 0, 5, 0, 0], ['11', 0, 8, 11, 0, 6, 0, 0], ['12', 6, 14, 33, 5, 31, 0, 0], 
+	['4', 0, 9, 0, 0, 4, 0, 0], ['5', 0, 3, 3, 7, 0, 0, 0],  ['6', 0, 19, 28, 0, 7, 0, 0],   
+	['7', 0, 7, 6, 3, 5, 3, 0], ['8', 0, 3, 3, 5, 0, 2, 0], ['9', 0, 1, 0, 3, 0, 0, 0],  
+	['10', 0, 0, 0, 0, 5, 0, 0], ['11', 0, 8, 11, 0, 6, 0, 0], ['12', 6, 14, 33, 5, 31, 0, 0], 
 	['13', 0, 0, 9, 6, 33, 12, 0]
 	]);
 
@@ -250,7 +250,7 @@ function drawOutdoorLocation() {
 		  gridlines: { count: 6 }
 		},
 		chartArea: {left:50, width: 600},
-		colors: [ '#B93B8F', '#8467D7','#FFA500', '#0000FF', '#800000', '#008000', '#B93B8F']
+		colors: [ '#B93B8F', '#8467D7', '#A9A9A9', '#FFA500', '#0000FF', '#800000', '#D2B48C', '#008000', '#2F4F4F']
 	};
 
 	var chart = new google.visualization.LineChart(document.getElementById('outdoorLocations'));
@@ -302,7 +302,7 @@ function drawOutdoorType() {
           title: 'Number of Routes'
         },
 		chartArea: {left:50, width: 600},
-		colors: ['#38ACEC', '#4CC417', '#800000', '#FFA500', '#B93B8F']
+		colors: ['#38ACEC', '#4CC417', '#800000', '#FFA500', '#B93B8F']  //Only need 5 colors for 5 types
       };
 
       var chart = new google.visualization.ColumnChart(document.getElementById('outdoorType'));
@@ -317,13 +317,13 @@ function drawRunningMileage() {
 	data.addColumn('number', '2013');
 	data.addColumn('number', '2014');
 	data.addColumn('number', '2015');
-  data.addColumn('number', '2016');
+	data.addColumn('number', '2016');
 
 	data.addRows([
 	['Jan', 39.12, 50.69, 0, 0,0],    ['Feb', 17.41, 71.63, 2.07, 0, 0],   ['Mar',0, 53.13, 4.15, 0, 0],  
-  ['Apr', 3, 57.9, 3.14, 0, 0, 0, 0],   ['May', 38.05, 5.01, 0, 0, 0],  ['Jun', 49.58, 24.71, 0, 0, 0],
+	['Apr', 3, 57.9, 3.14, 0, 0, 0, 0],   ['May', 38.05, 5.01, 0, 0, 0],  ['Jun', 49.58, 24.71, 0, 0, 0],
 	['Jul', 59.53, 5.21, 0, 0, 0],    ['Aug', 67.2, 30.05, 0, 0, 0],   ['Sep', 54.47, 48.12, 0, 0, 0],  
-  ['Oct', 36.29, 77.34, 9.68, 0, 0],   ['Nov', 70.79, 69.98, 12.52, 0, 0],  ['Dec', 58.3, 33.16, 0, 0, 0],
+	['Oct', 36.29, 77.34, 9.68, 0, 0],   ['Nov', 70.79, 69.98, 12.52, 0, 0],  ['Dec', 58.3, 33.16, 0, 0, 0],
 	]);
 
 	var options = {
@@ -345,7 +345,7 @@ function drawRunningMileage() {
 		  gridlines: { count: 6 }
 		},
 		chartArea: {left:50, width: 600},
-		colors: ['#FFA500', '#0000FF', '#800000', '#008000']
+		colors: [ '#B93B8F', '#8467D7', '#A9A9A9', '#FFA500', '#0000FF', '#800000', '#D2B48C', '#008000', '#2F4F4F']
 	};
 
 	var chart = new google.visualization.LineChart(document.getElementById('runningMileage'));
@@ -360,13 +360,13 @@ function drawRunningElevation() {
 	data.addColumn('number', '2013');
 	data.addColumn('number', '2014');
 	data.addColumn('number', '2015');
-  data.addColumn('number', '2016');
+	data.addColumn('number', '2016');
 
 	data.addRows([
 	['Jan', 0, 2470, 0, 0, 0],    ['Feb', 0, 3235, 107, 0, 0],   ['Mar', 0, 2643, 191, 0, 0],  
-  ['Apr', 0, 2472, 164, 0, 0],   ['May', 1579, 110, 0, 0, 0],  ['Jun', 1847, 1564, 0, 0, 0],
+	['Apr', 0, 2472, 164, 0, 0],   ['May', 1579, 110, 0, 0, 0],  ['Jun', 1847, 1564, 0, 0, 0],
 	['Jul', 2141, 329, 0, 0, 0],    ['Aug', 2502, 1764, 0, 0, 0],   ['Sep', 1766, 2191, 0, 0, 0],  
-  ['Oct', 1405, 1948, 614, 0, 0],   ['Nov', 3161, 3426, 998, 0, 0],  ['Dec', 2172, 1959, 0, 0, 0],
+	['Oct', 1405, 1948, 614, 0, 0],   ['Nov', 3161, 3426, 998, 0, 0],  ['Dec', 2172, 1959, 0, 0, 0],
 	]);
 
 	var options = {
@@ -388,7 +388,7 @@ function drawRunningElevation() {
 		  gridlines: { count: 6 }
 		},
 		chartArea: {left:100, width: 600},
-		colors: ['#FFA500', '#0000FF', '#800000', '#008000']
+		colors: [ '#B93B8F', '#8467D7', '#A9A9A9', '#FFA500', '#0000FF', '#800000', '#D2B48C', '#008000', '#2F4F4F']
 	};
 
 	var chart = new google.visualization.LineChart(document.getElementById('runningElevation'));
@@ -576,13 +576,13 @@ function drawStepsMonthly() {
 	data.addColumn('string', 'Month');
 	data.addColumn('number', '2014');
 	data.addColumn('number', '2015');
-  data.addColumn('number', '2016');
+	data.addColumn('number', '2016');
 
 	data.addRows([
 	['Jan', 0, 198300, 157665],    ['Feb', 0, 215989, 163115],   ['Mar', 0, 257487, 184236],  
-  ['Apr', 0, 199932, 185759],   ['May', 0, 212319, 195289],  ['Jun', 0, 346706, 241814],
+	['Apr', 0, 199932, 185759],   ['May', 0, 212319, 195289],  ['Jun', 0, 346706, 241814],
 	['Jul', 0, 300509, 339291],    ['Aug', 303340, 243670, 329360],   ['Sep', 288083, 286882, 160228],  
-  ['Oct', 245026, 164057, 143484],   ['Nov', 255106, 110484, 144179],  ['Dec', 212604, 158217, 189841],
+	['Oct', 245026, 164057, 143484],   ['Nov', 255106, 110484, 144179],  ['Dec', 212604, 158217, 189841],
 	]);
 
 	var options = {
@@ -604,7 +604,7 @@ function drawStepsMonthly() {
 		  gridlines: { count: 6 }
 		},
 		chartArea: {left:100, width: 600},
-		colors: ['#800000', '#008000']
+		colors: [ '#B93B8F', '#8467D7', '#A9A9A9', '#FFA500', '#0000FF', '#800000', '#D2B48C', '#008000', '#2F4F4F']
 	};
 
 	var chart = new google.visualization.LineChart(document.getElementById('monthlySteps'));
