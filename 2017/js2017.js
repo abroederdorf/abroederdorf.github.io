@@ -70,7 +70,7 @@ function drawSkiDays() {
           title: 'Number of Days'
         },
 		chartArea: {left:50, width: 600},
-		colors: ['#38ACEC', '#4CC417']
+		colors: ['#38ACEC', '#4CC417', '#FFA500']
       };
 
       var chart = new google.visualization.ColumnChart(document.getElementById('skiDaysChart'));
