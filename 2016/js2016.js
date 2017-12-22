@@ -115,7 +115,7 @@ function drawGymDifficulty() {
 		  }
 		},
 		chartArea: {left:50, width: 600},
-		colors: ['#0000FF', '#800000', '#008000']
+		colors: ['#0000FF', '#800000', '#008000', '#FFA500']
 	};
 
 	var chart = new google.visualization.LineChart(document.getElementById('gymClimbingAvgDiff'));
@@ -159,7 +159,7 @@ function drawGymPitches() {
 		  gridlines: { count: 6 }
 		},
 		chartArea: {left:50, width: 600},
-		colors: ['#0000FF', '#800000', '#008000']
+		colors: ['#0000FF', '#800000', '#008000', '#FFA500']
 	};
 
 	var chart = new google.visualization.LineChart(document.getElementById('gymClimbingNumPitch'));
